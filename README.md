@@ -1,9 +1,12 @@
-# README
+#サービス名
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#サービスの概要
 
-Things you may want to cover:
+#機能一覧
+##tutorialで学んだ機能
+
+##それ以外の機能
+
 
 * Ruby version
 
