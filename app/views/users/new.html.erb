@@ -1,0 +1,20 @@
+<h1>新規登録画面</h1>
+
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :ユーザー名 %>
+  <%= f.text_field :name, class: "" %>
+  
+  <%= f.label :メールアドレス %>
+  <%= f.email_field :email, class: "" %>
+  
+  <%= f.label :パスワード %>
+  <%= f.text_field :password, class: "" %>
+  
+  <%= f.label :パスワード確認用 %>
+  <%= f.text_field :password_confirmaition, class: "" %>
+
+  <%= f.submit "登録" %>
+<% end %>
+
+
