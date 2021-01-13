@@ -26,13 +26,17 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
 
   #BCrypt::Password.new(remember_digest)はハッシュ化を解いた値を意味する
   #is_password?はイコールと同じ？
   def authenticated?(remember_token)
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    if remember_digest.nil?
+      return false
+    else
+      BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
   end
-
-
-
 end

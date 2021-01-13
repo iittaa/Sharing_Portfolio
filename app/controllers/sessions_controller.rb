@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
       login(@user)
       if params[:session][:remember_me] == "1"
         remember(@user)
+      else
+        forget(@user)
       end
       flash[:success] = "ログインしました！"
       redirect_to user_url(@user)
@@ -20,8 +22,8 @@ class SessionsController < ApplicationController
   def destroy
     if !current_user.nil?
       session[:user_id] = nil
+      forget(@current_user)
     end
-    flash[:success] = "ログアウトしました！"
     redirect_to root_url
   end
 
