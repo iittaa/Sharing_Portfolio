@@ -3,6 +3,7 @@
 
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', model: f.object %>
+  
   <%= f.label :ユーザー名,  class:"col-sm-2 control-label" %>
   <%= f.text_field :name, class: "form-control" %>
   

@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
       flash[:success] = "ログインしました！"
       redirect_to user_url(@user)
     else
+      flash[:warning] = "メールアドレスとパスワードの組み合わせが正しくありません。"
       render "new"
     end
   end
@@ -24,6 +25,7 @@ class SessionsController < ApplicationController
       session[:user_id] = nil
       forget(@current_user)
     end
+    flash[:success] = "ログアウトしました！"
     redirect_to root_url
   end
 
