@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+#logged_in_user ログインしているかどうか
+#correct_user そのユーザーが正しいかどうか
 
   def home
   end
@@ -10,6 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      login(@user)
       flash[:success] = "アカウントを登録しました！"
       redirect_to user_url(@user)
     else
@@ -21,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -39,7 +43,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-
 
 
 end

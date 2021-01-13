@@ -1,1 +1,19 @@
-<h1 class="container">ログイン画面</h1>
+<h1>ログイン画面</h1>
+
+<%= form_with(url: sessions_path, scope: :session,  local: true) do |f| %>
+
+  <%= f.label :メールアドレス %>
+  <%= f.email_field :email, class: "" %>
+  
+  <%= f.label :パスワード %>
+  <%= f.text_field :password, class: "" %>
+
+  <%= f.label :remember_me do %>
+    <%= f.check_box :remember_me %>
+    <span>次回から自動でログインする</span>
+  <% end %>
+
+  <%= link_to "パスワードを忘れた方はこちらへ", "#" %>
+  
+  <%= f.submit "ログイン" %>
+<% end %>

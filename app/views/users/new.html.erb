@@ -2,6 +2,7 @@
 
 
 <%= form_with(model: @user, local: true) do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
   <%= f.label :ユーザー名 %>
   <%= f.text_field :name, class: "" %>
   
@@ -12,7 +13,7 @@
   <%= f.text_field :password, class: "" %>
   
   <%= f.label :パスワード確認用 %>
-  <%= f.text_field :password_confirmaition, class: "" %>
+  <%= f.text_field :password_confirmation, class: "" %>
 
   <%= f.submit "登録" %>
 <% end %>
