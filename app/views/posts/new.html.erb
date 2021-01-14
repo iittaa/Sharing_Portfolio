@@ -1,0 +1,28 @@
+<h1>投稿画面</h1>
+
+
+<%= form_with(model: @post, local: true) do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
+  
+  <%= f.label :サービス名,  class:"col-sm-2 control-label" %>
+  <%= f.text_field :name, class: "form-control" %>
+  
+  <%= f.label :サービス概要, class:"col-sm-2 control-label" %>
+  <%= f.text_field :content, class: "form-control" %>
+  
+  <%= f.label :主な実装機能, class:"col-sm-2 control-label" %>
+  <%= f.text_field :function, class: "form-control" %>
+  
+  <%= f.label :使用言語, class:"col-sm-2 control-label" %>
+  <%= f.text_field :language, class: "form-control" %>
+  
+  <%= f.label :開発期間, class:"col-sm-2 control-label" %>
+  <%= f.text_field :period, class: "form-control" %>
+  
+  <%= f.label :アピールポイント, class:"col-sm-2 control-label" %>
+  <%= f.text_field :point, class: "form-control" %>
+  
+  <%= f.submit "投稿する" %>
+<% end %>
+
+

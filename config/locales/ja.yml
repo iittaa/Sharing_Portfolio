@@ -8,3 +8,10 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認用
+      post:
+        name: サービス名
+        content: サービス概要
+        function: 主な実装機能
+        language: 使用言語
+        point: アピールポイント
+        period: 開発期間

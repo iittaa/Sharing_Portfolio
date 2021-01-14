@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
+
   attr_accessor :remember_token, :reset_token
 
   validates :name, presence: true

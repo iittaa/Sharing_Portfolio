@@ -25,6 +25,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
 
   def show
     @user = User.find(params[:id])
+    @feed_items = @user.posts
   end
 
   def edit

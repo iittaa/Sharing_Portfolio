@@ -1,0 +1,7 @@
+<li>
+  <span class="user"><%= link_to post.user.name, post.user %></span>
+  <span class="content"><%= link_to post.name, post_path(post) %></span>
+  <span>
+    <%= time_ago_in_words(post.created_at) %>前に投稿
+  </span>
+</li>
