@@ -1,0 +1,5 @@
+<% if current_user.stock?(@post) %>
+  <%= render "shared/unstock" %>
+<% else %>
+  <%= render "shared/stock" %>
+<% end %>

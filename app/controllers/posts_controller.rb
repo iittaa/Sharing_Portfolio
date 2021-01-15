@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.user_id = current_user.id
     if @post.save
       flash[:success] = "ポートフォリオを公開しました！"
       redirect_to root_url
@@ -28,6 +29,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @stock = Stock.find_by(
+      user_id: current_user.id,
+      post_id: @post.id
+    )
+
   end
 
   def destroy

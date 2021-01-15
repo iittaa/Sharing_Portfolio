@@ -33,4 +33,10 @@ module ApplicationHelper
     cookies.delete :remember_token
   end
 
+
+  #現在のユーザーである場合にtrueを返す
+  def current_user?(user)
+    user && user == current_user
+  end
+
 end

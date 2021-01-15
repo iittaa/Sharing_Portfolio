@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+  has_many :stocks, dependent: :destroy
+  has_many :stocked_post, through: :stocks, source: :post
 
   attr_accessor :remember_token, :reset_token
 
@@ -48,6 +50,11 @@ class User < ApplicationRecord
     update_attribute(:reset_sent_at, Time.zone.now)
   end
 
+
+  #ユーザーがすでにストックしているか確認する
+  def stock?(post)
+    self.stocks.exists?(post_id: post.id)
+  end
 
 
 end

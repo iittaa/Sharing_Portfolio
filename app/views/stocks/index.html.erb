@@ -1,0 +1,5 @@
+<h1>ストック一覧</h1>
+
+<% @stocks.each do |stock| %>
+  <%= link_to stock.post.name, post_path(stock.post) %>
+<% end %>
