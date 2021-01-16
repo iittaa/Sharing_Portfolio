@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   resources :password_resets, only:[:new, :create, :edit, :update]
   resources :posts
   resources :stocks, only:[:create, :destroy, :index]
+  resources :tags do
+    get 'posts', to: 'posts#search'
+  end
 end

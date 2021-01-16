@@ -1,0 +1,8 @@
+<% @tag_list.each do |list| %>
+  <%= link_to list.tag_name, tag_posts_path(post_tag_id: list.id) %>
+  <%= list.posts.count %>
+<% end %>
+
+<% @posts.each do |post| %>
+  <%= link_to post.content, post %>
+<% end %>

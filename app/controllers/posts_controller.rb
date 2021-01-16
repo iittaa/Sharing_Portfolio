@@ -1,15 +1,14 @@
 class PostsController < ApplicationController
 
   def new
-    if !current_user.nil?
       @post = current_user.posts.build
-    end
   end
 
   def create
     @post = current_user.posts.build(post_params)
-    @post.user_id = current_user.id
+    @tag_list = params[:post][:tag_name].split(",")
     if @post.save
+      @post.save_tag(@tag_list)
       flash[:success] = "ポートフォリオを公開しました！"
       redirect_to root_url
     else
@@ -24,7 +23,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all #タグ一覧を表示する際に使用する
+    @tag_list = Tag.all
+    @post = current_user.posts.build
   end
 
   def show
@@ -33,11 +34,17 @@ class PostsController < ApplicationController
       user_id: current_user.id,
       post_id: @post.id
     )
-
   end
 
   def destroy
   end
+
+  def search
+    @tag_list = Tag.all  
+    @tag = Tag.find(params[:tag_id])  
+    @posts = @tag.posts.all 
+  end
+
 
   private
 

@@ -1,8 +1,9 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :stocks
-  has_many :stock_users, through: :stocks, source: :user
-  has_many :stocked_user, through: :stocks, source: :user
+  has_many :stocked_user, through: :stocks, source: :user, dependent: :destroy
+  has_many :tag_maps, dependent: :destroy
+  has_many :tags, through: :tag_maps
 
   validates :user_id, presence: true
   validates :name, presence: true
@@ -28,7 +29,23 @@ class Post < ApplicationRecord
     stock_users.include?(user)
   end
 
+  #紐づいているタグを全て取得する
+  def save_tag(sent_tag)
+    if unless self.tags.nil?
+      current_tag = self.tags.pluck(:tag_name)
+    end
+    old_tags = current_tag - sent_tag
+    new_tags = sent_tag - current_tag
 
-
-
+    old_tags.each do |old_name|
+      self.tags.delete 
+      Tag.find_by(tag_name: old_name)
+    end
+    
+    new_tags.each do |new_name|
+      post_tag = Tag.find_or_create_by(tag_name: new_name)
+      self.tags << post_tag
+    end
+  end
+end
 end

@@ -43,7 +43,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
   end
   
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     @user.destroy
     flash[:success] = "アカウントを削除しました。"
     redirect_to root_url

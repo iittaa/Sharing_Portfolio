@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_045008) do
+ActiveRecord::Schema.define(version: 2021_01_15_074503) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(version: 2021_01_15_045008) do
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
+  create_table "tag_maps", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_tag_maps_on_post_id"
+    t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -50,4 +65,6 @@ ActiveRecord::Schema.define(version: 2021_01_15_045008) do
   add_foreign_key "posts", "users"
   add_foreign_key "stocks", "posts"
   add_foreign_key "stocks", "users"
+  add_foreign_key "tag_maps", "posts"
+  add_foreign_key "tag_maps", "tags"
 end
