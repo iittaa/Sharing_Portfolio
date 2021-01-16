@@ -1,5 +1,4 @@
-<h1>投稿詳細</h1>
-<h2>サービス名：<%= @post.name %></h2>
+<h1><%= @post.name %></h1>
 <div>サービスの概要：<%= @post.content %></div>
 <div>サービスへのリンク：<%=  %></div>
 <div>主な実装機能：<%= @post.function %></div>
@@ -8,7 +7,7 @@
 <div>アピールポイント：<%= @post.point %></div>
 <div>
   <% @post.tags.each do |list| %>
-    <%= link_to list.tag_name, tag_posts_path(list.id) %>
+    <%= link_to list.tag_name, tag_path(list) %>
   <% end %>
 </div>
 <%= render "shared/stock_form" %>

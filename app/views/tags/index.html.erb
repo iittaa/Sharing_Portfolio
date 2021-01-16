@@ -1,0 +1,9 @@
+<h1>カテゴリ一覧</h1>
+<ul class="list-group">
+  <% @tag_list.each do |list| %>
+    <li class="list-group-item">
+      <%= link_to list.tag_name, tag_path(list) %>
+      <%= list.posts.count %>件
+    </li>
+  <% end %>
+</ul>
