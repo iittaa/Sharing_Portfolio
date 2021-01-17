@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :stocked_user, through: :stocks, source: :user, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_many :comments, dependent: :destroy
 
   validates :user_id, presence: true
   validates :name, presence: true

@@ -34,6 +34,8 @@ class PostsController < ApplicationController
       user_id: current_user.id,
       post_id: @post.id
     )
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   def destroy
