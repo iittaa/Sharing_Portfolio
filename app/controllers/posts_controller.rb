@@ -34,8 +34,9 @@ class PostsController < ApplicationController
       user_id: current_user.id,
       post_id: @post.id
     )
-    @comment = Comment.new
-    @comments = @post.comments
+    @comments = @post.comments 
+    @comment = @post.comments.build #投稿全体のコメント用の変数
+    @comment_reply = @post.comments.build #コメントに対する返信用の変数
   end
 
   def destroy

@@ -12,7 +12,6 @@
 </div>
 <%= render "shared/stock_form" %>
 
-<div> </div>
 <%= form_with(model:[@post, @comment], method: :post) do |f| %>
   <%= f.text_area :content %>
   <%= f.hidden_field :post_id, value: @post.id %>
