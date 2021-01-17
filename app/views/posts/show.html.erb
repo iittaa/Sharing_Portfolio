@@ -12,17 +12,47 @@
 </div>
 <%= render "shared/stock_form" %>
 
-<%= form_with(model:[@post, @comment], method: :post) do |f| %>
-  <%= f.text_area :content %>
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <%= f.submit "コメント送信", class: "btn-sm btn-primary" %>
-<% end %>
 
-<div>コメント</div>
-<ul class="list-group">
+<div>
+  <h2>コメント欄</h2>
   <% @comments.each do |comment| %>
-    <li class="list-group-item">
-      <%= link_to comment.user.name, user_path(comment.user) %>
-      <%= comment.content %>
+    <% if comment.parent_id.present? || comment.id.blank? %>
+      <% next %>
+    <% end %>
+    <hr>
+    <p>
+      <%= comment.user.name %><br><%=comment.content%>
+    </p>
+    <p>
+      date:<%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+      <div>
+        <% comment.replies.order(:created_at).each do |reply| %>
+          <p>
+            <%= comment.user.name %><br><%=reply.content%>
+          </p>
+        <% end %>
+      </div>
+      <%= form_with(model:[@post,@comment_reply]) do |f| %>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <textarea class="form-control input-form" name="comment[content]" rows="2"><%=@comment_reply.content%></textarea>
+          </div>
+        </div>
+        <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.hidden_field :parent_id, value: comment.id%>
+          <div class="actions">
+            <%= f.submit "返信する", class: "btn-sm btn-primary" %>
+          </div>
+      <% end %>
   <% end %>
-</ul>
+</div>
+
+    <%= form_with(model:[@post,@comment]) do |f| %>
+      <p><label>新規コメント</label></p>
+      <textarea class="form-control input-form" name="comment[content]" rows="5"><%=@comment.content%></textarea>
+      <%= f.hidden_field :post_id, value: @post.id %>
+        <div class="actions">
+          <%= f.submit "送信", class: "btn-sm btn-primary" %>
+        </div>
+    <% end %>
+</div>

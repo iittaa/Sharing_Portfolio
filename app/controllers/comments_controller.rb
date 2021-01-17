@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
       flash[:success] = "コメントしました"
     else
+      flash[:warning] = "コメントに失敗しました"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -19,6 +20,6 @@ class CommentsController < ApplicationController
 
 
   def comment_params
-    params.require(:comment).permit(:content, :post_id, :user_id)
+    params.require(:comment).permit(:content, :post_id, :user_id, :parent_id)
   end
 end

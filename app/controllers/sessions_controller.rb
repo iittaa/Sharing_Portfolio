@@ -4,16 +4,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = request.env['omniauth.auth']
-    if auth.present?
-      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
-      session[:user_id] = user.id
-      redirect_to root_url
-      flash[:success] = "Twitterアカウントでログインしました！"
-    else
       @user = User.find_by(email: params[:session][:email])
       if @user && @user.authenticate(params[:session][:password])
-      login(@user)
+        login(@user)
         if params[:session][:remember_me] == "1"
           remember(@user)
         else
@@ -36,9 +29,3 @@ class SessionsController < ApplicationController
     flash[:success] = "ログアウトしました！"
     redirect_to root_url
   end
-  
-
-
-
-
-end
