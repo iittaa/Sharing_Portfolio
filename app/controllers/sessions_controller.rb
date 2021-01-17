@@ -19,7 +19,6 @@ class SessionsController < ApplicationController
         render "new"
       end
     end
-  end
 
   def destroy
     if !current_user.nil?
@@ -29,3 +28,4 @@ class SessionsController < ApplicationController
     flash[:success] = "ログアウトしました！"
     redirect_to root_url
   end
+end
