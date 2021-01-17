@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_074503) do
+ActiveRecord::Schema.define(version: 2021_01_16_150719) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(version: 2021_01_15_074503) do
     t.string "remember_digest"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.string "provider"
+    t.string "uid"
+    t.string "username"
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
   add_foreign_key "posts", "users"

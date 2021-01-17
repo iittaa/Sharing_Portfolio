@@ -4,19 +4,27 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:session][:email])
-    if @user && @user.authenticate(params[:session][:password])
-      login(@user)
-      if params[:session][:remember_me] == "1"
-        remember(@user)
-      else
-        forget(@user)
-      end
-      flash[:success] = "ログインしました！"
-      redirect_to user_url(@user)
+    auth = request.env['omniauth.auth']
+    if auth.present?
+      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+      session[:user_id] = user.id
+      redirect_to root_url
+      flash[:success] = "Twitterアカウントでログインしました！"
     else
-      flash[:warning] = "メールアドレスとパスワードの組み合わせが正しくありません。"
-      render "new"
+      @user = User.find_by(email: params[:session][:email])
+      if @user && @user.authenticate(params[:session][:password])
+      login(@user)
+        if params[:session][:remember_me] == "1"
+          remember(@user)
+        else
+          forget(@user)
+        end
+        flash[:success] = "ログインしました！"
+        redirect_to user_url(@user)
+      else
+        flash[:warning] = "メールアドレスとパスワードの組み合わせが正しくありません。"
+        render "new"
+      end
     end
   end
 
@@ -28,5 +36,9 @@ class SessionsController < ApplicationController
     flash[:success] = "ログアウトしました！"
     redirect_to root_url
   end
+  
+
+
+
 
 end

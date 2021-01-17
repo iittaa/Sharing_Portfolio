@@ -18,7 +18,7 @@ module ApplicationHelper
       end
     end
   end
-  
+
   #ログインする時にcookieを追加する。
   def remember(user)
     user.remember

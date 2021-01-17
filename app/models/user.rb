@@ -5,10 +5,10 @@ class User < ApplicationRecord
 
   attr_accessor :remember_token, :reset_token
 
-  validates :name, presence: true
+  validates :name, presence: true, unless: :uid?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
-  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+  validates :email, presence: true, unless: :uid?, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
+  validates :password, presence: true, unless: :uid?, length: {minimum: 6}, allow_nil: true
 
   has_secure_password
 
@@ -56,5 +56,14 @@ class User < ApplicationRecord
     self.stocks.exists?(post_id: post.id)
   end
 
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    username = auth[:info][:username]
 
+
+    User.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.username = username
+    end
+  end
 end
