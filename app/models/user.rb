@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :stocks, dependent: :destroy
-  has_many :stocked_post, through: :stocks, source: :post
   has_many :comments, dependent: :destroy
 
   attr_accessor :remember_token, :reset_token

@@ -1,7 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :stocks
-  has_many :stocked_user, through: :stocks, source: :user, dependent: :destroy
+  has_many :stocks, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
   has_many :comments, dependent: :destroy
@@ -23,11 +22,6 @@ class Post < ApplicationRecord
   #ストックをやめる
   def unstock(user)
     Stock.find_by(user_id: user.id).destroy
-  end
-
-  #現在のユーザーがいいねしてたらtrueを返す
-  def stock?(user)
-    stock_users.include?(user)
   end
 
   #紐づいているタグを全て取得する
