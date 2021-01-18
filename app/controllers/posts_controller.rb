@@ -6,10 +6,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    @tag_list = params[:post][:tag_name].split(",")
+    @tag_list = params[:post][:tag_ids].split(",")
     if @post.save
       @post.save_tag(@tag_list)
-      flash[:success] = "ポートフォリオを公開しました！"
+      flash[:success] = "ポートフォリオを公開しました！ありがとう！"
       redirect_to root_url
     else
       render "new"
@@ -17,9 +17,20 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find_by(id: params[:id])
+    @tag_list = @post.tags.pluck(:tag_name).join(',')
   end
 
   def update
+    @post = Post.find_by(id: params[:id])
+    @tag_list = params[:post][:tag_ids].split(',')
+    if @post.update(post_params)
+      @post.save_tag(@tag_list)
+      flash[:success] = "更新しました！"
+      redirect_to post_url(@post)
+    else
+      render "edit"
+    end
   end
 
   def index
@@ -41,14 +52,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find_by(id: params[:id])
+    @post.destroy
+    redirect_to root_url
+    flash[:success] = "ポートフォリオを削除してしまいました。。。。"
   end
-
-  def search
-    @tag_list = Tag.all  
-    @tag = Tag.find(params[:tag_id])  
-    @posts = @tag.posts.all 
-  end
-
 
   private
 

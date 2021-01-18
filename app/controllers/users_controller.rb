@@ -13,7 +13,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      flash[:success] = "アカウントを登録しました！"
+      flash[:success] = "アカウントを登録しました！これからよろしくね！"
       redirect_to user_url(@user)
     else
       render "new"

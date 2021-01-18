@@ -5,12 +5,23 @@
 <div>使用言語：<%= @post.language %></div>
 <div>開発期間：<%= @post.period %></div>
 <div>アピールポイント：<%= @post.point %></div>
+<% if @post.user == current_user %>
+  <div>
+    <%= link_to "編集", edit_post_path(@post) %>
+    <%= link_to "削除", post_path(@post), method: :delete, data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"} %>
+  </div>
+<% end %>
+<div>
+  <%= render "shared/stock_form" %>
+</div>
 <div>
   <% @post.tags.each do |list| %>
     <%= link_to list.tag_name, tag_path(list) %>
   <% end %>
+  <div>
+    <%= link_to "カテゴリを編集する", "#" %>
+  </div>
 </div>
-<%= render "shared/stock_form" %>
 
 <div>
   <h2>コメント欄</h2>

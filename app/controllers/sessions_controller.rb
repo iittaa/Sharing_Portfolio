@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
       session[:user_id] = nil
       forget(@current_user)
     end
-    flash[:success] = "ログアウトしました！"
+    flash[:success] = "ログアウトしました！また来てね！"
     redirect_to root_url
   end
 end

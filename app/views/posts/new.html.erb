@@ -8,7 +8,7 @@
   <%= f.text_field :name, class: "form-control" %>
   
   <%= f.label :サービス概要, class:"col-sm-2 control-label" %>
-  <%= f.text_field :content, class: "form-control" %>
+  <%= f.text_area :content, class: "form-control" %>
   
   <%= f.label :主な実装機能, class:"col-sm-2 control-label" %>
   <%= f.text_field :function, class: "form-control" %>
@@ -20,13 +20,19 @@
   <%= f.text_field :period, class: "form-control" %>
   
   <%= f.label :アピールポイント, class:"col-sm-2 control-label" %>
-  <%= f.text_field :point, class: "form-control" %>
+  <%= f.text_area :point, class: "form-control" %>
   
   <%= f.label :タグ, class:"col-sm-2 control-label" %>
-  <%= f.text_field :tag_name, class: "form-control" %>
+  <%= f.text_field :tag_ids, class: "form-control", id:'tag_ids',\
+  placeholder: "タグをつける。複数つけるには','で区切ってください。" %>
+
+  <%= f.select :tag_ids, [ ["ruby","ruby"], ["python","python"], ["java","java"] ,["javascript","javascript"], ["C#","C#"], ["git","git"] ], prompt: "カテゴリを選択してください", multiple: true %>
+
+
+
 
   
-  <%= f.submit "投稿する" %>
+  <%= f.submit "投稿する", class:"btn btn-primary" %>
 <% end %>
 
 

@@ -4,7 +4,7 @@
       <nav>
         <ul class="nav navbar-nav navbar-right">
         <% if !current_user.nil? %>
-          <li><%= link_to "カテゴリで探す", tags_path %></li>
+          <li><%= link_to "タグで探す", tags_path %></li>
           <li><%= link_to current_user.name, user_path(current_user) %></li>
           <li><%= link_to "投稿する", new_post_path %></li>
           <li><%= link_to "作品一覧", posts_path %></li>

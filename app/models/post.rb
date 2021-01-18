@@ -9,8 +9,8 @@ class Post < ApplicationRecord
   validates :name, presence: true
   validates :content, presence: true, length:{maximum:500}
   validates :point, length:{maximum:500}
-  validates :function, presence: true
   validates :language, presence: true
+  validates :function, presence: true
   validates :period, presence: true
 
 
@@ -26,15 +26,14 @@ class Post < ApplicationRecord
 
   #紐づいているタグを全て取得する
   def save_tag(sent_tag)
-    if unless self.tags.nil?
+    unless self.tags.nil?
       current_tag = self.tags.pluck(:tag_name)
     end
     old_tags = current_tag - sent_tag
     new_tags = sent_tag - current_tag
 
     old_tags.each do |old_name|
-      self.tags.delete 
-      Tag.find_by(tag_name: old_name)
+      self.tags.delete Tag.find_by(tag_name: old_name)
     end
     
     new_tags.each do |new_name|
@@ -42,5 +41,4 @@ class Post < ApplicationRecord
       self.tags << post_tag
     end
   end
-end
 end
