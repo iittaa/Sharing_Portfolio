@@ -9,10 +9,10 @@ class Post < ApplicationRecord
   validates :name, presence: true
   validates :content, presence: true, length:{maximum:500}
   validates :point, length:{maximum:500}
-  validates :language, presence: true
-  validates :function, presence: true
+  validates :url, presence: true
   validates :period, presence: true
 
+  mount_uploader :image, ImageUploader
 
   #投稿をストックする
   def stock(user)
@@ -41,4 +41,6 @@ class Post < ApplicationRecord
       self.tags << post_tag
     end
   end
+
+
 end

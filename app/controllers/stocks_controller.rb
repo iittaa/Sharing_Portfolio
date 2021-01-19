@@ -1,4 +1,5 @@
 class StocksController < ApplicationController
+  before_action :logged_in_user, only:[:create, :index, :destroy]
 
   def create
     @stock = current_user.stocks.create(post_id: params[:post_id])

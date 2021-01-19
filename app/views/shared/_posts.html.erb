@@ -1,6 +1,7 @@
 
 <% @posts.each do |post| %>
 <li class="list-group-item">
+  <%= image_tag post.image.url if post.image? %>
   <%= link_to post.user.name, user_path(post.user) %>
   <%= link_to post.name, post_path(post) %>
 </li>

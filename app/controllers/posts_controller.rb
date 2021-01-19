@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :logged_in_user, only:[:new, :create, :edit, :update, :index, :show, :destroy]
+  before_action :correct_user, only:[:edit, :update, :destroy]
 
   def new
       @post = current_user.posts.build
@@ -61,7 +63,17 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :content, :function, :language, :period, :point)
+    params.require(:post).permit(:name, :content, :image, :url, :period, :point)
   end
+
+  #正しいユーザーかどうか確認する
+  def correct_user
+  @post = Post.find_by(id: params[:id])
+    unless @post.user_id == current_user.id
+      redirect_to root_url
+      flash[:warning] = "自分の投稿したポートフォリオ以外の情報は変更することができません"
+    end
+  end
+
 
 end

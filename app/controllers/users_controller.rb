@@ -57,18 +57,12 @@ before_action :correct_user, only:[:edit, :update, :destroy]
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
+  #正しいユーザーかどうか確認する・
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     unless @user && @user == current_user
       redirect_to root_url
       flash[:warning] = "自分のユーザー情報以外は変更することができません"
-    end
-  end
-
-  def logged_in_user
-    if current_user.nil?
-      redirect_to root_url
-      flash[:warning] = "ログインしてください"
     end
   end
 

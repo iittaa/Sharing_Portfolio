@@ -2,8 +2,13 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.6"
-gem "bootstrap-sass", "3.4.1"
+
 gem "bcrypt","3.1.13"
+
+#Bootstrap用
+gem "bootstrap-sass", "3.4.1"
+
+#ページネーション用
 gem "will_paginate", "3.1.8"
 gem "bootstrap-will_paginate", "1.0.0"
 
@@ -13,7 +18,11 @@ gem "rails-i18n"
 #Twitter認証用
 gem "dotenv-rails"
 gem "omniauth"
-gem 'omniauth-twitter'
+gem "omniauth-twitter"
+
+#画像投稿用
+gem "carrierwave"
+gem 'mini_magick'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'

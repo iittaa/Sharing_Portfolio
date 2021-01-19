@@ -1,10 +1,14 @@
 <h1><%= @post.name %></h1>
+<%= image_tag @post.image.url if @post.image? %>
 <div>サービスの概要：<%= @post.content %></div>
-<div>サービスへのリンク：<%=  %></div>
-<div>主な実装機能：<%= @post.function %></div>
-<div>使用言語：<%= @post.language %></div>
+<div>リンク：<%= @post.url %></div>
 <div>開発期間：<%= @post.period %></div>
 <div>アピールポイント：<%= @post.point %></div>
+<div>タグ：
+  <% @post.tags.each do |list| %>
+    <%= link_to list.tag_name, tag_path(list) %>
+  <% end %>
+</div>
 <% if @post.user == current_user %>
   <div>
     <%= link_to "編集", edit_post_path(@post) %>
@@ -14,34 +18,36 @@
 <div>
   <%= render "shared/stock_form" %>
 </div>
-<div>
-  <% @post.tags.each do |list| %>
-    <%= link_to list.tag_name, tag_path(list) %>
-  <% end %>
-  <div>
-    <%= link_to "カテゴリを編集する", "#" %>
-  </div>
-</div>
 
+
+<% #コメント欄を表示 %>
 <div>
   <h2>コメント欄</h2>
+  <% #親コメントを表示 %>
   <% @comments.each do |comment| %>
     <% if comment.parent_id.present? || comment.id.blank? %>
       <% next %>
     <% end %>
     <hr>
-    <p>
-      <%= comment.user.name %><br><%=comment.content%>
-    </p>
-    <p>
-      date:<%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+    <%= link_to comment.user.name, user_path(comment.user) %><br><%=comment.content%><br>
+    date:<%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+    <% if current_user == comment.user %>
+      <%= link_to "編集", edit_post_comment_path(@post,comment) %>
+      <%= link_to "削除", post_comment_path(@post,comment), method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
+    <% end %>
+      
+<% #リプライコメントを表示 %>
       <div>
         <% comment.replies.order(:created_at).each do |reply| %>
-          <p>
-            <%= comment.user.name %><br><%=reply.content%>
-          </p>
+          <p><%= link_to reply.user.name, user_path(comment.user) %><br><%=reply.content%></p>
+          <% if current_user == reply.user %>
+            <%= link_to "編集", edit_post_comment_path(@post,reply) %>
+            <%= link_to "削除", post_comment_path(@post,reply), method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
+          <% end %>
         <% end %>
       </div>
+
+<% #リプライコメントを送信 %>      
       <%= form_with(model:[@post,@comment_reply]) do |f| %>
         <div class="row">
           <div class="form-group col-md-6">
@@ -57,12 +63,14 @@
   <% end %>
 </div>
 
+
+<% #新規コメント欄 %>
     <%= form_with(model:[@post,@comment]) do |f| %>
       <p><label>新規コメント</label></p>
       <textarea class="form-control input-form" name="comment[content]" rows="5"><%=@comment.content%></textarea>
       <%= f.hidden_field :post_id, value: @post.id %>
         <div class="actions">
-          <%= f.submit "送信", class: "btn-sm btn-primary" %>
+          <%= f.submit "送信する", class: "btn-sm btn-primary" %>
         </div>
     <% end %>
 </div>
