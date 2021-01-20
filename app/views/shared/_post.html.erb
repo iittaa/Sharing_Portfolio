@@ -1,7 +1,21 @@
 <li class="list-group-item">
-  <span class=""><%= link_to post.user.name, post.user %></span>
-  <span class=""><%= link_to post.name, post_path(post) %></span>
-  <span>
-    <%= time_ago_in_words(post.created_at) %>前に投稿
-  </span>
+  <div class="thumbnail">
+    <%= image_tag post.image.url if post.image? %>
+    <div class="caption">
+      <h3>
+        サービス名：<%= link_to post.name, post_path(post) %>
+      </h3>
+      <p>
+        作成ユーザー：<%= link_to post.user.name, user_path(post.user) %>
+      </p>
+      <p>タグ：
+        <% post.tags.each do |list| %>
+          <%= link_to list.tag_name, tag_path(list) %>
+        <% end %>
+      </p>
+      <span>
+        <%= time_ago_in_words(post.created_at) %>前に投稿
+      </span>
+    </div>
+  </div>
 </li>

@@ -1,4 +1,4 @@
-<h1><%= @tag.tag_name %></h1>
+<h1><span class="label label-primary"><%= @tag.tag_name %></span>タグ</h1>
 
 <% @posts.each do |post| %>
   <%= link_to post.name, post_path(post) %>

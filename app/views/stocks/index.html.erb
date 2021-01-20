@@ -1,6 +1,29 @@
 <h1>ストック一覧</h1>
-<h2>あなたがストックしたポートフォリオの一覧です。</h2>
+<h4>あなたがストックしたポートフォリオの一覧です。</h4>
 
-<% @stocks.each do |stock| %>
-  <%= link_to stock.post.name, post_path(stock.post) %>
-<% end %>
+
+<ul class="list-group">
+  <% @stocks.each do |stock| %>
+  <li class="list-group-item">
+    <div class="thumbnail">
+      <%= image_tag stock.post.image.url if stock.post.image? %>
+      <div class="caption">
+        <h3>
+          サービス名：<%= link_to stock.post.name, post_path(stock.post) %>
+        </h3>
+        <p>
+          作成ユーザー：<%= link_to stock.post.user.name, user_path(stock.post.user) %>
+        </p>
+        <p>タグ：
+          <% stock.post.tags.each do |list| %>
+              <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
+          <% end %>
+        </p>
+        <p>
+          <%= time_ago_in_words(stock.post.created_at) %>前に投稿
+        </p>
+      </div>
+    </div>
+  </li>
+  <% end %>
+</ul>

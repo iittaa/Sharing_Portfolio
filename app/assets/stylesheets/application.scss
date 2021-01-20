@@ -21,39 +21,45 @@
 
  $gray-medium-light: #eaeaea;
 
+ //ページ全体
+ *{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
 
-//タイポグラフィー
-
-h1, h2, h3, h4, h5, h6 {
+h1{
+  color: gray;
   line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
   text-align: center;
+  padding-bottom: 30px;
 }
 
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
+h4{
+  color: gray;
+  line-height: 1;
   text-align: center;
-  font-weight: normal;
-  color: $gray-light;
+  padding-bottom: 30px;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+
+
+//header
+header{
+  .logo{
+    color: #000;
+    font-size: 30px;
+    text-decoration: none;
+    }
 }
+
 
 
 
 //footer
 
- footer {
+footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
@@ -76,6 +82,14 @@ p {
     }
   }
 }
+
+
+//homeページ
+.home-container{
+  display: inline;
+  padding: 0, 40px;
+}
+
 
 
 

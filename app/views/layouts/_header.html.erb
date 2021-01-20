@@ -1,19 +1,28 @@
 <header class="">
-  <div class="container">
-    <%= link_to "Sharing Portfolio", root_path, class:"header-logo" %>
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-        <% if !current_user.nil? %>
-          <li><%= link_to "タグで探す", tags_path %></li>
-          <li><%= link_to current_user.name, user_path(current_user) %></li>
-          <li><%= link_to "投稿する", new_post_path %></li>
-          <li><%= link_to "作品一覧", posts_path %></li>
-          <li><%= link_to "ストック一覧", stocks_path %></li>
-          <li><%= link_to "ログアウト", session_path(current_user), method: :delete %></li>
-        <% else %>
-          <li><%= link_to "ログイン", new_session_path %></li>
-          <li><%= link_to "新規作成", new_user_path %></li>
-        <% end %>
+  <div>
+    <nav class="navbar navbar-default">
+      <%= link_to "Sharing Portfolio", root_path, class:"logo" %>
+      <ul class="nav navbar-nav navbar-right">
+          <% if !current_user.nil? %>
+          こんにちは <%= current_user.name %> さん
+            <li><%= link_to "タグで探す", tags_path %></li>
+            <li><%= link_to "投稿する", new_post_path %></li>
+            <li><%= link_to "作品一覧", posts_path %></li>
+            <li><%= link_to "ストック一覧", stocks_path %></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= current_user.name %> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><%= link_to "マイページ", user_path(current_user) %></li>
+                <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
+                <li><%= link_to "ログアウト", session_path(current_user), method: :delete %></li>
+              </ul>
+            </li>
+            
+          <% else %>
+            <li><%= link_to "ログイン", new_session_path %></li>
+            <li><%= link_to "新規作成", new_user_path %></li>
+          <% end %>
         </ul>
       </nav>
   </div>

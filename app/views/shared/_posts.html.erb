@@ -1,8 +1,25 @@
-
-<% @posts.each do |post| %>
-<li class="list-group-item">
-  <%= image_tag post.image.url if post.image? %>
-  <%= link_to post.user.name, user_path(post.user) %>
-  <%= link_to post.name, post_path(post) %>
-</li>
-<% end %>
+<ul class="list-group">
+  <% @posts.each do |post| %>
+  <li class="list-group-item">
+    <div class="thumbnail">
+      <%= image_tag post.image.url if post.image? %>
+      <div class="caption">
+        <h3>
+          サービス名：<%= link_to post.name, post_path(post) %>
+        </h3>
+        <p>
+          作成ユーザー：<%= link_to post.user.name, user_path(post.user) %>
+        </p>
+        <p>タグ：
+          <% post.tags.each do |list| %>
+            <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
+          <% end %>
+        </p>
+        <p>
+          <%= time_ago_in_words(post.created_at) %>前に投稿
+        </p>
+      </div>
+    </div>
+  </li>
+  <% end %>
+</ul>

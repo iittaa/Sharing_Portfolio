@@ -1,10 +1,12 @@
-<h1>カテゴリ一覧</h1>
+<h1>タグで探す</h1>
 <ul class="list-group">
   <% @tag_list.each do |list| %>
     <% unless list.tag_maps.blank? %>
       <li class="list-group-item">
           <%= link_to list.tag_name, tag_path(list) %>
-          <%= list.posts.count %>件
+          <span class="badge">
+            <%= list.posts.count %>件
+          </span>
         </li>
       <% end %>
   <% end %>
