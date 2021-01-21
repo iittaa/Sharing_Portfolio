@@ -8,12 +8,12 @@
         <h3 class="post-title">
           <%= link_to post.name, post_path(post) %>
         </h3>
-        <p>
-          作成ユーザー：<%= link_to post.user.name, user_path(post.user) %>
+        <p>作成ユーザー：
+          <%= link_to post.user.name, user_path(post.user) %>
         </p>
         <p>タグ：
           <% post.tags.each do |list| %>
-            <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
+            <%= link_to list.tag_name, tag_path(list), class:"tag" %>
           <% end %>
         </p>
         <p class="post-content">サービス概要</p>

@@ -30,13 +30,13 @@
 }
 
 main{
-  padding: 30px 0px;
+  padding: 70px 0px;
   width: 90%;
   margin: 0px auto;
 }
 
 .flame{
-  box-shadow: 0 2px 6px #aaa;
+  box-shadow: 0 2px 6px #5472cd;
   overflow: hidden;
   background-color: #fff;
 }
@@ -47,29 +47,32 @@ main{
   margin: 0px auto;
 }
 
+.alert{
+  padding-top: 70px;
+}
+
+// .total{
+//   background-color: #ecf3fc;
+// }
+
 h1{
   text-align: center;
-  width: 20%;
-  margin: 0 auto;
-
+  width: 40%;
+  margin: 50px auto 40PX;
   line-height: 1;
-  background: #b0dcfa; /*背景色*/
-  padding: 0.5em;/*文字周りの余白*/
-  color: white;/*文字を白に*/
-  border-radius: 0.5em;/*角の丸み*/
-  
+  background: #dfefff;
+  box-shadow: 0px 0px 0px 5px #dfefff;
+  border: dashed 1px #96c2fe;
+  padding: 0.2em 0.5em;
+  color: #454545;
 }
-
 
 h4{
-  color: gray;
+  color: #000;
   line-height: 1;
   text-align: center;
+  margin-bottom: 40PX;
 }
-
-
-
-
 
 
 //header
@@ -81,39 +84,34 @@ header{
     }
 }
 
+.navbar{  
+  background-color: #5472cd;
+  padding-right: 15px;
+  a{
+    color: #fff !important;
+  }
+  a:hover{
+    background-color: #fff !important;
+    color: #5472cd !important;
+  }
+}
+
+.dropdown-menu{
+  background-color: #5472cd;
+  a:hover{
+    color: #5472cd !important;
+  }
+}
+
+.btn-block{
+  margin-top: 15px;
+}
+
 
 //footer
 
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
-}
-
 
 //homeページ
-.home-container{
-  display: inline;
-  padding: 0, 40px;
-}
 
 
 //post
@@ -121,6 +119,12 @@ footer {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.flex::after{
+  display: block;
+  content:"";
+  width:600px;
 }
 
 .post-list{
@@ -165,6 +169,15 @@ footer {
     color: gray;
   }
   
+//tag
+.tag{
+  display: block;
+  float: left;
+  padding: 7px;
+  margin: 5px;
+  font-size: 14px;
+}
+
 
 
 //stock

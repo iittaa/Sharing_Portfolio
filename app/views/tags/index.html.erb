@@ -1,13 +1,9 @@
 <h1>タグで探す</h1>
-<ul class="list-group">
+<div class="sub flame">
   <% @tag_list.each do |list| %>
     <% unless list.tag_maps.blank? %>
-      <li class="list-group-item">
-          <%= link_to list.tag_name, tag_path(list) %>
-          <span class="badge">
-            <%= list.posts.count %>件
-          </span>
-        </li>
+        <%= link_to  "#{list.tag_name}（#{list.posts.count}）", tag_path(list), class:"label label-primary tag" %>
       <% end %>
   <% end %>
-</ul>
+</div>
+

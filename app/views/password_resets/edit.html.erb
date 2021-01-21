@@ -1,5 +1,5 @@
-<h1 class="h3 mb-3 font-weight-normal">パスワード変更</h1>
-
+<h1>パスワード変更</h1>
+<div class="sub flame">
 <%= form_with(model:@user, url: password_reset_path(params[:id]),  local: true, class:"form-signin") do |f| %>
   <%= render 'shared/error_messages', model: f.object %>
   
@@ -11,5 +11,5 @@
   <%= f.label :新しいパスワード確認用,  class: "sr-only" %>
   <%= f.text_field :password_confirmation, class: "form-control", placeholder: "新しいパスワード確認用" %>
   
-  <%= f.submit "パスワードを変更する" %>
+  <%= f.submit "パスワードを変更する", class:"btn btn-primary btn-block"  %>
 <% end %>
