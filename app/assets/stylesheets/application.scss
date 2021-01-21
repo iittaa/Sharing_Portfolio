@@ -29,19 +29,46 @@
   list-style: none;
 }
 
-h1{
-  color: gray;
-  line-height: 1;
-  text-align: center;
-  padding-bottom: 30px;
+main{
+  padding: 30px 0px;
+  width: 90%;
+  margin: 0px auto;
 }
+
+.flame{
+  box-shadow: 0 2px 6px #aaa;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.sub{
+  width: 70%;
+  padding: 20px;
+  margin: 0px auto;
+}
+
+h1{
+  text-align: center;
+  width: 20%;
+  margin: 0 auto;
+
+  line-height: 1;
+  background: #b0dcfa; /*背景色*/
+  padding: 0.5em;/*文字周りの余白*/
+  color: white;/*文字を白に*/
+  border-radius: 0.5em;/*角の丸み*/
+  
+}
+
 
 h4{
   color: gray;
   line-height: 1;
   text-align: center;
-  padding-bottom: 30px;
 }
+
+
+
 
 
 
@@ -53,8 +80,6 @@ header{
     text-decoration: none;
     }
 }
-
-
 
 
 //footer
@@ -91,5 +116,69 @@ footer {
 }
 
 
+//post
+.flex{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.post-list{
+  display: flex;
+  height: 350px;
+  width: 600px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.post-image{
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.post-caption{
+  width: 290px;
+}
+
+.post-title {
+  border-bottom: solid 3px #cce4ff;
+  position: relative;
+}
+ 
+.post-title:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px #5472cd;
+  bottom: -3px;
+  width: 20%;
+}
+
+  .post-content{
+    border-bottom: solid 1px #5472cd;
+    width: 85px;
+  }
+
+  .post-time{
+    font-size: 15px;
+    color: gray;
+  }
+  
+
+
+//stock
+.stock-btn{
+  border-radius:30px;
+  height: 30px;
+  width: 80px;
+  font-size: 10px;
+}
+
+.stock-count{
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 12px;
+}
 
 

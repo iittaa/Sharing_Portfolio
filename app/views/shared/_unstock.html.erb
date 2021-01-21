@@ -1,4 +1,4 @@
 <%= form_with(url: stock_path(@stock), html: {method: :delete}, local: true) do |f| %>
   <div><%= hidden_field_tag :post_id, @post.id %></div>
-  <%= f.submit "ストック済み", class:"btn btn-default btn-sm" %>
+  <%= f.submit "ストック中", class:"btn btn-danger btn-sm stock-btn" %>
 <% end %>

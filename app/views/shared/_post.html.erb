@@ -1,21 +1,25 @@
-<li class="list-group-item">
-  <div class="thumbnail">
-    <%= image_tag post.image.url if post.image? %>
-    <div class="caption">
-      <h3>
-        サービス名：<%= link_to post.name, post_path(post) %>
-      </h3>
-      <p>
-        作成ユーザー：<%= link_to post.user.name, user_path(post.user) %>
-      </p>
-      <p>タグ：
-        <% post.tags.each do |list| %>
-          <%= link_to list.tag_name, tag_path(list) %>
-        <% end %>
-      </p>
-      <span>
-        <%= time_ago_in_words(post.created_at) %>前に投稿
-      </span>
+<ul class="flex">
+  <li class="post-list">
+    <div class="post-image">
+      <%= image_tag post.image.url if post.image? %>
     </div>
-  </div>
-</li>
+    <div class="post-caption">
+        <h3 class="post-title">
+          サービス名：<%= link_to post.name, post_path(post) %>
+        </h3>
+        <p>
+          作成ユーザー：<%= link_to post.user.name, user_path(post.user) %>
+        </p>
+        <p>タグ：
+          <% post.tags.each do |list| %>
+            <%= link_to list.tag_name, tag_path(list) %>
+          <% end %>
+        </p>
+        <p class="post-content">サービス概要</p>
+        <p><%= post.content %></p>
+        <p class="post-time">
+          <%= time_ago_in_words(post.created_at) %>前に投稿
+        </p>
+    </div>
+  </li>
+</ul>

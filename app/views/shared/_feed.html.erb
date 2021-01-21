@@ -1,5 +1,3 @@
 <% if @feed_items.any? %>
-  <ul class="list-group">
     <%= render partial:"shared/post",collection:@feed_items, as: :post %>
-  </ul>
 <% end %>

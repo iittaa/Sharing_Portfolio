@@ -1,5 +1,6 @@
 <h1>マイページ</h1>
-<div class="col-md-8">
   <h4>投稿一覧</h4>
-  <%= render 'shared/feed' %>
-</div>
+  <hr>
+  <% if @posts.any? %>
+    <%= render 'shared/posts' %>
+  <% end %>

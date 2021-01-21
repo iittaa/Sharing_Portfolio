@@ -1,11 +1,12 @@
-<ul class="list-group">
+<ul class="flex flame">
   <% @posts.each do |post| %>
-  <li class="list-group-item">
-    <div class="thumbnail">
-      <%= image_tag post.image.url if post.image? %>
-      <div class="caption">
-        <h3>
-          サービス名：<%= link_to post.name, post_path(post) %>
+    <li class="post-list flame">
+      <div class="post-image">
+        <%= image_tag post.image.url if post.image? %>
+      </div>
+      <div class="post-caption">
+        <h3 class="post-title">
+          <%= link_to post.name, post_path(post) %>
         </h3>
         <p>
           作成ユーザー：<%= link_to post.user.name, user_path(post.user) %>
@@ -15,11 +16,12 @@
             <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
           <% end %>
         </p>
-        <p>
+        <p class="post-content">サービス概要</p>
+        <p><%= post.content %></p>
+        <p class="post-time">
           <%= time_ago_in_words(post.created_at) %>前に投稿
         </p>
       </div>
-    </div>
-  </li>
+    </li>
   <% end %>
 </ul>
