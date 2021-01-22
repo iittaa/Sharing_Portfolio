@@ -54,7 +54,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
 
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image)
   end
 
   #正しいユーザーかどうか確認する・

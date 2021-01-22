@@ -1,13 +1,17 @@
-<h1>マイページ</h1>
-  <h4>投稿一覧</h4>
-  <div class="post-image show-center">
-    <% if @user.user_image? %>
-      <%= image_tag @user.user_image.url %>
-    <% else %>
-      <%= image_tag "/assets/default_user.png" %>
-    <% end %>
-  </div>
-  <hr>
-  <% if @posts.any? %>
-    <%= render 'shared/posts' %>
+<% if @user == current_user %>
+  <h1>マイページ</h1>
+<% else %>
+  <h1><%= @user.name %></h1>
+<% end %>
+<div class="user-show-image show-center">
+  <% if @user.user_image? %>
+    <%= image_tag @user.user_image.url %>
+  <% else %>
+    <%= image_tag "/assets/default_user.png" %>
   <% end %>
+</div>
+<h2>投稿一覧</h2>
+<hr>
+<% if @posts.any? %>
+  <%= render 'shared/posts' %>
+<% end %>

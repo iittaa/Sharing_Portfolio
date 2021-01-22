@@ -33,6 +33,7 @@ main{
   padding: 70px 0px;
   width: 90%;
   margin: 0px auto;
+  min-height: 100vh;
 }
 
 .flame{
@@ -63,7 +64,7 @@ main{
 
 h1{
   text-align: center;
-  width: 40%;
+  width: 50%;
   margin: 50px auto 40PX;
   line-height: 1;
   background: #dfefff;
@@ -115,9 +116,38 @@ header{
 
 
 //footer
+footer{
+  background-color: #5472cd;
+  height: 50px;
+  ul{
+    display: flex;
+    float: right;
+    margin-bottom: 0px;
+    li{
+      padding: 15px 20px;
+    }
+  }
+  a{
+    color: #fff;
+  }
+}
+
+
 
 
 //homeページ
+
+
+//ユーザー詳細ページ
+.user-show-image{
+  display: flex;
+  justify-content: center;
+  img{
+    width: 200px;
+    border-radius: 50%;
+    border: solid 1px #5472cd;
+  }
+}
 
 
 //投稿一覧
@@ -146,11 +176,10 @@ header{
   align-items: center;
   margin-right: 10px;
   width: 300px;
-}
-
-.post-image img{
-  width: 300px;
-  border: solid 1px #5472cd;
+  img{
+    width: 300px;
+    border: solid 1px #5472cd;
+  }
 }
 
 .post-caption{
@@ -245,10 +274,11 @@ header{
 }
 
 .user-image{
-  margin-right: 5px;
+  margin-right: 10px;
   img{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
 }
 
@@ -267,6 +297,7 @@ header{
   
 .comment-box2{
   display: flex;
+  padding-left: 40px;
   .comment-edit{
     margin: 5px;
   }

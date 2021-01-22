@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
+  mount_uploader :user_image, ImageUploader
+
   has_secure_password
 
   #与えられた文字列のハッシュ値を返す
