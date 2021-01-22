@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_051102) do
+ActiveRecord::Schema.define(version: 2021_01_22_084046) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_051102) do
     t.string "remember_digest"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.string "user_image"
   end
 
   add_foreign_key "comments", "comments", column: "parent_id"

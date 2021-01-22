@@ -8,11 +8,11 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    tag_list = params[:post][:tag_ids].split(/[[:blank:]]+/)
+    @tag_list = params[:post][:tag_ids].split(/[[:blank:]]+/)
     if @post.save
-      @post.save_tag(tag_list)
+      @post.save_tag(@tag_list)
       flash[:success] = "ポートフォリオを公開しました！ありがとう！"
-      redirect_to root_url
+      redirect_to posts_url
     else
       render "new"
     end

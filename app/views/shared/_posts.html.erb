@@ -2,12 +2,19 @@
   <% @posts.each do |post| %>
     <li class="post-list flame">
       <div class="post-image">
-        <%= image_tag post.image.url if post.image? %>
+        <% if post.image? %>
+          <%= image_tag post.image.url %>
+        <% else %>
+          <%= image_tag "/assets/default_post.jpg" %>
+        <% end %>
       </div>
       <div class="post-caption">
         <h3 class="post-title">
           <%= link_to post.name, post_path(post) %>
         </h3>
+        <p class="post-time">
+          <%= time_ago_in_words(post.created_at) %>前に投稿
+        </p>
         <p>作成ユーザー：
           <%= link_to post.user.name, user_path(post.user) %>
         </p>
@@ -18,9 +25,6 @@
         </p>
         <p class="post-content">サービス概要</p>
         <p><%= post.content %></p>
-        <p class="post-time">
-          <%= time_ago_in_words(post.created_at) %>前に投稿
-        </p>
       </div>
     </li>
   <% end %>

@@ -47,6 +47,12 @@ main{
   margin: 0px auto;
 }
 
+.sub2{
+  width: 95%;
+  padding: 20px;
+  margin: 0px auto;
+}
+
 .alert{
   padding-top: 70px;
 }
@@ -114,7 +120,7 @@ header{
 //homeページ
 
 
-//post
+//投稿一覧
 .flex{
   display: flex;
   justify-content: space-evenly;
@@ -139,6 +145,12 @@ header{
   display: flex;
   align-items: center;
   margin-right: 10px;
+  width: 300px;
+}
+
+.post-image img{
+  width: 300px;
+  border: solid 1px #5472cd;
 }
 
 .post-caption{
@@ -167,9 +179,40 @@ header{
   .post-time{
     font-size: 15px;
     color: gray;
+    text-align: right;
   }
   
-//tag
+
+  //投稿詳細
+  .show-center {
+    text-align: center;
+    margin: 0 auto 20px;
+  }
+
+  .content-box{
+    margin: 30px auto;
+  }
+
+  .show-title{
+    margin: 20px auto 10px;
+    font-weight: 700;
+    padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+    color: #494949;/*文字色*/
+    background: #f4f4f4;/*背景色*/
+    border-left: solid 5px #7db4e6;/*左線*/
+    border-bottom: solid 3px #d7d7d7;/*下線*/
+  }
+
+  .show-content{
+    margin: auto 0;
+    padding-left: 15px;
+    p{
+      margin: auto 0;
+    }
+  }
+
+
+//タグ
 .tag{
   display: block;
   float: left;
@@ -180,7 +223,7 @@ header{
 
 
 
-//stock
+//ストック
 .stock-btn{
   border-radius:30px;
   height: 30px;
@@ -193,5 +236,49 @@ header{
   padding-left: 5px;
   font-size: 12px;
 }
+
+
+
+//コメント
+.comment{
+  display: flex;
+}
+
+.user-image{
+  margin-right: 5px;
+  img{
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.comment-box{
+  display: flex;
+  margin-bottom: 5px;
+  .comment-name{
+    margin-right: 20px;
+  }
+  
+  .comment-time{
+    color: gray;
+    margin: 0 0;
+  }
+}
+  
+.comment-box2{
+  display: flex;
+  .comment-edit{
+    margin: 5px;
+  }
+}
+
+.new-comment{
+  margin-top: 30px;
+  p{
+    font-weight: 700;
+  }
+}
+
+
 
 

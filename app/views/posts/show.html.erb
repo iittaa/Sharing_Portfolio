@@ -1,91 +1,130 @@
 <h1><%= @post.name %></h1>
-<%= image_tag @post.image.url if @post.image? %>
 
-
-
-
-<form class="form-horizontal">
-	<div class="form-group">
-		<label class="col-sm-2 control-label">作成ユーザー：</label>
-		<div class="col-sm-10">
-			<p class="form-control-static"><%= link_to @post.user.name, user_path(@post.user) %></p>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">サービスの概要：</label>
-		<div class="col-sm-10">
-			<p class="form-control-static"><%= @post.content %></p>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">リンク：</label>
-		<div class="col-sm-10">
-			<p class="form-control-static"><%= @post.url %></p>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">作成期間：</label>
-		<div class="col-sm-10">
-			<p class="form-control-static"><%= @post.period %></p>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">アピールポイント：</label>
-		<div class="col-sm-10">
-			<p class="form-control-static"><%= @post.point %></p>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">タグ：</label>
-		<div class="col-sm-10">
-      <p class="form-control-static">
+<div class="sub flame">
+  <div class="post-image show-center">
+    <% if @post.image? %>
+      <%= image_tag @post.image.url %>
+    <% else %>
+      <%= image_tag "/assets/default_post.jpg" %>
+    <% end %>
+  </div>
+  <% if @post.user == current_user %>
+    <div class="show-center">
+      <%= link_to "編集", edit_post_path(@post),class:"btn btn-primary" %>
+      <%= link_to "削除", post_path(@post), method: :delete, class:"btn btn-primary", data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"} %>
+    </div>
+  <% end %>
+  <h2>詳細</h2>
+  <hr>
+  <div class="content-box">
+    <div class="show-title">作成ユーザー</div>
+    <div class="show-content">
+      <p class><%= link_to @post.user.name, user_path(@post.user) %></p>
+    </div>
+  </div>
+  <div class="content-box">
+    <div class="show-title">サービスの概要</div>
+    <div class="show-content">
+      <p class=""><%= @post.content %></p>
+    </div>
+  </div>
+  <div class="content-box">
+    <div class="show-title">サービスのリンク</div>
+    <div class="show-content">
+      <p><%= @post.url %></p>
+    </div>
+  </div>
+  <div class="content-box">
+    <div class="show-title">作成期間</div>
+    <div class="show-content">
+      <p class=""><%= @post.period %></p>
+    </div>
+  </div>
+  <div class="content-box">
+    <div class="show-title">アピールポイント</div>
+    <div class="show-content">
+      <p class="form-control-static"><%= @post.point %></p>
+    </div>
+  </div>
+  <div class="content-box">
+    <div class="show-title">タグ</div>
+    <div class="show-content">
+      <p>
         <% @post.tags.each do |list| %>
           <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
         <% end %>
       </p>
-		</div>
-	</div>
-</form>
-
-<% if @post.user == current_user %>
-  <div>
-    <%= link_to "編集", edit_post_path(@post) %>
-    <%= link_to "削除", post_path(@post), method: :delete, data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"} %>
+    </div>
   </div>
-<% end %>
-<div>
-  <%= render "shared/stock_form" %>
-</div>
+  <div>
+    <%= render "shared/stock_form" %>
+  </div>
 
-
-<% #コメント欄を表示 %>
-<div>
-  <h2>コメント欄</h2>
-  <% #親コメントを表示 %>
-  <% @comments.each do |comment| %>
-    <% if comment.parent_id.present? || comment.id.blank? %>
-      <% next %>
-    <% end %>
-    <hr>
-    <%= link_to comment.user.name, user_path(comment.user) %><br><%=comment.content%><br>
-    date:<%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
-    <% if current_user == comment.user %>
-      <%= link_to "編集", edit_post_comment_path(@post,comment) %>
-      <%= link_to "削除", post_comment_path(@post,comment), method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
-    <% end %>
-      
-<% #リプライコメントを表示 %>
+              <% #コメント欄を表示 %>
+    <div>
+    <h2>コメント欄</h2>
+              <% #親コメントを表示 %>
+    <% @comments.each do |comment| %>
+      <% if comment.parent_id.present? || comment.id.blank? %>
+        <% next %>
+      <% end %>
+      <hr>
+    <div class="comment">
+    <div class="user-image">
+      <% if comment.user.user_image? %>
+        <%= image_tag comment.user_image.url %>
+      <% else %>
+        <%= image_tag "/assets/default_user.png" %>
+      <% end %>
+    </div>
+      <div class="comment-box">
+        <%= link_to comment.user.name, user_path(comment.user), class:"comment-name" %>
+        <p class="comment-time">
+          <%= time_ago_in_words(comment.created_at) %>前
+        </p>
+      </div>
+      </div>
+      <div class="comment-box2">
+        <p class="comment-content">
+          <%=comment.content%>
+        </p>
+        <% if current_user == comment.user %>
+          <%= link_to "編集", edit_post_comment_path(@post,comment), class:"comment-edit" %>
+          <%= link_to "削除", post_comment_path(@post,comment), class:"comment-edit", method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
+        <% end %>
+      </div>
+        
+            <% #リプライコメントを表示 %>
       <div>
         <% comment.replies.order(:created_at).each do |reply| %>
-          <p><%= link_to reply.user.name, user_path(comment.user) %><br><%=reply.content%></p>
-          <% if current_user == reply.user %>
-            <%= link_to "編集", edit_post_comment_path(@post,reply) %>
-            <%= link_to "削除", post_comment_path(@post,reply), method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
-          <% end %>
+          <div class="comment">
+          <div class="user-image">
+            <% if reply.user.user_image? %>
+              <%= image_tag reply.user_image.url %>
+            <% else %>
+              <%= image_tag "/assets/default_user.png" %>
+            <% end %>
+          </div>
+          <div class="comment-box">
+            <%= link_to reply.user.name, user_path(comment.user), class:"comment-name" %>
+            <p class="comment-time">
+              <%= time_ago_in_words(reply.created_at) %>前
+            </p>
+          </div>
+          </div>
+          <div class="comment-box2">
+            <p class="comment-content">
+              <%=reply.content%>
+            </p>
+            <% if current_user == reply.user %>    
+              <%= link_to "編集", edit_post_comment_path(@post,reply), class:"comment-edit" %>
+              <%= link_to "削除", post_comment_path(@post,reply), class:"comment-edit", method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
+            <% end %>
+          </div>
         <% end %>
       </div>
 
-<% #リプライコメントを送信 %>      
+            <% #リプライコメントを送信 %>      
       <%= form_with(model:[@post,@comment_reply]) do |f| %>
         <div class="row">
           <div class="form-group col-md-6">
@@ -93,22 +132,21 @@
           </div>
         </div>
         <%= f.hidden_field :post_id, value: @post.id %>
-          <%= f.hidden_field :parent_id, value: comment.id%>
-          <div class="actions">
-            <%= f.submit "返信する", class: "btn-sm btn-primary" %>
-          </div>
-      <% end %>
-  <% end %>
-</div>
-
-
-<% #新規コメント欄 %>
-    <%= form_with(model:[@post,@comment]) do |f| %>
-      <p><label>新規コメント</label></p>
-      <textarea class="form-control input-form" name="comment[content]" rows="5"><%=@comment.content%></textarea>
-      <%= f.hidden_field :post_id, value: @post.id %>
+        <%= f.hidden_field :parent_id, value: comment.id%>
         <div class="actions">
-          <%= f.submit "送信する", class: "btn-sm btn-primary" %>
+          <%= f.submit "返信する", class: "btn-sm btn-primary" %>
         </div>
+      <% end %>
     <% end %>
+  </div>
+
+                <% #新規コメント欄 %>
+  <%= form_with(model:[@post,@comment], class:"new-comment") do |f| %>
+    <p>新規コメント</p>
+    <textarea class="form-control input-form" name="comment[content]" rows="5"><%=@comment.content%></textarea>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <div class="actions">
+      <%= f.submit "送信する", class: "btn-sm btn-primary btn-block" %>
+    </div>
+  <% end %>
 </div>

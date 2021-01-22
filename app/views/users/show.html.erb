@@ -1,5 +1,12 @@
 <h1>マイページ</h1>
   <h4>投稿一覧</h4>
+  <div class="post-image show-center">
+    <% if @user.user_image? %>
+      <%= image_tag @user.user_image.url %>
+    <% else %>
+      <%= image_tag "/assets/default_user.png" %>
+    <% end %>
+  </div>
   <hr>
   <% if @posts.any? %>
     <%= render 'shared/posts' %>
