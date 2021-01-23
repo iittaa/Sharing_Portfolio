@@ -10,19 +10,30 @@
       <h3 class="post-title">
         <%= link_to stock.post.name, post_path(stock.post) %>
       </h3>
-      <p>
-        作成ユーザー：<%= link_to stock.post.user.name, user_path(stock.post.user) %>
-      </p>
-      <p>タグ：
+      <div class="post-box">
+        <div class="post-box2">
+          <p class="post-image">
+            <% if stock.post.user.user_image? %>
+              <%= image_tag stock.post.user.user_image.url %>
+            <% else %>
+              <%= image_tag "/assets/default_user.png" %>
+            <% end %>
+          </p>
+          <p class="post-name">
+            <%= link_to stock.post.user.name, user_path(stock.post.user) %>
+          </p>
+        </div>
+        <p class="post-time">
+          <%= time_ago_in_words(stock.post.created_at) %>前に投稿
+        </p>
+      </div>
+      <p class="post-tag">
         <% stock.post.tags.each do |list| %>
             <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
         <% end %>
       </p>
       <p class="post-content">サービス概要</p>
         <p><%= stock.post.content %></p>
-      <p class="post-time">
-        <%= time_ago_in_words(stock.post.created_at) %>前に投稿
-      </p>
     </div>
   </li>
   <% end %>

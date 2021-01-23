@@ -12,6 +12,8 @@ class Post < ApplicationRecord
   validates :url, presence: true
   validates :period, presence: true
 
+  default_scope -> { order(created_at: :desc) }
+
   mount_uploader :image, ImageUploader
 
   #投稿をストックする
