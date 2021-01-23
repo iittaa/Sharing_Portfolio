@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all #タグ一覧を表示する際に使用する
+    @posts = Post.all.page(params[:page]).per(10) #タグ一覧を表示する際に使用する
     @tag_list = Tag.all
     @post = current_user.posts.build
   end

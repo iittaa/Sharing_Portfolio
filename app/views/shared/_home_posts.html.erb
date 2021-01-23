@@ -1,5 +1,5 @@
 <ul class="flex flame">
-  <% @posts.order(:created_at).each do |post| %>
+  <% @posts.order(:created_at).limit(4).each do |post| %>
     <li class="post-list flame">
       <div class="post-image">
         <% if post.image? %>
@@ -39,4 +39,4 @@
       </div>
     </li>
   <% end %>
-  </ul>
+</ul>

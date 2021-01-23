@@ -4,7 +4,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find_by(id: params[:id])  
-    @posts = @tag.posts.all 
+    @posts = @tag.posts.all.page(params[:page]).per(10)
   end
 
   def index

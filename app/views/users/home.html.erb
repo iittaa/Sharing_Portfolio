@@ -1,5 +1,12 @@
 <div class="home-container">
-  <h1 class="homeh1">〜Sharing Portfolio〜</h1>
-  <h2 class="homeh2">作成したポートフォリオをみんなに公開しよう</h2>
+  <div class="home-title1">〜 Sharing Portfolio 〜</div>
+  <div class="home-title2">作成したポートフォリオをみんなに公開しよう</div>
+  <% unless !current_user.nil? %>
+    <div class="home-button"><%= link_to "今すぐ始める", new_user_path, class:"btn btn-primary" %></div>
+  <% end %>
 </div>
-
+<h2>最新作品一覧</h2>
+<hr>
+<div>
+  <%= render "shared/home_posts" %>
+</div>

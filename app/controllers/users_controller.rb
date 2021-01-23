@@ -3,6 +3,8 @@ before_action :logged_in_user, only:[:show, :index, :update, :edit, :destroy ]
 before_action :correct_user, only:[:edit, :update, :destroy]
 
   def home
+    @posts = Post.all #タグ一覧を表示する際に使用する
+    @tag_list = Tag.all
   end
 
   def new

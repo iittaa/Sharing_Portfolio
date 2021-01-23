@@ -16,6 +16,6 @@ class StocksController < ApplicationController
   end
 
   def index
-    @stocks = Stock.where(user_id: current_user.id)
+    @stocks = Stock.where(user_id: current_user.id).page(params[:page]).per(10)
   end
 end
