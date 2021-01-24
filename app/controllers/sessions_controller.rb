@@ -4,21 +4,21 @@ class SessionsController < ApplicationController
   end
 
   def create
-      @user = User.find_by(email: params[:session][:email])
-      if @user && @user.authenticate(params[:session][:password])
-        login(@user)
-        if params[:session][:remember_me] == "1"
-          remember(@user)
-        else
-          forget(@user)
-        end
-        flash[:success] = "ログインしました！"
-        redirect_to user_url(@user)
+    @user = User.find_by(email: params[:session][:email])
+    if @user && @user.authenticate(params[:session][:password])
+      login(@user)
+      if params[:session][:remember_me] == "1"
+        remember(@user)
       else
-        flash[:warning] = "メールアドレスとパスワードの組み合わせが正しくありません。"
-        render "new"
+        forget(@user)
       end
+      flash[:success] = "ログインしました！"
+      redirect_to user_url(@user)
+    else
+      flash[:warning] = "メールアドレスとパスワードの組み合わせが正しくありません。"
+      render "new"
     end
+  end
 
   def destroy
     if !current_user.nil?

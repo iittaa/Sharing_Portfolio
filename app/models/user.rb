@@ -5,14 +5,14 @@ class User < ApplicationRecord
 
   attr_accessor :remember_token, :reset_token
 
-  validates :name, presence: true
+  validates :name, presence: true, unless: :uid?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
-  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+  validates :email, presence: true, unless: :uid?, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
+  validates :password, presence: true, unless: :uid?, length: {minimum: 6}, allow_nil: true
 
   mount_uploader :user_image, ImageUploader
 
-  has_secure_password
+  has_secure_password validations: false
 
   #与えられた文字列のハッシュ値を返す
   def self.digest(string)

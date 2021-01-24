@@ -19,4 +19,9 @@
   
   <%= f.submit "ログイン", class:"btn btn-primary btn-block" %>
 <% end %>
-<div class="already">アカウントをお持ちでない方は<%= link_to "こちら", new_user_path %></div>
+<div class="already">アカウントをお持ちでない方は
+  <%= link_to "こちら", new_user_path %>
+</div>
+<div class="sns-login">
+  <%= link_to "Twitterアカウントでログイン", "/auth/twitter" %>
+</div>

@@ -76,6 +76,7 @@ h4{
 }
 
 
+
 //ヘッダー
 header{
   .logo{
@@ -183,6 +184,19 @@ footer{
 //ユーザー登録ページ
 .already{
   margin-top: 10px;
+}
+
+//ログインページ
+.sns-login{
+  padding-top: 10px;
+  a{
+    background-color: rgba(29,161,242,1.00);
+    color: #fff;
+    padding: 7px 12px;
+    float: right;
+    border-radius: 4px;
+    text-decoration: none;
+  }
 }
 
 

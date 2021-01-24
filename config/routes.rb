@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :contacts, only:[:new, :create]
   root  "users#home"
+  get 'auth/:provider/callback', to: 'users#twitter_create'
+  resources :contacts, only:[:new, :create]
   resources :users do
     collection do
       get :home

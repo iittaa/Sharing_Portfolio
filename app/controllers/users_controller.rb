@@ -51,6 +51,34 @@ before_action :correct_user, only:[:edit, :update, :destroy]
     redirect_to root_url
   end
 
+  def twitter_create
+    auth = request.env['omniauth.auth']
+    @user = User.find_by(
+      provider: auth[:provider],
+      uid: auth[:uid]
+      )
+    if @user
+      login(@user)
+      flash[:success] = "ログインしました"
+      redirect_to user_url(@user)
+    else
+      @user = User.new(
+        provider: auth[:provider],
+        uid: auth[:uid],
+        name: auth[:info][:name],
+        remote_user_image_url: auth[:info][:image]
+      )
+      if @user.save
+        login(@user)
+        flash[:success] = "ログインしました"
+        redirect_to user_url(@user)
+      else
+        flash[:warning] = "Twitterアカウントでログインができません。"
+        render "new"
+      end
+    end
+  end
+
 
   private
 
