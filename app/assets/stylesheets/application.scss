@@ -22,15 +22,16 @@
  *{
   margin: 0;
   padding: 0;
-  text-decoration: none;
-  list-style: none;
+  text-decoration: none ;
+  list-style: none outside;
 }
 
 main{
   padding-top: 70px;
   width: 90%;
-  margin: 0px auto;
+  margin: 0 auto;
   min-height: 100vh;
+  margin-bottom: 50px;
 }
 
 .flame{
@@ -55,10 +56,6 @@ main{
   padding-top: 70px;
 }
 
-// .total{
-//   background-color: #ecf3fc;
-// }
-
 h1{
   text-align: center;
   width: 50%;
@@ -82,14 +79,17 @@ h4{
 //ヘッダー
 header{
   .logo{
-    color: #000;
+    color: #fff;
     font-size: 30px;
     text-decoration: none;
     }
 }
 
-.navbar{  
+.navbar{
   background-color: #5472cd;
+}
+
+.navbar-nav{  
   padding-right: 15px;
   a{
     color: #fff !important;
@@ -121,11 +121,20 @@ footer{
     float: right;
     margin-bottom: 0px;
     li{
-      padding: 15px 20px;
+      padding: 15px 0px;
+      color: #fff;
     }
-  }
-  a{
-    color: #fff;
+    .li:hover{
+      background-color: #fff;
+      color: #5472cd;
+    }
+    a{
+      color: #fff;
+      padding: 17px 20px;
+    }
+    a:hover{
+      text-decoration: none;
+    }
   }
 }
 
@@ -155,6 +164,20 @@ footer{
   }
 }
 
+//利用規約ページ
+.term-title{
+  font-weight: 700;
+  font-size: 25px;
+  margin-top: 30px;
+}
+
+.term-list{
+  li{
+    list-style-type: decimal;
+    margin-left: 40px;
+    margin-bottom: 10px;
+  }
+}
 
 
 //ユーザー登録ページ
@@ -373,6 +396,7 @@ footer{
 .pagination>li>a:hover {        
   border-radius: 15px; 
 }
+
 
 
 

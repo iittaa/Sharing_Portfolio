@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :contacts, only:[:new, :create]
   root  "users#home"
   resources :users do
     collection do
       get :home
+      get :term
     end
   end
   resources :sessions, only:[:new, :create, :destroy]
