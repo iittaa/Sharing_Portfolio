@@ -7,7 +7,7 @@
   <% if @user.user_image? %>
     <%= image_tag @user.user_image.url %>
   <% else %>
-    <%= image_tag "/assets/default_user.png" %>
+    <%= image_tag asset_path("default_user.png") %>
   <% end %>
 </div>
 <h2>投稿一覧</h2>
