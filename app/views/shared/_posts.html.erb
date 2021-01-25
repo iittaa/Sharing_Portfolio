@@ -5,7 +5,7 @@
         <% if post.image? %>
           <%= image_tag post.image.url %>
         <% else %>
-          <%= image_tag "/assets/default_post.jpg" %>
+          <%= image_tag asset_path("default_post.jpg") %>
         <% end %>
       </div>
       <div class="post-caption">
@@ -18,7 +18,7 @@
               <% if post.user.user_image? %>
                 <%= image_tag post.user.user_image.url %>
               <% else %>
-                <%= image_tag "/assets/default_user.png" %>
+                <%= image_tag asset_path("default_user.png") %>
               <% end %>
             </p>
             <p class="post-name">

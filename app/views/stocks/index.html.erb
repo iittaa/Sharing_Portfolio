@@ -4,7 +4,11 @@
   <% @stocks.each do |stock| %>
   <li class="post-list flame">
     <div class="post-image">
-      <%= image_tag stock.post.image.url if stock.post.image? %>
+      <% if stock.post.image? %>
+        <%= image_tag stock.post.image.url %>
+      <% else %>
+        <%= image_tag asset_path("default_post.jpg") %>
+      <% end %>
     </div>
     <div class="post-caption">
       <h3 class="post-title">
@@ -16,7 +20,7 @@
             <% if stock.post.user.user_image? %>
               <%= image_tag stock.post.user.user_image.url %>
             <% else %>
-              <%= image_tag "/assets/default_user.png" %>
+              <%= image_tag asset_path("default_user.png") %>
             <% end %>
           </p>
           <p class="post-name">
