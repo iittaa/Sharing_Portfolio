@@ -59,6 +59,9 @@
   <div>
     <%= render "shared/stock_form" %>
   </div>
+  <div class="sns-login">
+    <%= link_to "Twitterでシェア", "https://twitter.com/share?url=#{ request.url }&text=「#{ @post.name }」を、Twitterでみんなに広めよう！" %>
+  </div>
 
               <% #コメント欄を表示 %>
     <div>
