@@ -1,0 +1,399 @@
+//bootstrap-import
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+//ページ全体
+*{
+ margin: 0;
+ padding: 0;
+ text-decoration: none ;
+ list-style: none outside;
+}
+
+main{
+ padding-top: 70px;
+ width: 90%;
+ margin: 0 auto;
+ min-height: 100vh;
+ margin-bottom: 50px;
+}
+
+.flame{
+ box-shadow: 0 2px 6px #5472cd;
+ overflow: hidden;
+ background-color: #fff;
+}
+
+.sub{
+ width: 70%;
+ padding: 20px;
+ margin: 0px auto;
+}
+
+.sub2{
+ width: 95%;
+ padding: 20px;
+ margin: 0px auto;
+}
+
+.alert{
+ padding-top: 70px;
+}
+
+h1{
+ text-align: center;
+ width: 50%;
+ margin: 50px auto 40PX;
+ line-height: 1;
+ background: #dfefff;
+ box-shadow: 0px 0px 0px 5px #dfefff;
+ border: dashed 1px #96c2fe;
+ padding: 0.2em 0.5em;
+ color: #454545;
+}
+
+h4{
+ color: #000;
+ line-height: 1;
+ text-align: center;
+ margin-bottom: 40PX;
+}
+
+
+
+//ヘッダー
+header{
+ .logo{
+   color: #fff;
+   font-size: 30px;
+   text-decoration: none;
+   }
+}
+
+.navbar{
+ background-color: #5472cd;
+}
+
+.navbar-nav{  
+ padding-right: 15px;
+ a{
+   color: #fff !important;
+ }
+ a:hover{
+   background-color: #fff !important;
+   color: #5472cd !important;
+ }
+}
+
+.dropdown-menu{
+ background-color: #5472cd;
+ a:hover{
+   color: #5472cd !important;
+ }
+}
+
+.btn-block{
+ margin-top: 15px;
+}
+
+
+//フッター
+footer{
+ background-color: #5472cd;
+ height: 50px;
+ ul{
+   display: flex;
+   float: right;
+   margin-bottom: 0px;
+   li{
+     padding: 15px 0px;
+     color: #fff;
+   }
+   .li:hover{
+     background-color: #fff;
+     color: #5472cd;
+   }
+   a{
+     color: #fff;
+     padding: 17px 20px;
+   }
+   a:hover{
+     text-decoration: none;
+   }
+ }
+}
+
+
+
+
+//homeページ
+.home-container{
+ height: 500px;
+ display: flex;
+   padding-top: 200px;
+   flex-direction: column;
+   align-items: center;
+ .home-title1{
+   font-size: 50px;
+   font-weight: 700;
+ }
+ .home-title2{
+   font-size: 50px;
+   font-weight: 700;
+ }
+ .btn{
+   margin-top: 40px;
+   width: 200px;
+   font-size: 20px;
+   background-color: #5472cd;
+ }
+}
+
+//利用規約ページ
+.term-title{
+ font-weight: 700;
+ font-size: 25px;
+ margin-top: 30px;
+}
+
+
+.term-list{
+ li{
+   list-style-type: decimal;
+   margin-left: 40px;
+   margin-bottom: 10px;
+ }
+}
+
+
+//ユーザー登録ページ
+.already{
+ margin-top: 10px;
+}
+
+//ログインページ
+.sns-login{
+ padding-top: 10px;
+ a{
+   background-color: rgba(29,161,242,1.00);
+   color: #fff;
+   padding: 7px 12px;
+   float: right;
+   border-radius: 4px;
+   text-decoration: none;
+ }
+}
+
+
+//ユーザー詳細ページ
+.user-show-image{
+ display: flex;
+ justify-content: center;
+ img{
+   width: 200px;
+   border-radius: 50%;
+   border: solid 1px #5472cd;
+ }
+}
+
+
+//投稿一覧
+.flex{
+ display: flex;
+ justify-content: space-evenly;
+ flex-wrap: wrap;
+}
+
+.flex::after{
+ display: block;
+ content:"";
+ width:600px;
+}
+
+.post-list{
+ display: flex;
+ height: 350px;
+ width: 600px;
+ margin-top: 15px;
+ margin-bottom: 15px;
+}
+
+.post-image{
+ display: flex;
+ align-items: center;
+ margin-right: 10px;
+ width: 280px;
+ img{
+   width: 280px;
+   border: solid 1px #5472cd;
+ }
+}
+
+.post-caption{
+ width: 310px;
+ 
+ .post-title {
+   border-bottom: solid 3px #cce4ff;
+   position: relative;
+ }
+ 
+ .post-title:after {
+   position: absolute;
+   content: " ";
+   display: block;
+   border-bottom: solid 3px #5472cd;
+   bottom: -3px;
+   width: 20%;
+ }
+
+ .post-box{
+   display: flex;
+   .post-box2{
+     display: flex;
+     margin-right: 20px;
+     margin-bottom: 10px;
+     .post-image{
+       width: 30px;
+       height: 30px;
+       margin-right: 5px;
+       margin-bottom: 0px;
+       img{
+         width: 30px;
+         height: 30px;
+         border-radius: 50%;
+       }
+     }
+     .post-name{
+       margin-top: 5px;
+       margin-bottom: 0px;
+     }
+   }
+   .post-time{
+     margin-top: 5px;
+     margin-bottom: 0px;
+     font-size: 15px;
+     color: gray;
+   }
+ }
+}
+
+ .post-content{
+   border-bottom: solid 1px #5472cd;
+   width: 85px;
+ }
+
+
+
+ //投稿詳細
+ .show-center {
+   text-align: center;
+   margin: 0 auto 20px;
+ }
+
+ .content-box{
+   margin: 30px auto;
+ }
+
+ .show-title{
+   margin: 20px auto 10px;
+   font-weight: 700;
+   padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+   color: #494949;/*文字色*/
+   background: #f4f4f4;/*背景色*/
+   border-left: solid 5px #7db4e6;/*左線*/
+   border-bottom: solid 3px #d7d7d7;/*下線*/
+ }
+
+ .show-content{
+   margin: auto 0;
+   padding-left: 15px;
+   p{
+     margin: auto 0;
+   }
+ }
+
+ 
+
+//タグ
+.tag{
+ display: block;
+ float: left;
+ padding: 7px;
+ margin: 5px;
+ font-size: 14px;
+}
+
+
+
+//ストック
+.stock-btn{
+ border-radius:30px;
+ height: 30px;
+ width: 80px;
+ font-size: 10px;
+}
+
+.stock-count{
+ padding-top: 5px;
+ padding-left: 5px;
+ font-size: 12px;
+}
+
+
+
+//コメント
+.comment{
+ display: flex;
+}
+
+.user-image{
+ margin-right: 10px;
+ img{
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+ }
+}
+
+.comment-box{
+ display: flex;
+ margin-bottom: 5px;
+ .comment-name{
+   margin-right: 20px;
+ }
+ 
+ .comment-time{
+   color: gray;
+   margin: 0 0;
+ }
+}
+ 
+.comment-box2{
+ display: flex;
+ padding-left: 40px;
+ .comment-edit{
+   margin: 5px;
+ }
+}
+
+.new-comment{
+ margin-top: 30px;
+ p{
+   font-weight: 700;
+ }
+}
+
+//ページネーション
+.pagination>li>a {          
+ border: none;     
+ color: #5472cd;   
+}
+
+.pagination>.active>a {     
+ background: #5472cd;
+ border-radius: 15px;
+}
+
+.pagination>li>a:hover {        
+ border-radius: 15px; 
+}
