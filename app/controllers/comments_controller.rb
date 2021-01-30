@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
       flash[:success] = "コメントしました！"
     else
-      flash[:warning] = "コメントを入力してください！"
+      flash[:warning] = "1字〜500字以内でコメントを入力してください！"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -24,6 +24,9 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to post_path(@comment.post)
       flash[:success] = "コメントを編集しました"
+    else
+      flash[:warning] = "1字〜500字以内でコメントを入力してください！"
+      redirect_back(fallback_location: root_path)
     end
   end
 

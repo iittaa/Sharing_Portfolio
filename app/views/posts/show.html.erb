@@ -1,4 +1,4 @@
-<h1><%= @post.name %></h1>
+<h1>作品概要</h1>
 
 <div class="sub flame">
   <div class="post-image show-center">
@@ -17,6 +17,12 @@
   <h2>詳細</h2>
   <hr>
   <div class="content-box">
+    <div class="show-title">サービス名</div>
+    <div class="show-content">
+      <p class><%= @post.name %></p>
+    </div>
+  </div>
+  <div class="content-box">
     <div class="show-title">作成ユーザー</div>
     <div class="show-content">
       <p class><%= link_to @post.user.name, user_path(@post.user) %></p>
@@ -31,7 +37,7 @@
   <div class="content-box">
     <div class="show-title">サービスのリンク</div>
     <div class="show-content">
-      <p><%= @post.url %></p>
+      <p><%= link_to @post.url ,@post.url %></p>
     </div>
   </div>
   <div class="content-box">
@@ -51,7 +57,7 @@
     <div class="show-content">
       <p>
         <% @post.tags.each do |list| %>
-          <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
+          <%= link_to list.tag_name, tag_path(list), class:"label label-primary showtag" %>
         <% end %>
       </p>
     </div>
@@ -129,6 +135,7 @@
 
             <% #リプライコメントを送信 %>      
       <%= form_with(model:[@post,@comment_reply]) do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
         <div class="row">
           <div class="form-group col-md-6">
             <textarea class="form-control input-form" name="comment[content]" rows="2"><%=@comment_reply.content%></textarea>

@@ -25,9 +25,6 @@
               <%= link_to post.user.name, user_path(post.user) %>
             </p>
           </div>
-            <p class="post-time">
-              <%= time_ago_in_words(post.created_at) %>前に投稿
-            </p>
         </div>
         <p class="post-tag">
           <% post.tags.each do |list| %>
@@ -35,7 +32,10 @@
           <% end %>
         </p>
         <p class="post-content">サービス概要</p>
-        <p><%= post.content %></p>
+        <p><%= post.content.truncate(100) %></p>
+        <p class="post-time">
+          <%= time_ago_in_words(post.created_at) %>前に投稿
+        </p>
       </div>
     </li>
   <% end %>

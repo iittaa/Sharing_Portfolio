@@ -2,57 +2,43 @@
 <h4>あなたが作成したポートフォリオを投稿し、ユーザーに共有します。</h4>
 
 <div class="sub flame">
-<%= form_with(model: @post, local: true, class:"form-horizontal") do |f| %>
+<%= form_with(model: @post, local: true) do |f| %>
   <%= render 'shared/error_messages', model: f.object %>
   
   <div class="form-group">
-    <%= f.label :サービス名：, class:"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。" %>	
-    </div>
+    <%= f.label :サービス名 %><span class="must"> (必須)</span>
+    <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。" %>	
   </div>
   
   <div class="form-group">
-    <%= f.label :サービス概要：, class:"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_area :content, class: "form-control", placeholder:"サービスの概要を入力してください。" %>	
-    </div>
+    <%= f.label :サービス概要 %><span class="must"> (必須)</span>
+    <%= f.text_area :content, class: "form-control", placeholder:"サービスの概要を入力してください。" %>	
   </div>
   
   <div class="form-group">
-    <%= f.label :サムネイル画像：, class:"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.file_field :image, class: "form-control" %>	
-    </div>
+    <%= f.label :サムネイル画像 %>
+    <%= f.file_field :image, class: "form-control" %>	
   </div>
   
   <div class="form-group">
-    <%= f.label :サービスのURL：, class:"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :url, class: "form-control", placeholder:"サービスへのリンクを入力してください。" %>	
-    </div>
+    <%= f.label :サービスのリンク %><span class="must"> (必須)</span>
+    <%= f.text_field :url, class: "form-control", placeholder:"サービスへのリンクを入力してください。" %>	
   </div>
 
   <div class="form-group">
-    <%= f.label :作成期間：, class:"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :period, class: "form-control", placeholder:"作成期間を入力してください。" %>	
-    </div>
+    <%= f.label :作成期間 %><span class="must"> (必須)</span>
+    <%= f.text_field :period, class: "form-control", placeholder:"作成期間を入力してください。" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :アピールポイント：, class:"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_area :url, class: "form-control", placeholder:"アピールポイントがあれば、入力してください。" %>	
-    </div>
+    <%= f.label :アピールポイント %>
+      <%= f.text_area :url, class: "form-control", placeholder:"アピールポイントがあれば、入力してください。" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :タグ：, class:"col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :タグ %>
     <%= f.text_field :tag_ids, class: "form-control", id:'tag_ids',\
-    placeholder: "タグをつける。複数つけるには「全角スペース又は半角スペース」で区切ってください。" %>
-    </div>
+    placeholder: "タグをつける。複数つけるには「全角スペース又は半角スペース」で区切ってください。例）ruby rails javascript" %>
   </div>  
   
   <%= f.submit "投稿する", class:"btn btn-primary btn-block" %>

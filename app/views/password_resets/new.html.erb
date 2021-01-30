@@ -1,9 +1,8 @@
 <h1>パスワードを忘れた方はこちらへ</h1>
-
 <%= form_with(url: password_resets_path, scope: :password_reset, local: true, class:"form-signin") do |f| %>
 
   <%= f.label :メールアドレス,  class: "sr-only" %>
   <%= f.email_field :email, class: "form-control",placeholder: "メールアドレス" %>
   
-  <%= f.submit "パスワード再設定のメールを送信する" %>
+  <%= f.submit "パスワード再設定のメールを送信する", class:"btn btn-primary btn-block" %>
 <% end %>
