@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   mount_uploader :user_image, ImageUploader
 
+  has_secure_password
   has_secure_password validations: false
 
   #与えられた文字列のハッシュ値を返す

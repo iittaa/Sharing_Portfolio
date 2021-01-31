@@ -28,4 +28,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  database: Sharing_Portfolio_production
+  username: root
+  password: Kk-10310723
