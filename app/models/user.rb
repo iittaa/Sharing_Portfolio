@@ -9,9 +9,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, unless: :uid?, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
   VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/ 
-  validates :password, presence: true, unless: :uid?, length: {minimum: 6}, allow_nil: true, format: { with: VALID_PASS_REGEX }, confirmation: true
-  validates :password_confirmation, presence: true, unless: :uid?
-
+  validates :password, presence: true, unless: :uid?, length: {minimum: 6}, format: { with: VALID_PASS_REGEX }, confirmation: true, allow_nil: true
   validates :profile, length: {maximum: 500}
 
   mount_uploader :user_image, ImageUploader
@@ -24,6 +22,10 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  #passwordをハッシュ化させる
+  def password_hash
+    update_attribute(:password_digest, User.digest(password))
+  end
 
   #ランダムな文字列を生成する
   def self.new_token

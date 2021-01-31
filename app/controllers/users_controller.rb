@@ -15,6 +15,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
     @user = User.new(user_params)
     if @user.save
       login(@user)
+      hash(@user)
       flash[:success] = "アカウントを登録しました！これからよろしくね！"
       redirect_to user_url(@user)
     else
@@ -37,6 +38,9 @@ before_action :correct_user, only:[:edit, :update, :destroy]
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      unless @user.password.nil?
+        hash(@user)
+      end
       flash[:success] = "ユーザー情報を編集しました"
       redirect_to user_url(@user)
     else
@@ -66,7 +70,8 @@ before_action :correct_user, only:[:edit, :update, :destroy]
         provider: auth[:provider],
         uid: auth[:uid],
         name: auth[:info][:name],
-        remote_user_image_url: auth[:info][:image]
+        remote_user_image_url: auth[:info][:image],
+        profile: auth[:info][:description]
       )
       if @user.save
         login(@user)
