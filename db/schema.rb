@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_094411) do
+ActiveRecord::Schema.define(version: 2021_01_31_042958) do
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
-    t.integer "user_id"
-    t.integer "post_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "parent_id"
+    t.bigint "parent_id"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "contacts", force: :cascade do |t|
+  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "message"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_01_24_094411) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "name"
     t.text "content"
     t.text "point"
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 2021_01_24_094411) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "stocks", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+  create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_stocks_on_post_id"
@@ -56,22 +56,23 @@ ActiveRecord::Schema.define(version: 2021_01_24_094411) do
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
-  create_table "tag_maps", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
+  create_table "tag_maps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "tag_id"], name: "index_tag_maps_on_post_id_and_tag_id", unique: true
     t.index ["post_id"], name: "index_tag_maps_on_post_id"
     t.index ["tag_id"], name: "index_tag_maps_on_tag_id"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tag_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_01_24_094411) do
     t.string "user_image"
     t.string "uid"
     t.string "provider"
+    t.text "profile"
   end
 
   add_foreign_key "comments", "comments", column: "parent_id"

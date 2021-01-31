@@ -7,12 +7,12 @@
   
   <div class="form-group">
     <%= f.label :サービス名 %><span class="must"> (必須)</span>
-    <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。" %>	
+    <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。(100字以内)" %>	
   </div>
   
   <div class="form-group">
     <%= f.label :サービス概要 %><span class="must"> (必須)</span>
-    <%= f.text_area :content, class: "form-control", placeholder:"サービスの概要を入力してください。" %>	
+    <%= f.text_area :content, class: "form-control", placeholder:"サービスの概要を入力してください。(500字以内)" %>	
   </div>
   
   <div class="form-group">
@@ -32,7 +32,7 @@
 
   <div class="form-group">
     <%= f.label :アピールポイント %>
-      <%= f.text_area :url, class: "form-control", placeholder:"アピールポイントがあれば、入力してください。" %>
+      <%= f.text_area :point, class: "form-control", placeholder:"アピールポイントがあれば、入力してください。(500字以内)" %>
   </div>
 
   <div class="form-group">

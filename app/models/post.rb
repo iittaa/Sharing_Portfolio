@@ -6,10 +6,11 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :user_id, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, length:{maximum:100}
   validates :content, presence: true, length:{maximum:500}
   validates :point, length:{maximum:500}
-  validates :url, presence: true
+  VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
+  validates :url, presence: true, format: { with: VALID_URL_REGEX }
   validates :period, presence: true
 
   default_scope -> { order(created_at: :desc) }
@@ -38,7 +39,7 @@ class Post < ApplicationRecord
       self.tags.delete Tag.find_by(tag_name: old_name)
     end
     
-    new_tags.each do |new_name|
+    new_tags.uniq.each do |new_name|
       post_tag = Tag.find_or_create_by(tag_name: new_name)
       self.tags << post_tag
     end

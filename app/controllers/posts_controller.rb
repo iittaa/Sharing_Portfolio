@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    @tag_list = params[:post][:tag_ids].split(/[[:blank:]]+/)
+    @tag_list = params[:post][:tag_ids].downcase.split(/[[:blank:]]+/)
     if @post.save
       @post.save_tag(@tag_list)
       flash[:success] = "ポートフォリオを公開しました！ありがとう！"
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find_by(id: params[:id])
-    @tag_list = params[:post][:tag_ids].split(/[[:blank:]]+/)
+    @tag_list = params[:post][:tag_ids].downcase.split(/[[:blank:]]+/)
     if @post.update(post_params)
       @post.save_tag(@tag_list)
       flash[:success] = "更新しました！"

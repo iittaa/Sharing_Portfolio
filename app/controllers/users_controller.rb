@@ -66,6 +66,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
         provider: auth[:provider],
         uid: auth[:uid],
         name: auth[:info][:name],
+        profile: auth[:info][:description],
         remote_user_image_url: auth[:info][:image]
       )
       if @user.save
@@ -84,7 +85,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
 
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile)
   end
 
   #正しいユーザーかどうか確認する・
