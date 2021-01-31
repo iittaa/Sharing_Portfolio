@@ -3,18 +3,19 @@ class User < ApplicationRecord
   has_many :stocks, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  attr_accessor :remember_token, :reset_token
+  attr_accessor :password, :password_confirmation,:remember_token, :reset_token
 
   validates :name, presence: true, length: {maximum: 100}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, unless: :uid?, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
   VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/ 
-  validates :password, presence: true, unless: :uid?, length: {minimum: 6}, allow_nil: true, format: { with: VALID_PASS_REGEX }
+  validates :password, presence: true, unless: :uid?, length: {minimum: 6}, allow_nil: true, format: { with: VALID_PASS_REGEX }, confirmation: true
+  validates :password_confirmation, presence: true, unless: :uid?
+
   validates :profile, length: {maximum: 500}
 
   mount_uploader :user_image, ImageUploader
 
-  has_secure_password
   has_secure_password validations: false
 
   #与えられた文字列のハッシュ値を返す
