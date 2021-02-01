@@ -3,7 +3,6 @@ module ApplicationHelper
 
   #セッション付与
   def login(user)
-    user.password_hash
     session[:user_id] = user.id
   end
 
