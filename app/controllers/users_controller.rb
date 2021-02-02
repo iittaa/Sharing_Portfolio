@@ -27,12 +27,12 @@ before_action :correct_user, only:[:edit, :update, :destroy]
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     @posts = @user.posts
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def update

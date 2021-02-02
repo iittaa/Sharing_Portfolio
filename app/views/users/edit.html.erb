@@ -9,17 +9,26 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :メールアドレス %><span class="must"> (必須)</span>
+      <%= f.label :メールアドレス %>
+      <% if @user.uid.nil? %>
+        <span class="must"> (必須)</span>
+      <% end %>
       <%= f.email_field :email, class: "form-control", placeholder:"メールアドレスを入力してください。" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :パスワード %><span class="must"> (必須)</span>
+      <%= f.label :パスワード %>
+      <% if @user.uid.nil? %>
+        <span class="must"> (必須)</span>
+      <% end %>
       <%= f.text_field :password, class: "form-control", placeholder:"パスワードを入力してください。(6字以上)" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :パスワード確認用 %><span class="must"> (必須)</span>
+      <%= f.label :パスワード確認用 %>
+      <% if @user.uid.nil? %>
+        <span class="must"> (必須)</span>
+      <% end %>
       <%= f.text_field :password_confirmation, class: "form-control", placeholder:"確認用のパスワードを入力してください。" %>
     </div>
 
