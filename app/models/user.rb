@@ -11,6 +11,9 @@ class User < ApplicationRecord
   VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/ 
   validates :password, presence: true, unless: :uid?, length: {minimum: 6}, format: { with: VALID_PASS_REGEX }, confirmation: true, allow_nil: true
   validates :profile, length: {maximum: 500}
+  VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
+  validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
+  validates :github_link, format: { with: VALID_URL_REGEX }, allow_blank: true
 
   mount_uploader :user_image, ImageUploader
 

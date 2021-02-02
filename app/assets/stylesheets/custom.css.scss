@@ -200,11 +200,34 @@ footer{
   align-items: center;
   h2{
     font-weight: 700;
-    font-size: 28px;
+    font-size: 40px;
   }
-  div{
+  .twitter-link{
+    background-color: rgba(29,161,242,1.00);
+    color: #fff;
+    padding: 0px 20px;
+    margin: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  .twitter-link:hover{
+    background-color: rgb(4, 104, 167);
+  }
+  .github-link{
+    background-color: gray;
+    color: #fff;
+    padding: 0px 20px;
+    margin: 5px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  .github-link:hover{
+    background-color: #000;
+  }
+  h3{
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 0;
     font-weight: 700;
     font-size: 18px;
     background: #dfefff;
@@ -216,7 +239,6 @@ footer{
     font-size: 15px;
     padding: 10px 20px;
     background: #dfefff;
-    
   }
 }
 

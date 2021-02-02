@@ -8,6 +8,8 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認用
+        twitter_link: twitterリンク
+        github_link: GitHubリンク
       post:
         name: サービス名
         content: サービス概要

@@ -71,7 +71,8 @@ before_action :correct_user, only:[:edit, :update, :destroy]
         uid: auth[:uid],
         name: auth[:info][:name],
         remote_user_image_url: auth[:info][:image],
-        profile: auth[:info][:description]
+        profile: auth[:info][:description],
+        twitter_link: auth[:info][:urls][:Twitter]
       )
       if @user.save
         login(@user)
@@ -89,7 +90,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
 
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile, :twitter_link, :github_link)
   end
 
   #正しいユーザーかどうか確認する・
