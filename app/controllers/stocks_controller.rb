@@ -18,4 +18,8 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.where(user_id: current_user.id).page(params[:page]).per(10)
   end
+
+  def show
+    @stock = Stock.find_by(post_id: params[:id]).page(params[:page]).per(100)
+  end
 end

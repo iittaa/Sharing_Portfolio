@@ -37,7 +37,7 @@
   <div class="content-box">
     <div class="show-title">サービスのリンク</div>
     <div class="show-content">
-      <p><%= link_to @post.url ,@post.url %></p>
+      <p><%= link_to @post.name ,@post.url, target:"_blank" %></p>
     </div>
   </div>
   <div class="content-box">
@@ -49,7 +49,7 @@
   <div class="content-box">
     <div class="show-title">アピールポイント</div>
     <div class="show-content">
-      <p class="form-control-static"><%= simple_format(@post.point) %></p>
+      <p><%= simple_format(@post.point) %></p>
     </div>
   </div>
   <div class="content-box">
@@ -62,7 +62,7 @@
       </p>
     </div>
   </div>
-  <div>
+  <div class="stock-block">
     <%= render "shared/stock_form" %>
   </div>
   <div class="sns-login">

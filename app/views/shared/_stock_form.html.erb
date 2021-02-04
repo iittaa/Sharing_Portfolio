@@ -3,4 +3,4 @@
 <% else %>
   <%= render "shared/stock" %>
 <% end %>
-<p class="stock-count">(ストック数：<%= @post.stocks.count %>)</p>
+<div class="stock-count"><%= @post.stocks.count %></div>
