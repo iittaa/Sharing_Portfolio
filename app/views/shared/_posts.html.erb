@@ -32,7 +32,7 @@
           <% end %>
         </p>
         <p class="post-content">サービス概要</p>
-        <p><%= post.content.truncate(100) %></p>
+        <p><%= post.content.truncate(65) %></p>
         <p class="post-time">
           <%= time_ago_in_words(post.created_at) %>前に投稿
         </p>

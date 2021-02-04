@@ -31,7 +31,7 @@
   <div class="content-box">
     <div class="show-title">サービスの概要</div>
     <div class="show-content">
-      <p class=""><%= @post.content %></p>
+      <p class=""><%= simple_format(@post.content) %></p>
     </div>
   </div>
   <div class="content-box">
@@ -49,7 +49,7 @@
   <div class="content-box">
     <div class="show-title">アピールポイント</div>
     <div class="show-content">
-      <p class="form-control-static"><%= @post.point %></p>
+      <p class="form-control-static"><%= simple_format(@post.point) %></p>
     </div>
   </div>
   <div class="content-box">
@@ -94,9 +94,7 @@
       </div>
       </div>
       <div class="comment-box2">
-        <p class="comment-content">
-          <%=comment.content%>
-        </p>
+          <%= simple_format(comment.content) %>
         <% if current_user == comment.user %>
           <%= link_to "編集", edit_post_comment_path(@post,comment), class:"comment-edit" %>
           <%= link_to "削除", post_comment_path(@post,comment), class:"comment-edit", method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
@@ -122,13 +120,13 @@
           </div>
           </div>
           <div class="comment-box2">
-            <p class="comment-content">
-              <%=reply.content%>
-            </p>
+              <%= simple_format(reply.content) %>
+              <div class="comment-edit-box">
             <% if current_user == reply.user %>    
               <%= link_to "編集", edit_post_comment_path(@post,reply), class:"comment-edit" %>
               <%= link_to "削除", post_comment_path(@post,reply), class:"comment-edit", method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
             <% end %>
+          </div>
           </div>
         <% end %>
       </div>

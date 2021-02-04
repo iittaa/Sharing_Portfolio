@@ -235,19 +235,17 @@ footer{
   }
   h3{
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 0;
+    margin-top: 60px;
+    margin-bottom: 10px;
     font-weight: 700;
-    font-size: 18px;
-    background: #dfefff;
-    width: 50%;
+    font-size: 25px;
   }
   p{
+    font-size: 30px;
     text-align: center;
     width: 50%;
     font-size: 15px;
-    padding: 10px 20px;
-    background: #dfefff;
+    padding: 0px 20px;
   }
 }
 
@@ -438,9 +436,7 @@ footer{
  padding-left: 40px;
  .comment-edit{
    margin: 5px;
- }
- .comment-content{
-   width: 500px;
+   float: right;
  }
 }
 
