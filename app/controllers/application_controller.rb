@@ -9,7 +9,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
+  #管理者かどうかの確認
+  def admin_user
+    unless current_user.admin?
+      redirect_to root_url
+      flash[:warning] = "管理者以外はアクセスできません"
+    end
+  end
 
 end

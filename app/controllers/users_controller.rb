@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 before_action :logged_in_user, only:[:show, :index, :update, :edit, :destroy ]
 before_action :correct_user, only:[:edit, :update, :destroy]
+before_action :admin_user, only:[:index]
 
   def home
     @posts = Post.all #タグ一覧を表示する際に使用する
@@ -24,6 +25,7 @@ before_action :correct_user, only:[:edit, :update, :destroy]
   end
 
   def index
+    @users = User.all
   end
 
   def show

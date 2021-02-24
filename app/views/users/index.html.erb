@@ -1,0 +1,6 @@
+<h1>ユーザー管理</h1>
+<% @users.each do |user| %>
+  <div>
+    <%= link_to user.name, user_path(user) %>
+  </div>
+  <% end %>

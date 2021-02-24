@@ -69,9 +69,11 @@ class PostsController < ApplicationController
   #正しいユーザーかどうか確認する
   def correct_user
   @post = Post.find_by(id: params[:id])
-    unless @post.user_id == current_user.id
-      redirect_to root_url
-      flash[:warning] = "自分の投稿したポートフォリオ以外の情報は変更することができません"
+    unless @post.user_id == current_user
+      unless current_user.admin?
+        redirect_to root_url
+        flash[:warning] = "自分の投稿したポートフォリオ以外の情報は変更することができません"
+      end
     end
   end
 
