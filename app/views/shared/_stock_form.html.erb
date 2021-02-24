@@ -1,6 +1,10 @@
-<% if current_user.stock?(@post) %>
-  <%= render "shared/unstock" %>
+<% if Stock.find_by(user_id: current_user.id, post_id: @post.id) %>
+  <%= link_to "/posts/#{@post.id}/stocks", method: :delete, remote: true do %>
+    <i class="fas fa-heart" style=""></i>
+  <% end %>
 <% else %>
-  <%= render "shared/stock" %>
+  <%= link_to "/posts/#{@post.id}/stocks", method: :post, remote: true do %>
+    <i class="far fa-heart"></i>
+  <% end %>
 <% end %>
-<div class="stock-count"><%= @post.stocks.count %></div>
+<div class="stock-count"><%= @post.stocks.length %></div>

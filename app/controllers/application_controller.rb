@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     if current_user.nil?
       flash[:warning] = "ログインしてください"
-      redirect_to new_session_url
+      redirect_to home_users_url
     end
   end
 

@@ -1,5 +1,4 @@
 <h1>作品概要</h1>
-
 <div class="sub flame">
   <div class="post-image show-center">
     <% if @post.image? %>
@@ -62,7 +61,7 @@
       </p>
     </div>
   </div>
-  <div class="stock-block">
+  <div id="like-<%= @post.id %>" class="stock-block">
     <%= render "shared/stock_form" %>
   </div>
   <div class="sns-login">
@@ -158,3 +157,8 @@
     </div>
   <% end %>
 </div>
+
+
+<script>
+  
+</script>

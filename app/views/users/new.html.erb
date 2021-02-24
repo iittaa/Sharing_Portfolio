@@ -4,7 +4,7 @@
   <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
     
-    <div class="form-group">
+    <div class="form-group user-dayo">
       <%= f.label :ユーザー名 %><span class="must"> (必須)</span>
         <%= f.text_field :name, class: "form-control", placeholder:"ユーザー名を入力してください。" %>	
     </div>
@@ -35,3 +35,7 @@
   <%= link_to "こちら", new_session_path %>
   </div>
 </div>
+
+<script>
+$(".user-dayo").css("color","blue")
+</script>
