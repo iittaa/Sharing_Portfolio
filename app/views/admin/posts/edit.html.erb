@@ -1,7 +1,7 @@
 <h1><%= @post.name %></h1>
 
 <div class="sub flame">
-  <%= form_with(model: @post, local: true) do |f| %>
+  <%= form_with(model: @post, url: admin_post_url(@post), local: true) do |f| %>
     <%= render "shared/error_messages", model: f.object %>
 
     <%= f.label :サービス名,  class:"col-sm-2 control-label" %>

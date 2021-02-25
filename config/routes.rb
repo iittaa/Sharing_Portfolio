@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       get :term
     end
   end
+  namespace :admin do
+    resources :users, only:[:index, :show, :destroy]
+    resources :posts, only:[:index, :show, :edit, :update, :destroy]
+  end
   resources :sessions, only:[:new, :create, :destroy]
   resources :password_resets, only:[:new, :create, :edit, :update]
   resources :posts do

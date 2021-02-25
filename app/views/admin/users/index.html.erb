@@ -1,0 +1,8 @@
+<h1>ユーザー管理</h1>
+<div class="sub flame">
+  <% @users.each do |user| %>
+    <% if user.admin == false %>
+      <%= link_to user.name, admin_user_path(user) %>
+    <% end %>
+  <% end %>
+</div>

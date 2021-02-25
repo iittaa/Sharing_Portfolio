@@ -39,15 +39,13 @@ before_action :admin_user, only:[:index]
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      unless @user.password.nil?
+      if @user.update(user_params)
         hash(@user)
+        flash[:success] = "ユーザー情報を編集しました!"
+        redirect_to user_url(@user)
+      else
+        render "edit"
       end
-      flash[:success] = "ユーザー情報を編集しました"
-      redirect_to user_url(@user)
-    else
-      render "edit"
-    end
   end
   
   def destroy

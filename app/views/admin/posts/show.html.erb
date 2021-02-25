@@ -7,12 +7,10 @@
       <%= image_tag asset_path("default_post.jpg") %>
     <% end %>
   </div>
-  <% if @post.user == current_user %>
-    <div class="show-center">
-      <%= link_to "編集", edit_post_path(@post),class:"btn btn-primary" %>
-      <%= link_to "削除", post_path(@post), method: :delete, class:"btn btn-primary", data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"} %>
-    </div>
-  <% end %>
+  <div class="show-center">
+    <%= link_to "編集", edit_admin_post_path(@post),class:"btn btn-primary" %>
+    <%= link_to "削除", admin_post_path(@post), method: :delete, class:"btn btn-primary", data:{confirm:"管理者側でポートフォリオを削除しますか？"} %>
+  </div>
   <h2>詳細</h2>
   <hr>
   <div class="content-box">

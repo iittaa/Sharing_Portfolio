@@ -9,7 +9,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, unless: :uid?, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
   VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/ 
-  validates :password, presence: true, unless: :uid?, length: {minimum: 6}, format: { with: VALID_PASS_REGEX }, confirmation: true, allow_nil: true
+  validates :password, presence: true, allow_nil: true, unless: :uid?, length: {minimum: 6}, format: { with: VALID_PASS_REGEX }, confirmation: true
   validates :profile, length: {maximum: 500}
   VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
   validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
