@@ -10,4 +10,11 @@ $(document).on('turbolinks:load', function() {
     $("#login-modal").fadeOut();
   });
 
+  $(".close-modal-link").on("click", function() {
+    console.log("clcik off2");
+    $("#login-modal").hide();
+  });
+
+
+
 });
