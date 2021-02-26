@@ -12,8 +12,16 @@ class ApplicationController < ActionController::Base
   #管理者かどうかの確認
   def admin_user
     unless current_user.admin?
-      redirect_to root_url
+      redirect_back(fallback_location: root_path)
       flash[:warning] = "管理者以外はアクセスできません"
+    end
+  end
+
+  # ゲストユーザーかどうか確認する
+  def check_guest
+    if current_user.email == "guest@example.com"
+      redirect_back(fallback_location: root_path)
+      flash[:warning] = "ゲストユーザーは閲覧操作のみ可能です"
     end
   end
 

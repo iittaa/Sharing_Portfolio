@@ -25,4 +25,5 @@ class SessionsController < ApplicationController
     flash[:success] = "ログアウトしました！また来てね！"
     redirect_to root_url
   end
+
 end

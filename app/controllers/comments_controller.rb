@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user, only:[:create, :edit, :update, :destroy]
   before_action :correct_user, only:[:edit, :update, :destroy]
+  before_action :check_guest, only:[:create, :update, :destroy]
 
 
   def create

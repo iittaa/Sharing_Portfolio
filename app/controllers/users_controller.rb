@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 before_action :logged_in_user, only:[:show, :index, :update, :edit, :destroy ]
 before_action :correct_user, only:[:edit, :update, :destroy]
 before_action :admin_user, only:[:index]
+before_action :check_guest, only:[:edit, :update, :destroy]
 
   def home
     @posts = Post.all #タグ一覧を表示する際に使用する
@@ -85,6 +86,17 @@ before_action :admin_user, only:[:index]
     end
   end
 
+  def new_guest
+    user = User.find_or_create_by(name: "ゲストユーザー", email: "guest@example.com") do |user|
+      user.password = SecureRandom.urlsafe_base64
+      hash(user)
+    end
+    login(user)
+    flash[:success] = "ゲストユーザーとしてログインしました！"
+    redirect_to user_url(user)
+  end
+
+
 
   private
 
@@ -93,7 +105,7 @@ before_action :admin_user, only:[:index]
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile, :twitter_link, :github_link)
   end
 
-  #正しいユーザーかどうか確認する・
+  # 正しいユーザーかどうか確認する
   def correct_user
     @user = User.find_by(id: params[:id])
     unless @user && @user == current_user
@@ -101,6 +113,8 @@ before_action :admin_user, only:[:index]
       flash[:warning] = "自分のユーザー情報以外は変更することができません"
     end
   end
+
+
 
 
 end
