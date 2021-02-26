@@ -7,12 +7,12 @@
   
   <div class="form-group">
     <%= f.label :サービス名 %><span class="must"> (必須)</span>
-    <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。(100字以内)" %>	
+    <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。(100字以内)", autocomplete:"off" %>	
   </div>
   
   <div class="form-group">
     <%= f.label :サービス概要 %><span class="must"> (必須)</span>
-    <%= f.text_area :content, class: "form-control", placeholder:"サービスの概要を入力してください。(500字以内)" %>	
+    <%= f.text_area :content, class: "form-control", placeholder:"サービスの概要を入力してください。(500字以内)", autocomplete:"off" %>	
   </div>
   
   <div class="form-group">
@@ -22,23 +22,23 @@
   
   <div class="form-group">
     <%= f.label :サービスのリンク %><span class="must"> (必須)</span>
-    <%= f.text_field :url, class: "form-control", placeholder:"サービスへのリンクを入力してください。" %>	
+    <%= f.text_field :url, class: "form-control", placeholder:"サービスへのリンクを入力してください。", autocomplete:"off" %>	
   </div>
 
   <div class="form-group">
     <%= f.label :作成期間 %><span class="must"> (必須)</span>
-    <%= f.text_field :period, class: "form-control", placeholder:"作成期間を入力してください。" %>
+    <%= f.text_field :period, class: "form-control", placeholder:"作成期間を入力してください。", autocomplete:"off" %>
   </div>
 
   <div class="form-group">
     <%= f.label :アピールポイント %>
-      <%= f.text_area :point, class: "form-control", placeholder:"アピールポイントがあれば、入力してください。(500字以内)" %>
+      <%= f.text_area :point, class: "form-control", placeholder:"アピールポイントがあれば、入力してください。(500字以内)", autocomplete:"off" %>
   </div>
 
   <div class="form-group">
     <%= f.label :タグ %>
     <%= f.text_field :tag_ids, class: "form-control", id:'tag_ids',\
-    placeholder: "タグをつける。複数つけるには「全角スペース又は半角スペース」で区切ってください。例）ruby rails javascript" %>
+    placeholder: "タグをつける。複数つけるには「全角スペース又は半角スペース」で区切ってください。例）ruby rails javascript", autocomplete:"off" %>
   </div>  
   
   <%= f.submit "投稿する", class:"btn btn-primary btn-block" %>

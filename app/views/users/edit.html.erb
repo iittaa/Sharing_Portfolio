@@ -5,7 +5,7 @@
 
     <div class="form-group">
       <%= f.label :ユーザー名 %><span class="must"> (必須)</span>
-      <%= f.text_field :name, class: "form-control", placeholder:"ユーザー名を入力してください。" %>
+      <%= f.text_field :name, class: "form-control", placeholder:"ユーザー名を入力してください。", autocomplete:"off" %>
     </div>
 
     <div class="form-group">
@@ -13,7 +13,7 @@
       <% if @user.uid.nil? %>
         <span class="must"> (必須)</span>
       <% end %>
-      <%= f.email_field :email, class: "form-control", placeholder:"メールアドレスを入力してください。" %>
+      <%= f.email_field :email, class: "form-control", placeholder:"メールアドレスを入力してください。", autocomplete:"off" %>
     </div>
 
     <div class="form-group">
@@ -21,7 +21,7 @@
       <% if @user.uid.nil? %>
         <span class="must"> (必須)</span>
       <% end %>
-      <%= f.text_field :password, class: "form-control", placeholder:"パスワードを入力してください。(6字以上)" %>
+      <%= f.text_field :password, class: "form-control", placeholder:"パスワードを入力してください。(6字以上)", type:"password" %>
     </div>
 
     <div class="form-group">
@@ -29,17 +29,17 @@
       <% if @user.uid.nil? %>
         <span class="must"> (必須)</span>
       <% end %>
-      <%= f.text_field :password_confirmation, class: "form-control", placeholder:"確認用のパスワードを入力してください。" %>
+      <%= f.text_field :password_confirmation, class: "form-control", placeholder:"確認用のパスワードを入力してください。", type:"password" %>
     </div>
 
     <div class="form-group">
       <%= f.label :Twitterリンク %>
-      <%= f.text_field :twitter_link, class: "form-control", placeholder:"TwitterアカウントのURLを入力してください。" %>
+      <%= f.text_field :twitter_link, class: "form-control", placeholder:"TwitterアカウントのURLを入力してください。", autocomplete:"off" %>
     </div>
 
     <div class="form-group">
       <%= f.label :GitHubリンク %>
-      <%= f.text_field :github_link, class: "form-control", placeholder:"GitHubアカウントのURLを入力してください。" %>
+      <%= f.text_field :github_link, class: "form-control", placeholder:"GitHubアカウントのURLを入力してください。", autocomplete:"off" %>
     </div>
 
     <div class="form-group">
@@ -49,7 +49,7 @@
 
     <div class="form-group">
       <%= f.label :自己紹介 %>
-      <%= f.text_area :profile, class: "form-control", placeholder:"自己紹介文を入力してください。(500字以内)" %>
+      <%= f.text_area :profile, class: "form-control", placeholder:"自己紹介文を入力してください。(500字以内)", autocomplete:"off" %>
     </div>
     <%= f.submit "保存", class:"btn btn-primary btn-block" %>
   <% end %>

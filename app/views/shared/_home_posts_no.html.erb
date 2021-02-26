@@ -1,0 +1,42 @@
+<ul class="flex flame">
+  <% @posts.order(:created_at).limit(4).each do |post| %>
+    <li class="post-list flame">
+      <div class="post-image">
+        <% if post.image? %>
+          <%= image_tag post.image.url %>
+        <% else %>
+          <%= image_tag "/assets/default_post.jpg" %>
+        <% end %>
+      </div>
+      <div class="post-caption login-push">
+        <h3 class="post-title">
+          <%= link_to post.name, post_path(post) %>
+        </h3>
+        <div class="post-box">
+          <div class="post-box2">
+            <p class="post-image">
+              <% if post.user.user_image? %>
+                <%= image_tag post.user.user_image.url %>
+              <% else %>
+                <%= image_tag "/assets/default_user.png" %>
+              <% end %>
+            </p>
+            <p class="post-name">
+              <%= link_to post.user.name, user_path(post.user) %>
+            </p>
+          </div>
+        </div>
+        <p class="post-tag">
+          <% post.tags.each do |list| %>
+            <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
+          <% end %>
+        </p>
+        <p class="post-content">サービス概要</p>
+        <p><%= post.content.truncate(65) %></p>
+        <p class="post-time">
+          <%= time_ago_in_words(post.created_at) %>前に投稿
+        </p>
+      </div>
+    </li>
+  <% end %>
+</ul>

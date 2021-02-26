@@ -6,22 +6,22 @@
     
     <div class="form-group user-dayo">
       <%= f.label :ユーザー名 %><span class="must"> (必須)</span>
-        <%= f.text_field :name, class: "form-control", placeholder:"ユーザー名を入力してください。" %>	
+        <%= f.text_field :name, class: "form-control", placeholder:"ユーザー名を入力してください。", autocomplete:"off" %>	
     </div>
     
     <div class="form-group">
       <%= f.label :メールアドレス %><span class="must"> (必須)</span>
-        <%= f.email_field :email, class: "form-control", placeholder:"メールアドレスを入力してください。" %>	
+        <%= f.email_field :email, class: "form-control", placeholder:"メールアドレスを入力してください。", autocomplete:"off" %>	
     </div>
     
     <div class="form-group">
       <%= f.label :パスワード %><span class="must"> (必須)</span>
-        <%= f.text_field :password, class: "form-control", placeholder:"パスワードを入力してください。(6字以上)" %>	
+        <%= f.text_field :password, class: "form-control", placeholder:"パスワードを入力してください。(6字以上)", type:"password" %>	
     </div>
     
     <div class="form-group">
       <%= f.label :パスワード確認用 %><span class="must"> (必須)</span>
-        <%= f.text_field :password_confirmation, class: "form-control", placeholder:"確認用のパスワードを入力してください。" %>	
+        <%= f.text_field :password_confirmation, class: "form-control", placeholder:"確認用のパスワードを入力してください。", type:"password" %>	
     </div>
 
     <div class="form-group">
@@ -35,7 +35,3 @@
   <%= link_to "こちら", new_session_path %>
   </div>
 </div>
-
-<script>
-$(".user-dayo").css("color","blue")
-</script>

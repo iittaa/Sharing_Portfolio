@@ -135,7 +135,7 @@
         <%= render 'shared/error_messages', model: f.object %>
         <div class="row">
           <div class="form-group col-md-6">
-            <textarea class="form-control input-form" name="comment[content]" rows="2", placeholder="コメント返信をする。(500字以内)"><%=@comment_reply.content%></textarea>
+            <textarea class="form-control input-form" name="comment[content]" rows="2", placeholder="コメント返信をする。(500字以内)", autocomplete:"off"><%=@comment_reply.content%></textarea>
           </div>
         </div>
         <%= f.hidden_field :post_id, value: @post.id %>
@@ -150,7 +150,7 @@
                 <% #新規コメント欄 %>
   <%= form_with(model:[@post,@comment], class:"new-comment") do |f| %>
     <p>新規コメント</p>
-    <textarea class="form-control input-form" name="comment[content]" rows="5", placeholder="コメントを入力してください。(500字以内)" ><%=@comment.content%></textarea>
+    <textarea class="form-control input-form" name="comment[content]" rows="5", placeholder="コメントを入力してください。(500字以内)", autocomplete:"off" ><%=@comment.content%></textarea>
     <%= f.hidden_field :post_id, value: @post.id %>
     <div class="actions">
       <%= f.submit "送信する", class: "btn-sm btn-primary btn-block" %>
