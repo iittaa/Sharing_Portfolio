@@ -7,13 +7,24 @@
   <% end %>
 </div>
 <div class="user-show-profile">
-  <h2><%= @user.name %></h2>
-  <% unless @user.twitter_link.blank? %>
-    <%= link_to "Twitter", @user.twitter_link, class:"twitter-link", target:"_blank" %>
+  <h2>
+  <%= @user.name %>
+  <% unless @user.uid.nil? %>
+    <i class="fab fa-twitter"></i>
   <% end %>
-  <% unless @user.github_link.blank? %>
-    <%= link_to "GitHub", @user.github_link, class:"github-link", target:"_blank" %>
-  <% end %>
+  </h2>
+  <div class="sns-container">
+    <% unless @user.twitter_link.blank? %>
+      <%= link_to @user.twitter_link, target:"_blank" do %>
+        <i class="fab fa-twitter-square"></i>
+      <% end %>
+    <% end %>
+    <% unless @user.github_link.blank? %>
+      <%= link_to @user.github_link, class:"github-link", target:"_blank" do %>
+        <i class="fab fa-github-square"></i>
+      <% end %>
+    <% end %>
+  </div>
   <% unless @user.profile.blank? %>
     <h3>〜プロフィール〜</h3>
     <p><%= simple_format(@user.profile) %></p>

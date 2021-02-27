@@ -89,6 +89,10 @@ h4{
   font-size: 30px;
 }
 
+.fa-twitter{
+  color: rgb(29, 161, 242);
+}
+
 
 
 //ヘッダー
@@ -241,27 +245,26 @@ footer{
     font-weight: 700;
     font-size: 40px;
   }
-  .twitter-link{
-    background-color: rgba(29,161,242,1.00);
-    color: #fff;
-    padding: 0px 20px;
-    margin: 5px;
-    border-radius: 4px;
-    text-decoration: none;
+  .sns-container{
+    display: flex;
   }
-  .twitter-link:hover{
-    background-color: rgb(4, 104, 167);
+
+  .fa-twitter-square{
+    font-size: 40px;
+    color: rgb(29, 161, 242);
+    margin: 10px;
   }
-  .github-link{
-    background-color: gray;
-    color: #fff;
-    padding: 0px 20px;
-    margin: 5px;
-    border-radius: 4px;
-    text-decoration: none;
+  
+  .fa-twitter-square:hover{
+    color: rgb(32, 117, 170);
   }
-  .github-link:hover{
-    background-color: #000;
+  .fa-github-square{
+    font-size: 40px;
+    color: #5f5d60;
+    margin: 10px;
+  }
+  .fa-github-square:hover{
+    color: #000;
   }
   h3{
     text-align: center;

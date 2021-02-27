@@ -23,6 +23,9 @@
             </p>
             <p class="post-name">
               <%= link_to post.user.name, user_path(post.user) %>
+              <% unless post.user.uid.nil? %>
+                <i class="fab fa-twitter"></i>
+              <% end %>
             </p>
           </div>
         </div>
