@@ -4,6 +4,8 @@ class StocksController < ApplicationController
 
   def create
     @stock = current_user.stocks.create(post_id: @post.id)
+    post = Post.find_by(id: params[:post_id])
+    post.create_notification_like!(current_user)
   end
   
   def destroy

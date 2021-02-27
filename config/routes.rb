@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   resources :stocks, only:[:index]
   resources :tags, only:[:show, :index]
   resources :comments, only:[:edit, :update]
+  resources :notifications, only: :index
 end
