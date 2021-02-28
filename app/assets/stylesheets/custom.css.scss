@@ -29,7 +29,12 @@ body.fadeout::after {
  padding: 0;
  text-decoration: none ;
  list-style: none outside;
- font-family: "ヒラギノ丸ゴ ProN","Hiragino Maru Gothic ProN";
+ font-family: "Hannotate SC";
+}
+
+iframe{
+  width: 100%;
+  font-family: "Hannotate SC";
 }
 
 main{
