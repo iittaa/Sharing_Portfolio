@@ -6,42 +6,22 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    @comment.user_id = current_user.id
+    # @comment.user_id = current_user.id
+    @post = @comment.post
     if @comment.save
-      # redirect_back(fallback_location: root_path)
-      # flash[:success] = "コメントしました！"
       render :index
+      @post.create_notification_comment!(current_user, @comment.id)
     else
       flash[:warning] = "1字〜500字以内でコメントを入力してください！"
       redirect_back(fallback_location: root_path)
     end
   end
-
-  def edit
-    @comment = Comment.find_by(id: params[:id])
-  end
-
-  def update
-    @comment = Comment.find_by(id: params[:id])
-    if @comment.update(comment_params)
-      redirect_to post_path(@comment.post)
-      flash[:success] = "コメントを編集しました"
-    else
-      flash[:warning] = "1字〜500字以内でコメントを入力してください！"
-      redirect_back(fallback_location: root_path)
-    end
-  end
-
-
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy
-    # flash[:success] = "コメントを削除しました！"
-    # redirect_back(fallback_location: root_path)
     render :index
   end
-
 
   private
 

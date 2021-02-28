@@ -50,7 +50,6 @@ class PostsController < ApplicationController
     )
     @comment = Comment.new #投稿全体のコメント用の変数
     @comments = @post.comments
-    @comment_reply = Comment.new
   end
 
   def destroy
