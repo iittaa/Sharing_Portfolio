@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   resources :sessions, only:[:new, :create, :destroy]
   resources :password_resets, only:[:new, :create, :edit, :update]
   resources :posts do
-    resources :comments, only:[:create, :destroy, :edit, :update]
+    resources :comments, only:[:create, :destroy]
   end
   resources :stocks, only:[:index]
   resources :tags, only:[:show, :index]
-  resources :comments, only:[:edit, :update]
-  resources :notifications, only: :index
+  resources :notifications, only: [:index]
+
 end

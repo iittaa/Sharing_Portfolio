@@ -68,92 +68,12 @@
     <%= link_to "Twitterでシェア", "https://twitter.com/share?url=#{ request.url }&text=「#{ @post.name }」を、Twitterでみんなに広めよう！" %>
   </div>
 
-              <% #コメント欄を表示 %>
-    <div>
-    <h2>コメント欄</h2>
-              <% #親コメントを表示 %>
-    <% @comments.each do |comment| %>
-      <% if comment.parent_id.present? || comment.id.blank? %>
-        <% next %>
-      <% end %>
-      <hr>
-    <div class="comment">
-    <div class="user-image">
-      <% if comment.user.user_image? %>
-        <%= image_tag comment.user.user_image.url %>
-      <% else %>
-        <%= image_tag "/assets/default_user.png" %>
-      <% end %>
+  <div>
+  <h2>コメント欄</h2>
+    <div id="comments-area">
+      <%= render partial: "comments/index", locals: { comments: @comments } %>
     </div>
-      <div class="comment-box">
-        <%= link_to comment.user.name, user_path(comment.user), class:"comment-name" %>
-        <p class="comment-time">
-          <%= time_ago_in_words(comment.created_at) %>前
-        </p>
-      </div>
-      </div>
-      <div class="comment-box2">
-          <%= simple_format(comment.content) %>
-        <% if current_user == comment.user %>
-          <%= link_to "編集", edit_post_comment_path(@post,comment), class:"comment-edit" %>
-          <%= link_to "削除", post_comment_path(@post,comment), class:"comment-edit", method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
-        <% end %>
-      </div>
-        
-            <% #リプライコメントを表示 %>
-      <div>
-        <% comment.replies.order(:created_at).each do |reply| %>
-          <div class="comment">
-          <div class="user-image">
-            <% if reply.user.user_image? %>
-              <%= image_tag reply.user.user_image.url %>
-            <% else %>
-              <%= image_tag "/assets/default_user.png" %>
-            <% end %>
-          </div>
-          <div class="comment-box">
-            <%= link_to reply.user.name, user_path(reply.user), class:"comment-name" %>
-            <p class="comment-time">
-              <%= time_ago_in_words(reply.created_at) %>前
-            </p>
-          </div>
-          </div>
-          <div class="comment-box2">
-              <%= simple_format(reply.content) %>
-              <div class="comment-edit-box">
-            <% if current_user == reply.user %>    
-              <%= link_to "編集", edit_post_comment_path(@post,reply), class:"comment-edit" %>
-              <%= link_to "削除", post_comment_path(@post,reply), class:"comment-edit", method: :delete, data:{confirm:"コメントを本当に削除しますか？"} %>
-            <% end %>
-          </div>
-          </div>
-        <% end %>
-      </div>
-
-            <% #リプライコメントを送信 %>      
-      <%= form_with(model:[@post,@comment_reply]) do |f| %>
-        <%= render 'shared/error_messages', model: f.object %>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <textarea class="form-control input-form" name="comment[content]" rows="2", placeholder="コメント返信をする。(500字以内)", autocomplete:"off"><%=@comment_reply.content%></textarea>
-          </div>
-        </div>
-        <%= f.hidden_field :post_id, value: @post.id %>
-        <%= f.hidden_field :parent_id, value: comment.id%>
-        <div class="actions">
-          <%= f.submit "返信する", class: "btn-sm btn-primary" %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-                <% #新規コメント欄 %>
-  <%= form_with(model:[@post,@comment], class:"new-comment") do |f| %>
-    <p>新規コメント</p>
-    <textarea class="form-control input-form" name="comment[content]" rows="5", placeholder="コメントを入力してください。(500字以内)", autocomplete:"off" ><%=@comment.content%></textarea>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <div class="actions">
-      <%= f.submit "送信する", class: "btn-sm btn-primary btn-block" %>
+    <div class="comment-create">
+      <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
     </div>
-  <% end %>
 </div>
