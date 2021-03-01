@@ -3,6 +3,6 @@ $(document).on('turbolinks:load', function() {
   // 3秒後に変化させる
   setTimeout(function() {
     $(".alert").fadeOut(1000);
-  },3000);
+  },5000);
 
 });

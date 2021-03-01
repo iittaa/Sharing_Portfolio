@@ -1,38 +1,9 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-  <div>
-    <nav>
-      <%= link_to "Sharing Portfolio", root_path, class:"logo" %>
-      <ul class="nav navbar-nav navbar-right">
-          <% if !current_user.nil? %>
-            <% if current_user.admin? %>
-              <li class="header"><%= link_to "ユーザー管理", admin_users_path %></li>
-              <li class="header"><%= link_to "作品管理", admin_posts_path %></li>
-              <li><%= link_to "ログアウト", session_path(current_user), method: :delete %></li>
-            <% else %>
-              <li class="header"><%= link_to "タグで探す", tags_path %></li>
-              <li class="header"><%= link_to "投稿する", new_post_path %></li>
-              <li class="header"><%= link_to "作品一覧", posts_path %></li>
-              <li class="header"><%= link_to "いいねした作品", stocks_path %></li>
-              <li class="header"><%= link_to notifications_path do %>
-                通知<%= render "shared/mark" %>
-              <% end %>
-              </li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= current_user.name %> <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "マイページ", user_path(current_user) %></li>
-                  <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
-                  <li><%= link_to "ログアウト", session_path(current_user), method: :delete %></li>
-                </ul>
-              </li>
-            <% end %>
-          <% else %>
-            <li><%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %></li>
-            <li><%= link_to "ログイン", new_session_path %></li>
-            <li><%= link_to "新規登録", new_user_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+  <div class="open-side">
+    <i class="fas fa-bars" style="font-size:30px; color:#fff;"></i>
+  </div>
+  <%= render "shared/sidebar" %>
+  <div class="logo">
+    <%= link_to "Sharing Portfolio", root_path %>
   </div>
 </header>
