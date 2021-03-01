@@ -15,6 +15,4 @@ $(document).on('turbolinks:load', function() {
     $("#login-modal").hide();
   });
 
-
-
 });

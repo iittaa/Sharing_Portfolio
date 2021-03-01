@@ -3,27 +3,6 @@
 @import "bootstrap";
 
 //ページ全体
-
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color:#fff;  /* 背景カラー */
-  z-index: 9999;  /* 一番手前に */
-  pointer-events: none;  /* 他の要素にアクセス可能にするためにポインターイベントは無効に */
-  opacity: 0;  /* 初期値 : 透過状態 */
-  -webkit-transition: opacity .5s ease;  /* アニメーション時間は 0.8秒 */
-  transition: opacity .5s ease;
-}
-
-body.fadeout::after {
-  opacity: 1;
-}
-
-
 *{
  margin: 0;
  padding: 0;
@@ -36,6 +15,7 @@ iframe{
   width: 100%;
   font-family: "Hannotate SC";
 }
+
 
 main{
  padding-top: 70px;
@@ -64,7 +44,11 @@ main{
 }
 
 .alert{
- margin-top: 50px;
+  z-index: 1;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  display: none;
 }
 
 h1{
@@ -102,6 +86,7 @@ h4{
 
 //ヘッダー
 header{
+  z-index: 1000;
  .logo{
    color: #fff;
    font-size: 30px;

@@ -19,7 +19,7 @@
     <%= render "layouts/header" %>
     <%= render "shared/flash" %>
     <div class="total">
-      <main class="fadeout">
+      <main>
         <%= yield %>
       </main>
       </div>
@@ -27,4 +27,5 @@
     <%= render "shared/please_login" %>
   </body>
   </html>
-  <%= javascript_pack_tag "user" %>
+  <%= javascript_pack_tag "main" %>
+  <%= javascript_pack_tag "alert" %>
