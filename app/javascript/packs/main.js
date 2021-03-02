@@ -1,10 +1,15 @@
 $(document).on('turbolinks:load', function() {
   
   $(".total").fadeIn(1000);
-  $("a").on("click", function() {
+  $("ham-menu a").on("click", function() {
     console.log("header click");
     $(".total").hide();
   });
+  $("header a").on("click", function() {
+    console.log("header click");
+    $(".total").hide();
+  });
+
 
   // モーダル表示
   $(".login-push").on("click", function() {
