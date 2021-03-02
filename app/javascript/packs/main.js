@@ -1,6 +1,12 @@
 $(document).on('turbolinks:load', function() {
+  
+  $(".total").fadeIn(1000);
+  $("a").on("click", function() {
+    console.log("header click");
+    $(".total").hide();
+  });
 
-
+  // モーダル表示
   $(".login-push").on("click", function() {
     console.log("click on!");
     $("#login-modal").fadeIn();
@@ -30,7 +36,7 @@ $(document).on('turbolinks:load', function() {
       opacity: "0.5"
     }, 300);
     $(this).addClass("inactive");
-
+    return false;
   });
 
   // サイドバークローズ
@@ -45,16 +51,9 @@ $(document).on('turbolinks:load', function() {
     $(".open-side").removeClass("inactive");
   });
 
-  // 項目選択時にもサイドバーをクローズする
   $("#ham-menu a").on("click", function(){
-    $(this).animate({
-      left: "-300px"
-    });
-    $(".side-bg").animate({
-      opacity: "0"
-    }, 300);
-    console.log("clag")
+    $("#ham-menu").hide();
+    $(".side-bg").hide();
+    console.log("link click!");
   });
-
-
 });
