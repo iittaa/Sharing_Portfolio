@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
   
+  
   $(".total").fadeIn(1000);
   $("ham-menu a").on("click", function() {
     console.log("header click");
