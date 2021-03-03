@@ -41,7 +41,6 @@ $(document).on('turbolinks:load', function() {
       opacity: "0.5"
     }, 300);
     $(this).addClass("inactive");
-    return false;
   });
 
   // サイドバークローズ
@@ -50,10 +49,8 @@ $(document).on('turbolinks:load', function() {
     $("#ham-menu").animate({
       left: "-300px"
     });
-    $(".side-bg").animate({
-      opacity: "0"
-    }, 300);
     $(".open-side").removeClass("inactive");
+    $(".side-bg").fadeOut(300);
   });
 
   $("#ham-menu a").on("click", function(){

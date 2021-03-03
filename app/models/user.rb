@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  # ----- attr_accessorメソッド -------------------------------------------
+  attr_accessor :password, :password_confirmation,:remember_token, :reset_token
+  
+  
+  # ----- アソシエーション ------------------------------------------------
   has_many :posts, dependent: :destroy
   has_many :stocks, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -6,8 +11,7 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy #相手からの通知
 
 
-  attr_accessor :password, :password_confirmation,:remember_token, :reset_token
-
+  # ----- バリデーション --------------------------------------------------
   validates :name, presence: true, length: {maximum: 100}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, unless: :uid?, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
@@ -17,11 +21,14 @@ class User < ApplicationRecord
   VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
   validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
   validates :github_link, format: { with: VALID_URL_REGEX }, allow_blank: true
-
-  mount_uploader :user_image, ImageUploader
-
   has_secure_password validations: false
 
+
+  # ----- Gem関連 ---------------------------------------------------------
+  mount_uploader :user_image, ImageUploader 
+
+
+  # ----- メソッド --------------------------------------------------------
   #与えられた文字列のハッシュ値を返す
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
