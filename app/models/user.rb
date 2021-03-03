@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy #相手からの通知
 
 
+  
   # ----- バリデーション --------------------------------------------------
   validates :name, presence: true, length: {maximum: 100}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
