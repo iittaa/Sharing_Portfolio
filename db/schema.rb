@@ -93,9 +93,6 @@ ActiveRecord::Schema.define(version: 2021_02_27_090012) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "remember_digest"
-    t.string "reset_digest"
-    t.datetime "reset_sent_at"
     t.string "user_image"
     t.string "uid"
     t.string "provider"
@@ -103,6 +100,8 @@ ActiveRecord::Schema.define(version: 2021_02_27_090012) do
     t.text "twitter_link"
     t.text "github_link"
     t.boolean "admin", default: false
+    t.string "remember_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "comments", "comments", column: "parent_id"
