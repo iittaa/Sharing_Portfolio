@@ -9,21 +9,21 @@ before_action :check_guest, only:[:edit, :update, :destroy]
     @tag_list = Tag.all
   end
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      login(@user)
-      hash(@user)
-      flash[:success] = "アカウントを登録しました！これからよろしくね！"
-      redirect_to user_url(@user)
-    else
-      render "new"
-    end
-  end
+  # def create
+  #   @user = User.new(user_params)
+  #   if @user.save
+  #     login(@user)
+  #     hash(@user)
+  #     flash[:success] = "アカウントを登録しました！これからよろしくね！"
+  #     redirect_to user_url(@user)
+  #   else
+  #     render "new"
+  #   end
+  # end
 
   def index
     @users = User.all
