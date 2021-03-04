@@ -1,0 +1,36 @@
+<h1>新規登録</h1>
+<h4>アカウントをお持ちでない方がユーザーの新規登録を行います。</h4>
+<div class="sub flame">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <%= f.label :name %><span class="must"> (必須)</span>
+      <%= f.text_field :name, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"ユーザー名を入力してください。" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %><span class="must"> (必須)</span>
+      <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"メールアドレスを入力してください。" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %><span class="must"> (必須)</span>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder:"パスワードを入力してください。(6字以上)" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><span class="must"> (必須)</span>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder:"確認用のパスワードを入力してください。" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "登録する", class:"btn btn-primary btn-block" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

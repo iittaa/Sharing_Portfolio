@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
   root  "users#home"
-  get "https://forms.gle/4pPVjb7k1ZJVk4cN8", to: "contacts#new"
   post "/users/guest_sign_in", to: "users#new_guest"
   get "auth/:provider/callback", to: "users#twitter_create"
   post "/posts/:post_id/stocks", to: "stocks#create"
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :users, only:[:index, :show, :destroy]
     resources :posts, only:[:index, :show, :edit, :update, :destroy]
   end
-  resources :sessions, only:[:new, :create, :destroy]
+  # resources :sessions, only:[:new, :create, :destroy]
   resources :password_resets, only:[:new, :create, :edit, :update]
   resources :posts do
     resources :comments, only:[:create, :destroy]

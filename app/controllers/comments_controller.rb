@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       render :index
       @post.create_notification_comment!(current_user, @comment.id)
     else
-      flash[:warning] = "1字〜500字以内でコメントを入力してください！"
+      flash[:danger] = "1字〜500字以内でコメントを入力してください！"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
       unless @comment.user_id == current_user.id
         redirect_to root_url
-        flash[:warning] = "自分のコメント以外は変更することができません"
+        flash[:danger] = "自分のコメント以外は変更することができません"
       end
     end
 end

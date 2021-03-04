@@ -2,7 +2,7 @@
   <label for="menu-side" class="close-side">
     <i class="far fa-times-circle" style="font-size:30px; color:#fff;"></i>
   </label>
-  <% if !current_user.nil? %>
+  <% if user_signed_in? %>
     <% if current_user.admin? %>
       <div class="ham-item">
         <%= link_to "ユーザー管理", admin_users_path %>
@@ -37,8 +37,17 @@
       <div class="ham-item">
         <%= link_to "プロフィール編集", edit_user_path(current_user) %>
       </div>
+      <div class="ham-item">
+        <%= link_to "プロフィール編集(devise)", edit_user_registration_path %>
+      </div>
       <div>
         <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+      </div>
+      <div>
+      <%= link_to "ログアウト(devise)", destroy_user_session_path , method: :delete %>
+      </div>
+      <div>
+      <%= current_user.name %>
       </div>
     <% end %>
   <% else %>
@@ -46,10 +55,10 @@
       <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
     </div>
     <div>
-      <%= link_to "ログイン", new_session_path %>
+      <%= link_to "ログイン", new_user_session_path %>
     </div>
     <div>
-      <%= link_to "新規登録", new_user_path %>
+      <%= link_to "新規登録", new_user_registration_path %>
     </div>
   <% end %>
 </div>
