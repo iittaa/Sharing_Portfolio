@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
       flash[:success] = "お問い合わせメールを送信しました！"
     else
       redirect_to new_contact_path
-      flash[:warning] = "ユーザー名とお問い合わせ内容を入力してください。"
+      flash[:danger] = "ユーザー名とお問い合わせ内容を入力してください。"
     end
   end
 

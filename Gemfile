@@ -3,7 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.6"
 
-gem "bcrypt","3.1.13"
+# gem "bcrypt","3.1.13"
+gem "devise"
 
 #Bootstrap用
 gem "bootstrap-sass", "3.4.1"
@@ -17,7 +18,7 @@ gem "rails-i18n"
 
 #Twitter認証用
 gem "dotenv-rails"
-gem "omniauth"
+gem 'omniauth', '1.9.1'
 gem "omniauth-twitter"
 
 #画像投稿用
