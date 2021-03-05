@@ -9,6 +9,24 @@ before_action :check_guest, only:[:edit, :update, :destroy]
     @tag_list = Tag.all
   end
 
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find_by(id: params[:id])
+    @posts = @user.posts
+  end
+
+
+  def new_guest
+    user = User.find_or_create_by(name: "ゲストユーザー", email: "guest@example.com") do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   # def new
   #   @user = User.new
   # end
@@ -25,85 +43,59 @@ before_action :check_guest, only:[:edit, :update, :destroy]
   #   end
   # end
 
-  def index
-    @users = User.all
-  end
+  # def edit
+  #   @user = User.find_by(id: params[:id])
+  # end
 
-  def show
-    @user = User.find_by(id: params[:id])
-    @posts = @user.posts
-  end
-
-  def edit
-    @user = User.find_by(id: params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-      if @user.update(user_params)
-        hash(@user)
-        flash[:success] = "ユーザー情報を編集しました!"
-        redirect_to user_url(@user)
-      else
-        render "edit"
-      end
-  end
+  # def update
+  #   @user = User.find(params[:id])
+  #     if @user.update(user_params)
+  #       hash(@user)
+  #       flash[:success] = "ユーザー情報を編集しました!"
+  #       redirect_to user_url(@user)
+  #     else
+  #       render "edit"
+  #     end
+  # end
   
-  def destroy
-    @user = User.find_by(id: params[:id])
-    @user.destroy
-    flash[:success] = "アカウントを削除しました。"
-    redirect_to root_url
-  end
+  # def destroy
+  #   @user = User.find_by(id: params[:id])
+  #   @user.destroy
+  #   flash[:success] = "アカウントを削除しました。"
+  #   redirect_to root_url
+  # end
 
-  def twitter_create
-    auth = request.env['omniauth.auth']
-    @user = User.find_by(
-      provider: auth[:provider],
-      uid: auth[:uid]
-      )
-    if @user
-      login(@user)
-      flash[:success] = "ログインしました"
-      redirect_to user_url(@user)
-    else
-      @user = User.new(
-        provider: auth[:provider],
-        uid: auth[:uid],
-        name: auth[:info][:name],
-        remote_user_image_url: auth[:info][:image],
-        profile: auth[:info][:description],
-        twitter_link: auth[:info][:urls][:Twitter]
-      )
-      if @user.save
-        login(@user)
-        flash[:success] = "ログインしました"
-        redirect_to user_url(@user)
-      else
-        flash[:warning] = "Twitterアカウントでログインができません。"
-        render "new"
-      end
-    end
-  end
-
-  def new_guest
-    user = User.find_or_create_by(name: "ゲストユーザー", email: "guest@example.com") do |user|
-      user.password = SecureRandom.urlsafe_base64
-      hash(user)
-    end
-    login(user)
-    flash[:success] = "ゲストユーザーとしてログインしました！"
-    redirect_to user_url(user)
-  end
-
-
+  # def twitter_create
+  #   auth = request.env['omniauth.auth']
+  #   @user = User.find_by(
+  #     provider: auth[:provider],
+  #     uid: auth[:uid]
+  #     )
+  #   if @user
+  #     login(@user)
+  #     flash[:success] = "ログインしました"
+  #     redirect_to user_url(@user)
+  #   else
+  #     @user = User.new(
+  #       provider: auth[:provider],
+  #       uid: auth[:uid],
+  #       name: auth[:info][:name],
+  #       remote_user_image_url: auth[:info][:image],
+  #       profile: auth[:info][:description],
+  #       twitter_link: auth[:info][:urls][:Twitter]
+  #     )
+  #     if @user.save
+  #       login(@user)
+  #       flash[:success] = "ログインしました"
+  #       redirect_to user_url(@user)
+  #     else
+  #       flash[:warning] = "Twitterアカウントでログインができません。"
+  #       render "new"
+  #     end
+  #   end
+  # end
 
   private
-
-
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile, :twitter_link, :github_link)
-  end
 
   # 正しいユーザーかどうか確認する
   def correct_user
@@ -113,6 +105,12 @@ before_action :check_guest, only:[:edit, :update, :destroy]
       flash[:warning] = "自分のユーザー情報以外は変更することができません"
     end
   end
+
+  # def user_params
+  #   params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile, :twitter_link, :github_link)
+  # end
+
+
 
 
 

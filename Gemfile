@@ -18,7 +18,7 @@ gem "rails-i18n"
 
 #Twitter認証用
 gem "dotenv-rails"
-gem "omniauth"
+gem 'omniauth', '1.9.1'
 gem "omniauth-twitter"
 
 #画像投稿用
