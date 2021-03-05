@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   resources :tags, only:[:show, :index]
   resources :notifications, only: [:index]
 
+  
 end
