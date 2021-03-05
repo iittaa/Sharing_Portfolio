@@ -47,7 +47,8 @@ class User < ApplicationRecord
       email: User.dummy_email(auth),
       password: Devise.friendly_token[0, 20],
       profile: auth[:info][:description],
-      twitter_link: auth[:info][:urls][:Twitter]
+      twitter_link: auth[:info][:urls][:Twitter],
+      remote_user_image_url: auth[:info][:image]
     )
   end
 
