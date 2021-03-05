@@ -2,7 +2,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, 
+         :omniauthable, omniauth_providers: [:twitter]
+
+
   # ----- attr_accessorメソッド -------------------------------------------
   # attr_accessor :password, :password_confirmation,:remember_token, :reset_token
   
@@ -33,6 +36,25 @@ class User < ApplicationRecord
   mount_uploader :user_image, ImageUploader 
 
   # ----- メソッド --------------------------------------------------------
+
+  def self.find_for_oauth(auth)
+    user = User.find_by(uid: auth.uid, provider: auth.provider)
+
+    user ||= User.create!(
+      uid: auth.uid,
+      provider: auth.provider,
+      name: auth[:info][:name],
+      email: User.dummy_email(auth),
+      password: Devise.friendly_token[0, 20],
+      profile: auth[:info][:description],
+      twitter_link: auth[:info][:urls][:Twitter]
+    )
+  end
+
+  def self.dummy_email(auth)
+    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
+  end
+
 
   #ユーザーがすでにストックしているか確認する
   def stock?(post)

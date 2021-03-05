@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions',
+    :passwords => 'users/passwords',
+    # このpathを通して外部API認証が行われる。
+    :omniauth_callbacks => 'users/omniauth_callbacks'
+   }
   root  "users#home"
   post "/users/guest_sign_in", to: "users#new_guest"
-  get "auth/:provider/callback", to: "users#twitter_create"
+  # get "auth/:provider/callback", to: "users#twitter_create"
   post "/posts/:post_id/stocks", to: "stocks#create"
   delete "/posts/:post_id/stocks", to: "stocks#destroy"
   resources :contacts, only:[:new, :create]
