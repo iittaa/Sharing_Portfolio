@@ -94,7 +94,7 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  
+
   describe "各モデルとのアソシエーション" do
     let(:association) do
       # reflect_on_associationで対象のクラスと引数で指定するクラスのアソシエーションを返す
@@ -108,8 +108,11 @@ RSpec.describe Post, type: :model do
         expect(association.macro).to eq :has_many
       end
 
-      # it "postが削除されたら、stockも削除されること" do
-      # end
+      it "postが削除されたら、stockも削除されること" do
+        @stock = create(:stock, post_id: @post.id)
+        expect{ @post.destroy }.to change(Stock, :count
+        ).by(-1)
+      end
     end
 
     context "commentモデルとのアソシエーション" do
