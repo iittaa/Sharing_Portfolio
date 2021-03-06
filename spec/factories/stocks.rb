@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :stock do
     association :post
-    user { post.user }
+    user_id { post.user.id }
   end
 end

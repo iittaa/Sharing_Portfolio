@@ -110,8 +110,7 @@ RSpec.describe Post, type: :model do
 
       it "postが削除されたら、stockも削除されること" do
         @stock = create(:stock, post_id: @post.id)
-        expect{ @post.destroy }.to change(Stock, :count
-        ).by(-1)
+        expect{ @post.destroy }.to change(Stock, :count).by(-1)
       end
     end
 
@@ -121,8 +120,10 @@ RSpec.describe Post, type: :model do
         expect(association.macro).to eq :has_many
       end
 
-    #   it "postが削除されたら、commentも削除されること" do
-    #   end
+      it "postが削除されたら、commentも削除されること" do
+        @comment = create(:comment, post_id: @post.id)
+        expect{ @post.destroy }.to change(Comment, :count).by(-1)
+      end
     end
 
     context "notificationsモデルとのアソシエーション" do
