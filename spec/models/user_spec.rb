@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = FactoryBot.build(:user)
+    @user = build(:user)
   end
 
   describe "ユーザー登録" do
-    context "ユーザーが保存される場合" do
+    context "ユーザーが保存できる場合" do
       it "name, email, passwordが存在すれば登録できる" do
         @user.valid?
         expect(@user).to be_valid
@@ -32,10 +32,9 @@ RSpec.describe User, type: :model do
           expect(@user).to be_valid
         end
       end
-      
     end
 
-    context "ユーザーが保存されない場合" do
+    context "ユーザーが保存できない場合" do
       it "nameが空白の場合、登録に失敗する" do
         @user.name = ""
         @user.valid?
@@ -55,8 +54,8 @@ RSpec.describe User, type: :model do
       end
 
       it "emailが重複している場合、登録に失敗する" do
-        @user = FactoryBot.create(:user)
-        @other_user = FactoryBot.build(:user, email: @user.email)
+        @user = create(:user)
+        @other_user = build(:user, email: @user.email)
         @other_user.valid?
         expect(@other_user.errors[:email]).to include("はすでに存在します")
       end
