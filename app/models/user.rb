@@ -20,9 +20,9 @@ class User < ApplicationRecord
 
   
   # ----- バリデーション --------------------------------------------------
-  validates :name, presence: true, length: {maximum: 100}
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  # validates :email, presence: true, unless: :uid?, uniqueness: true, length: {maximum: 100}, format: { with: VALID_EMAIL_REGEX }
+  validates :name, presence: true, length: {maximum: 50}
+  
+  # validates :email, presence: true, uniqueness: true
   # VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/ 
   # validates :password, presence: true, unless: :uid?, length: {minimum: 6}, format: { with: VALID_PASS_REGEX }, confirmation: true
   # validates :profile, length: {maximum: 500}
