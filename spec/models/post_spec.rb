@@ -132,8 +132,10 @@ RSpec.describe Post, type: :model do
         expect(association.macro).to eq :has_many
       end
 
-    #   it "postが削除されたら、notificationsも削除されること" do
-    #   end
+      it "postが削除されたら、notificationsも削除されること" do
+        @notification = create(:notification, post_id: @post.id)
+        expect{ @post.destroy }.to change(Notification, :count).by(-1)
+      end
     end
   end
 end
