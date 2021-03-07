@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :logged_in_user, only:[:create, :index, :destroy]
+  before_action :authenticate_user!, only:[:create, :index, :destroy]
   before_action :set_post
 
   def create
