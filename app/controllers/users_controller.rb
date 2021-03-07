@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :logged_in_user, only:[:show, :index, :update, :edit, :destroy ]
+before_action :authenticate_user!, only:[:show, :index, :update, :edit, :destroy ]
 before_action :correct_user, only:[:edit, :update, :destroy]
 before_action :admin_user, only:[:index]
 before_action :check_guest, only:[:edit, :update, :destroy]
@@ -18,6 +18,12 @@ before_action :check_guest, only:[:edit, :update, :destroy]
     @posts = @user.posts
   end
 
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    flash[:success] = "アカウントを削除しました。またのご利用をお待ちしております。"
+    redirect_to root_url
+  end
 
   def new_guest
     user = User.find_or_create_by(name: "ゲストユーザー", email: "guest@example.com") do |user|
@@ -56,13 +62,6 @@ before_action :check_guest, only:[:edit, :update, :destroy]
   #     else
   #       render "edit"
   #     end
-  # end
-  
-  # def destroy
-  #   @user = User.find_by(id: params[:id])
-  #   @user.destroy
-  #   flash[:success] = "アカウントを削除しました。"
-  #   redirect_to root_url
   # end
 
   # def twitter_create
