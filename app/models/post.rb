@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  # ----- アソシエーション ------------------------------------------------
   belongs_to :user
   has_many :stocks, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
@@ -6,18 +7,23 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+
+  # ----- バリデーション --------------------------------------------------
   validates :user_id, presence: true
-  validates :name, presence: true, length:{maximum:100}
+  validates :name, presence: true, length:{maximum:50}
   validates :content, presence: true, length:{maximum:500}
   validates :point, length:{maximum:500}
   VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
   validates :url, presence: true, format: { with: VALID_URL_REGEX }
   validates :period, presence: true
-
   default_scope -> { order(created_at: :desc) }
 
+
+  # ----- Gem関連 ---------------------------------------------------------
   mount_uploader :image, ImageUploader
 
+
+  # ----- メソッド --------------------------------------------------------
   #投稿をストックする
   def stock(user)
     Stock.create(user_id: user.id)
@@ -46,7 +52,7 @@ class Post < ApplicationRecord
     end
   end
 
-# いいね通知作成メソッド
+  # いいね通知作成メソッド
   def create_notification_like!(current_user)
     # 既にいいねされているかの確認
     temp = Notification.where(
