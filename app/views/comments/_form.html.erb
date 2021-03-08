@@ -1,4 +1,4 @@
-s<%= form_with(model:[post,comment], class:"new-comment") do |f| %>
+<%= form_with(model:[post,comment], class:"new-comment") do |f| %>
   <p>新規コメント</p>
   <textarea class="form-control input-form" name="comment[content]" rows="5", placeholder="コメントを入力してください。(500字以内)", autocomplete:"off" ><%=@comment.content%></textarea>
   <%= f.hidden_field :post_id, value: @post.id %>

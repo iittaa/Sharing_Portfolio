@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   # def create
   #   @user = User.find_by(email: params[:session][:email])
   #   if @user && @user.authenticate(params[:session][:password])
@@ -25,5 +24,4 @@ class SessionsController < ApplicationController
   #   flash[:success] = "ログアウトしました！また来てね！"
   #   redirect_to root_url
   # end
-
 end

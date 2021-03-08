@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create, :edit, :update, :index, :show, :destroy]
-  before_action :correct_user, only:[:edit, :update, :destroy]
-  before_action :check_guest, only:[:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: %i[new create edit update index show destroy]
+  before_action :correct_user, only: %i[edit update destroy]
+  before_action :check_guest, only: %i[new create edit update destroy]
 
   def new
-      @post = current_user.posts.build
+    @post = current_user.posts.build
   end
 
   def create
@@ -12,10 +12,10 @@ class PostsController < ApplicationController
     @tag_list = params[:post][:tag_ids].downcase.split(/[[:blank:]]+/)
     if @post.save
       @post.save_tag(@tag_list)
-      flash[:success] = "ポートフォリオを公開しました！ありがとう！"
+      flash[:success] = 'ポートフォリオを公開しました！ありがとう！'
       redirect_to posts_url
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -29,15 +29,15 @@ class PostsController < ApplicationController
     @tag_list = params[:post][:tag_ids].downcase.split(/[[:blank:]]+/)
     if @post.update(post_params)
       @post.save_tag(@tag_list)
-      flash[:success] = "更新しました！"
+      flash[:success] = '更新しました！'
       redirect_to post_url(@post)
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(10) #タグ一覧を表示する際に使用する
+    @posts = Post.all.page(params[:page]).per(10) # タグ一覧を表示する際に使用する
     @tag_list = Tag.all
     @post = current_user.posts.build
   end
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
       user_id: current_user.id,
       post_id: @post.id
     )
-    @comment = Comment.new #投稿全体のコメント用の変数
+    @comment = Comment.new # 投稿全体のコメント用の変数
     @comments = @post.comments
   end
 
@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.destroy
     redirect_to root_url
-    flash[:success] = "ポートフォリオを削除してしまいました。。。。"
+    flash[:success] = 'ポートフォリオを削除してしまいました。。。。'
   end
 
   private
@@ -65,14 +65,12 @@ class PostsController < ApplicationController
     params.require(:post).permit(:name, :content, :image, :url, :period, :point)
   end
 
-  #正しいユーザーかどうか確認する
+  # 正しいユーザーかどうか確認する
   def correct_user
-  @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(id: params[:id])
     unless @post.user_id == current_user.id
       redirect_to root_url
-      flash[:warning] = "自分の投稿したポートフォリオ以外の情報は変更することができません"
+      flash[:warning] = '自分の投稿したポートフォリオ以外の情報は変更することができません'
     end
   end
-
-
 end

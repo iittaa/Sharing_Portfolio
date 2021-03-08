@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only:[:create, :edit, :update, :destroy]
-  before_action :correct_user, only:[:edit, :update, :destroy]
-  before_action :check_guest, only:[:create, :update, :destroy]
-
+  before_action :authenticate_user!, only: %i[create edit update destroy]
+  before_action :correct_user, only: %i[edit update destroy]
+  before_action :check_guest, only: %i[create update destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -12,7 +11,7 @@ class CommentsController < ApplicationController
       render :index
       @post.create_notification_comment!(current_user, @comment.id)
     else
-      flash[:danger] = "1字〜500字以内でコメントを入力してください！"
+      flash[:danger] = '1字〜500字以内でコメントを入力してください！'
       redirect_back(fallback_location: root_path)
     end
   end
@@ -29,12 +28,12 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content, :post_id, :user_id)
   end
 
-  #正しいユーザーかどうか確認する
+  # 正しいユーザーかどうか確認する
   def correct_user
     @comment = Comment.find_by(id: params[:id])
-      unless @comment.user_id == current_user.id
-        redirect_to root_url
-        flash[:danger] = "自分のコメント以外は変更することができません"
-      end
+    unless @comment.user_id == current_user.id
+      redirect_to root_url
+      flash[:danger] = '自分のコメント以外は変更することができません'
     end
+  end
 end

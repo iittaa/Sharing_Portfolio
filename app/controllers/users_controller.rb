@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-before_action :authenticate_user!, only:[:show, :index, :update, :edit, :destroy ]
-before_action :correct_user, only:[:edit, :update, :destroy]
-before_action :admin_user, only:[:index]
-before_action :check_guest, only:[:edit, :update, :destroy]
+  before_action :authenticate_user!, only: %i[show index update edit destroy]
+  before_action :correct_user, only: %i[edit update destroy]
+  before_action :admin_user, only: [:index]
+  before_action :check_guest, only: %i[edit update destroy]
 
   def home
-    @posts = Post.all #タグ一覧を表示する際に使用する
+    @posts = Post.all # タグ一覧を表示する際に使用する
     @tag_list = Tag.all
   end
 
@@ -21,12 +21,12 @@ before_action :check_guest, only:[:edit, :update, :destroy]
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
-    flash[:success] = "アカウントを削除しました。またのご利用をお待ちしております。"
+    flash[:success] = 'アカウントを削除しました。またのご利用をお待ちしております。'
     redirect_to root_url
   end
 
   def new_guest
-    user = User.find_or_create_by(name: "ゲストユーザー", email: "guest@example.com") do |user|
+    user = User.find_or_create_by(name: 'ゲストユーザー', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
     sign_in user
@@ -101,17 +101,11 @@ before_action :check_guest, only:[:edit, :update, :destroy]
     @user = User.find_by(id: params[:id])
     unless @user && @user == current_user
       redirect_to root_url
-      flash[:warning] = "自分のユーザー情報以外は変更することができません"
+      flash[:warning] = '自分のユーザー情報以外は変更することができません'
     end
   end
 
   # def user_params
   #   params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile, :twitter_link, :github_link)
   # end
-
-
-
-
-
-
 end
