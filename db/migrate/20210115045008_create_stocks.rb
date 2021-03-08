@@ -6,6 +6,6 @@ class CreateStocks < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :stocks, [:user_id, :post_id], unique: true
+    add_index :stocks, %i[user_id post_id], unique: true
   end
 end

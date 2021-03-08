@@ -1,7 +1,5 @@
 module ApplicationHelper
-  
-
-  #セッション付与
+  # セッション付与
   # def login(user)
   #   session[:user_id] = user.id
   # end
@@ -10,7 +8,7 @@ module ApplicationHelper
   #   user.password_hash
   # end
 
-  #現在のユーザーを表す
+  # 現在のユーザーを表す
   # def current_user
   #   if (user_id = session[:user_id])
   #     @current_user ||= User.find_by(id: user_id)
@@ -23,27 +21,22 @@ module ApplicationHelper
   #   end
   # end
 
-  #ログインする時にcookieを追加する。
+  # ログインする時にcookieを追加する。
   # def remember(user)
   #   user.remember
   #   cookies.permanent.signed[:user_id] = user.id
   #   cookies.permanent[:remember_token] = user.remember_token
   # end
 
-  #クッキーを削除するのと、カラムの値を"nil"にする
+  # クッキーを削除するのと、カラムの値を"nil"にする
   # def forget(user)
   #   user.forget
   #   cookies.delete :user_id
   #   cookies.delete :remember_token
   # end
 
-
-  #現在のユーザーである場合にtrueを返す
+  # 現在のユーザーである場合にtrueを返す
   # def current_user?(user)
   #   user && user == current_user
   # end
-
-
-
-
 end

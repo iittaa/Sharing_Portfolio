@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :authenticate_user!, only:[:create, :index, :destroy]
+  before_action :authenticate_user!, only: %i[create index destroy]
   before_action :set_post
 
   def create
@@ -7,7 +7,7 @@ class StocksController < ApplicationController
     post = Post.find_by(id: params[:post_id])
     post.create_notification_like!(current_user)
   end
-  
+
   def destroy
     @stock = Stock.find_by(
       post_id: @post.id,
@@ -29,7 +29,4 @@ class StocksController < ApplicationController
   def set_post
     @post = Post.find_by(id: params[:post_id])
   end
-
-
-
 end

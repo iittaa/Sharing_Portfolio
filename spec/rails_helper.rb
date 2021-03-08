@@ -3,7 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -67,8 +67,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.after(:all) do
-    if Rails.env.test? 
-      FileUtils.rm_rf(Rails.root + "public/uploads/#{Rails.env}/")
-     end
-  end 
+    FileUtils.rm_rf(Rails.root + "public/uploads/#{Rails.env}/") if Rails.env.test?
+  end
 end
