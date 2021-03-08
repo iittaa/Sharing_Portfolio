@@ -23,10 +23,10 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
   end
   resources :stocks, only: [:index]
-  resources :tags, only: %i[show index]
   resources :notifications, only: [:index]
   resources :contacts, only: %i[new create]
 
+  # resources :tags, only: %i[show index]
   # get "auth/:provider/callback", to: "users#twitter_create"
   # resources :sessions, only:[:new, :create, :destroy]
   # resources :password_resets, only:[:new, :create, :edit, :update]
