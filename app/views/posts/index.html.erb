@@ -1,4 +1,12 @@
 <h1>作品一覧</h1>
 <h4>ユーザーが投稿したポートフォリオを一覧表示します。</h4>
-<%= render "shared/posts" %>
-<%= paginate @posts %>
+<% if @post.present? %>
+  <%= @tag %>に関する投稿
+  <% @post.each do |post| %>
+    <%= post.user.name %>
+    <%= post.name %>
+  <% end %>
+<% else %>
+  <%= render "shared/posts" %>
+  <%= paginate @posts %>
+<% end %>

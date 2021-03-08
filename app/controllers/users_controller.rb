@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def home
     @posts = Post.all # タグ一覧を表示する際に使用する
-    @tag_list = Tag.all
+    # @tag_list = Tag.all
   end
 
   def index

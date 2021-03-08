@@ -5,13 +5,13 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    @tags = @post.tag_counts_on(:tags)
   end
 
   def create
     @post = current_user.posts.build(post_params)
-    @tag_list = params[:post][:tag_ids].downcase.split(/[[:blank:]]+/)
+
     if @post.save
-      @post.save_tag(@tag_list)
       flash[:success] = 'ポートフォリオを公開しました！ありがとう！'
       redirect_to posts_url
     else
@@ -21,14 +21,11 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find_by(id: params[:id])
-    @tag_list = @post.tags.pluck(:tag_name).split(/[[:blank:]]+/)
   end
 
   def update
     @post = Post.find_by(id: params[:id])
-    @tag_list = params[:post][:tag_ids].downcase.split(/[[:blank:]]+/)
     if @post.update(post_params)
-      @post.save_tag(@tag_list)
       flash[:success] = '更新しました！'
       redirect_to post_url(@post)
     else
@@ -37,9 +34,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(10) # タグ一覧を表示する際に使用する
-    @tag_list = Tag.all
-    @post = current_user.posts.build
+    @posts = Post.all.page(params[:page]).per(10)
+    @tags = Post.tag_counts_on(:tags).order('count DESC') # タグ一覧を表示
+    if @tag = params[:tag]
+      @post = Post.tagged_with(params[:tag])  
+    end
   end
 
   def show
@@ -50,6 +49,7 @@ class PostsController < ApplicationController
     )
     @comment = Comment.new # 投稿全体のコメント用の変数
     @comments = @post.comments
+    @tags = @post.tag_counts_on(:tags) # 投稿に紐づくタグを表示
   end
 
   def destroy
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :content, :image, :url, :period, :point)
+    params.require(:post).permit(:name, :content, :image, :url, :period, :point, :tag_list)
   end
 
   # 正しいユーザーかどうか確認する

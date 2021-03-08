@@ -1,11 +1,11 @@
 class Post < ApplicationRecord
   # ----- アソシエーション ------------------------------------------------
+  acts_as_taggable
   belongs_to :user
   has_many :stocks, dependent: :destroy
-  has_many :tag_maps, dependent: :destroy
-  has_many :tags, through: :tag_maps
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  
 
   # ----- バリデーション --------------------------------------------------
   validates :user_id, presence: true
@@ -31,21 +31,6 @@ class Post < ApplicationRecord
     Stock.find_by(user_id: user.id).destroy
   end
 
-  # 紐づいているタグを全て取得する
-  def save_tag(sent_tag)
-    current_tag = tags.pluck(:tag_name) unless tags.nil?
-    old_tags = current_tag - sent_tag
-    new_tags = sent_tag - current_tag
-
-    old_tags.each do |old_name|
-      tags.delete Tag.find_by(tag_name: old_name)
-    end
-
-    new_tags.uniq.each do |new_name|
-      post_tag = Tag.find_or_create_by(tag_name: new_name)
-      tags << post_tag
-    end
-  end
 
   # いいね通知作成メソッド
   def create_notification_like!(current_user)

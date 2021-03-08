@@ -2,7 +2,7 @@
 <div class="sub flame">
   <div class="post-image show-center">
     <% if @post.image? %>
-      <%= image_tag @post.image.url %>
+      <%= image_tag asset_path("default_post.jpg") %>
     <% else %>
       <%= image_tag asset_path("default_post.jpg") %>
     <% end %>
@@ -54,11 +54,15 @@
   <div class="content-box">
     <div class="show-title">タグ</div>
     <div class="show-content">
-      <p>
-        <% @post.tags.each do |list| %>
-          <%= link_to list.tag_name, tag_path(list), class:"label label-primary showtag" %>
-        <% end %>
-      </p>
+      <% if @tags.present? %>
+        <p class="post-tag">
+          <% @tags.each do |tag| %>
+            <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class:"label label-primary" %>
+          <% end %>
+        </p>
+      <% else %>
+        <p>登録されているタグはありません</p>
+      <% end %>
     </div>
   </div>
   <div id="like-<%= @post.id %>" class="stock-block">

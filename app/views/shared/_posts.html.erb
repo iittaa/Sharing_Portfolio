@@ -27,13 +27,13 @@
                 <i class="fab fa-twitter"></i>
               <% end %>
             </p>
+            <p class="post-tag">
+              <% post.tag_counts_on(:tags).each do |tag| %>
+                <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class:"label label-primary" %>
+              <% end %>
+            </p>
           </div>
         </div>
-        <p class="post-tag">
-          <% post.tags.each do |list| %>
-            <%= link_to list.tag_name, tag_path(list), class:"label label-primary" %>
-          <% end %>
-        </p>
         <p class="post-content">サービス概要</p>
         <p><%= post.content.truncate(65) %></p>
         <p class="post-time">

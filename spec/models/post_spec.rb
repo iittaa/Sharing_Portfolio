@@ -72,6 +72,12 @@ RSpec.describe Post, type: :model do
         expect(post.errors[:url]).to include('を入力してください')
       end
 
+      it 'urlが不正の値の場合、投稿できない' do
+        post.url = 'a'
+        post.valid?
+        expect(post.errors[:url]).to include('は不正な値です')
+      end
+
       it 'periodが空白の場合、投稿できない' do
         post.period = ''
         post.valid?
