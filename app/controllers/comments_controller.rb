@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :logged_in_user, only:[:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:create, :edit, :update, :destroy]
   before_action :correct_user, only:[:edit, :update, :destroy]
   before_action :check_guest, only:[:create, :update, :destroy]
 
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :post_id, :user_id, :parent_id)
+    params.require(:comment).permit(:content, :post_id, :user_id)
   end
 
   #正しいユーザーかどうか確認する
