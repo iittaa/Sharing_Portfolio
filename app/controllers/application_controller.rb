@@ -10,13 +10,7 @@ class ApplicationController < ActionController::Base
                                                twitter_link github_link])
   end
 
-  # ログインユーザーの確認
-  # def logged_in_user
-  #   unless user_signed_in?
-  #     flash[:danger] = "ログインしてください"
-  #     redirect_to home_users_url
-  #   end
-  # end
+
 
   # 管理者かどうかの確認
   def admin_user
@@ -45,7 +39,5 @@ class ApplicationController < ActionController::Base
     user_path(current_user)
   end
 
-  def update_resource(resource, params)
-    resource.update_without_password(params)
-  end
+
 end
