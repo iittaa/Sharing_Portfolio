@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def following
     @user  = User.find_by(id: params[:id])
     @users = @user.following
-    render  'show_follow'
+    render 'show_follow'
   end
 
   def followers

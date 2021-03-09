@@ -36,9 +36,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.page(params[:page]).per(10)
     @tags = Post.tag_counts_on(:tags).order('count DESC') # タグ一覧を表示
-    if @tag = params[:tag]
-      @post = Post.tagged_with(params[:tag])  
-    end
+    @post = Post.tagged_with(params[:tag]) if @tag = params[:tag]
   end
 
   def show

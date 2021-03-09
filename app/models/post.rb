@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   has_many :stocks, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  
 
   # ----- バリデーション --------------------------------------------------
   validates :user_id, presence: true
@@ -30,7 +29,6 @@ class Post < ApplicationRecord
   def unstock(user)
     Stock.find_by(user_id: user.id).destroy
   end
-
 
   # いいね通知作成メソッド
   def create_notification_like!(current_user)

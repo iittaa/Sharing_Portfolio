@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
                                                twitter_link github_link])
   end
 
-
-
   # 管理者かどうかの確認
   def admin_user
     unless current_user.admin?
@@ -38,6 +36,4 @@ class ApplicationController < ActionController::Base
   def after_update_path_for(_resource)
     user_path(current_user)
   end
-
-
 end
