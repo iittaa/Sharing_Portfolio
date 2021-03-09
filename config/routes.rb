@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post '/posts/:post_id/stocks', to: 'stocks#create'
   delete '/posts/:post_id/stocks', to: 'stocks#destroy'
   resources :users do
+    member do
+      get :following, :followers
+    end
     collection do
       get :home
       get :term
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
   resources :stocks, only: [:index]
   resources :notifications, only: [:index]
   resources :contacts, only: %i[new create]
+  resources :relationships, only: [:create, :destroy]
 
   # resources :tags, only: %i[show index]
   # get "auth/:provider/callback", to: "users#twitter_create"
