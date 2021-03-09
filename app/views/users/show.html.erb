@@ -8,11 +8,17 @@
 </div>
 <div class="user-show-profile">
   <h2>
-  <%= @user.name %>
-  <% unless @user.uid.nil? %>
-    <i class="fab fa-twitter"></i>
-  <% end %>
+    <%= @user.name %>
+    <% unless @user.uid.nil? %>
+      <i class="fab fa-twitter"></i>
+    <% end %>
   </h2>
+  <div>
+    <%= render "stats" %>
+  </div>
+  <div>
+    <%= render "follow_form" %>
+  </div>
   <div class="sns-container">
     <% unless @user.twitter_link.blank? %>
       <%= link_to @user.twitter_link, target:"_blank" do %>
