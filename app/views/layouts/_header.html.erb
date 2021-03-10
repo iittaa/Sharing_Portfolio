@@ -1,4 +1,4 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header>
   <div class="open-side">
     <i class="fas fa-bars" style="font-size:30px; color:#fff;"></i>
   </div>
@@ -6,4 +6,26 @@
   <div class="logo">
     <%= link_to "Sharing Portfolio", root_path %>
   </div>
+  <% if user_signed_in? %>
+    <div class="header-icon">
+      <div class="header-search">
+        タグで探す<i class="fas fa-search" style="color: #fff;"></i>
+      </div>
+      <div class="">
+        <%= link_to "#" do %>
+          <i class="fas fa-comment" style="color: #fff; font-size: 30px;"></i>
+        <% end %>
+      </div>
+      <div class="">
+        <%= link_to notifications_path do %>
+          <%= render "shared/mark" %>
+        <% end %>
+      </div>
+      <div class="">
+        <%= link_to user_path(current_user) do %>
+          <i class="fas fa-user" style="color: #fff; font-size: 30px;"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </header>
