@@ -1,15 +1,31 @@
 $(document).on('turbolinks:load', function() {
   
+  $("#tags").tagit({
+    tagLimit:10,
+    singleField: true,
+  });
+
+  let tag_count = 10 - $(".tagit-choice").length
+  $(".ui-widget-content.ui-autocomplete-input").attr('placeholder','あと' + tag_count + '個登録できます');
+
+  $(document).on("keyup", '.tagit', function() {
+    let tag_count = 10 - $(".tagit-choice").length
+    $(".ui-widget-content.ui-autocomplete-input").attr(
+    'placeholder','あと' + tag_count + '個登録できます');
+  });
+
+
   
+  $(".total").fadeIn(1000);
   
-  // $("ham-menu a").on("click", function() {
-  //   console.log("header click");
-  //   $(".total").hide();
-  // });
-  // $("header a").on("click", function() {
-  //   console.log("header click");
-  //   $(".total").hide();
-  // });
+  $("ham-menu a").on("click", function() {
+    console.log("header click");
+    $(".total").hide();
+  });
+  $("header a").on("click", function() {
+    console.log("header click");
+    $(".total").hide();
+  });
 
   
 
@@ -62,23 +78,27 @@ $(document).on('turbolinks:load', function() {
   });
 
 
-  // タグオープン
-  $(".header-search").on("click", function(){
-    console.log("tag-open")
-    $("#tag-bar").slideDown();
+  $(".header-search").on('click', function(){
+    $('#tag-bar').slideToggle();
     return false;
   });
 
-  // タグクローズ
-  $(".tag-close").on("click", function(){
-    console.log("tag-close")
-    $("#tag-bar").slideUp();
-    return false;
-  });
+  // // タグオープン
+  // $(".header-search").on("click", function(){
+  //   console.log("tag-open")
+  //   $("#tag-bar").slideDown();
+  //   return false;
+  // });
+
+  // // タグクローズ
+  // $(".tag-close").on("click", function(){
+  //   console.log("tag-close")
+  //   $("#tag-bar").slideUp();
+  //   return false;
+  // });
 
   // タグバーを表示時に他のリンクをクリックした時、タグバーを非表示にする
   $("a").on("click", function() {
     $("#tag-bar").hide()
   });
-
 });

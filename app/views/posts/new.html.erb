@@ -36,8 +36,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :tag_list %>
-      <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", placeholder:"タグをつける。複数つけるには','で区切ってください。", autocomplete:"off" %>
+    <%= f.label :タグ（複数つける場合はスペースキーで区切ってください。） %>
+        <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", autocomplete:"off", id:"tags" %>
   </div>
   
   <%= f.submit "投稿する", class:"btn btn-primary btn-block" %>

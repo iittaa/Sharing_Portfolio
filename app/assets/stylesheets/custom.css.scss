@@ -2,6 +2,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 //ページ全体
 *{
  margin: 0;
@@ -12,7 +13,7 @@
 }
 
 .total{
-  // display: none;
+  display: none;
 }
 
 iframe{

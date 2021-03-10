@@ -1,8 +1,5 @@
 <div id="tag-bar" class="inactive">
-  <div class="tag-close">
-    <i class="fas fa-times-circle"></i>
-  </div>
-  <% @tags.limit(30).each do |tag| %>
+  <% @tag_all.limit(30).each do |tag| %>
     <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class:"tag-search" %>
   <% end %>
 </div>

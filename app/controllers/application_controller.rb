@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
-  before_action :get_tag
+  before_action :get_tag_all
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def get_tag
-    @tags = Post.tag_counts_on(:tags).order('count DESC')
+  def get_tag_all
+    @tag_all = Post.tag_counts_on(:tags).order('count DESC')
   end
 
   protected

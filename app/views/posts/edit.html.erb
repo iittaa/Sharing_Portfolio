@@ -4,27 +4,41 @@
   <%= form_with(model: @post, local: true) do |f| %>
     <%= render "shared/error_messages", model: f.object %>
 
-    <%= f.label :サービス名,  class:"col-sm-2 control-label" %>
-    <%= f.text_field :name, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :サービス名 %>
+      <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。(100字以内)", autocomplete:"off" %>
+    </div>
     
-    <%= f.label :サービス概要, class:"col-sm-2 control-label" %>
-    <%= f.text_area :content, class: "form-control" %>
-    
-    <%= f.label :リンク, class:"col-sm-2 control-label" %>
-    <%= f.text_field :url, class: "form-control" %>
-    
-    <%= f.label :サムネイル画像, class:"col-sm-2 control-label" %>
-    <%= f.file_field :image, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :サービス概要 %>
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
 
-    <%= f.label :開発期間, class:"col-sm-2 control-label" %>
-    <%= f.text_field :period, class: "form-control" %>
-    
-    <%= f.label :アピールポイント, class:"col-sm-2 control-label" %>
-    <%= f.text_area :point, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :リンク %>
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
 
-    <%= f.label :tag_list, class:"col-sm-2 control-label" %>
-    <%= f.text_field :tag_list, class: "form-control", value: @post.tag_list.join(','), placeholder: "タグをつける。複数つけるには','で区切ってください。", autocomplete:"off"  %>
-    
+    <div class="form-group">
+      <%= f.label :サムネイル画像 %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :開発期間 %>
+      <%= f.text_field :period, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :アピールポイント %>
+      <%= f.text_area :point, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :タグ（複数つける場合はスペースキーで区切ってください。） %>
+      <%= f.text_field :tag_list, class: "form-control", value: @post.tag_list.join(','), autocomplete:"off", id:"tags"  %>
+    </div>
+
     <%= f.submit "更新する", class:"btn btn-primary btn-block" %>
   <% end %>
 </div>
