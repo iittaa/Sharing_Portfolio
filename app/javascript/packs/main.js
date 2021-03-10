@@ -2,15 +2,16 @@ $(document).on('turbolinks:load', function() {
   
   
   
-  $("ham-menu a").on("click", function() {
-    console.log("header click");
-    $(".total").hide();
-  });
-  $("header a").on("click", function() {
-    console.log("header click");
-    $(".total").hide();
-  });
+  // $("ham-menu a").on("click", function() {
+  //   console.log("header click");
+  //   $(".total").hide();
+  // });
+  // $("header a").on("click", function() {
+  //   console.log("header click");
+  //   $(".total").hide();
+  // });
 
+  
 
   // モーダル表示
   $(".login-push").on("click", function() {
@@ -75,6 +76,9 @@ $(document).on('turbolinks:load', function() {
     return false;
   });
 
-
+  // タグバーを表示時に他のリンクをクリックした時、タグバーを非表示にする
+  $("a").on("click", function() {
+    $("#tag-bar").hide()
+  });
 
 });
