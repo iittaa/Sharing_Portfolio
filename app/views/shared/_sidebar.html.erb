@@ -21,7 +21,7 @@
         <%= link_to "マイページ", user_path(current_user) %>
       </div>
       <div class="ham-item">
-        <%= link_to "投稿する", new_post_path %>
+        <%= link_to "投稿する", new_post_path, class:"nav-link" %>
       </div>
       <div class="ham-item">
         <%= link_to "作品一覧", posts_path %>
@@ -30,28 +30,23 @@
         <%= link_to "いいねした作品", stocks_path %>
       </div>
       <div class="ham-item">
-        <%= link_to notifications_path do %>
-          通知<%= render "shared/mark" %>
-        <% end %>
-      </div>
-      <div class="ham-item">
         <%= link_to "プロフィール編集", edit_user_registration_path %>
       </div>
-      <div>
+      <div class="ham-item">
       <%= link_to "ログアウト", destroy_user_session_path , method: :delete %>
       </div>
-      <div>
+      <div class="ham-item">
       <%= current_user.name %>
       </div>
     <% end %>
   <% else %>
-    <div>
-      <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
+    <div class="ham-item">
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
     </div>
-    <div>
+    <div class="ham-item">
       <%= link_to "ログイン", new_user_session_path %>
     </div>
-    <div>
+    <div class="ham-item">
       <%= link_to "新規登録", new_user_registration_path %>
     </div>
   <% end %>

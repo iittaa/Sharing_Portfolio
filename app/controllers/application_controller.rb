@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
+  before_action :get_tag
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   # 管理者かどうかの確認
   def admin_user
     unless current_user.admin?
-      redirect_back(fallback_location: root_path)
+      redirect_to root_url
       flash[:danger] = '管理者以外はアクセスできません'
     end
   end
@@ -21,9 +22,13 @@ class ApplicationController < ActionController::Base
   # ゲストユーザーかどうか確認する
   def check_guest
     if current_user.email == 'guest@example.com'
-      redirect_back(fallback_location: root_path)
+      redirect_to root_url
       flash[:danger] = 'ゲストユーザーは閲覧操作のみ可能です'
     end
+  end
+
+  def get_tag
+    @tags = Post.tag_counts_on(:tags).order('count DESC')
   end
 
   protected
