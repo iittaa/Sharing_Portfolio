@@ -1,6 +1,23 @@
 <h1>新規登録</h1>
-<h4>アカウントをお持ちでない方がユーザーの新規登録を行います。</h4>
 <div class="sub1 flame">
+  <div class="how-to-use">
+    <div class="title">Sharing Portfolioへようこそ!!</div>
+    <div class="title2">新規登録（無料）をすると以下のことができます。</div>
+    <dl>
+      <dt><i class="fas fa-edit"></i>サービスの投稿</dt>
+      <dd>作成したポートフォリオを投稿することができます。</dd>
+      <dt><i class="fas fa-eye"></i>サービスの閲覧</dt>
+      <dd>ユーザーが投稿したポートフォリオを閲覧することができます。</dd>
+      <dt><i class="far fa-comments"></i>サービスへのコメント</dt>
+      <dd>投稿に対してコメントを残すことができます。</dd>
+      <dt><i class="fas fa-thumbs-up"></i>サービスへのいいね</dt>
+      <dd>投稿に対していいねを残すことができます。</dd>
+      <dt><i class="fas fa-handshake"></i>ユーザーのフォロー</dt>
+      <dd>気になる人をフォローし、投稿をチェックすることができます。</dd>
+      <dt><i class="far fa-share-square"></i>SNSシェア</dt>
+      <dd>気になる投稿はSNSにシェアすることができます。</dd>
+    </dl>
+  </div>  
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
