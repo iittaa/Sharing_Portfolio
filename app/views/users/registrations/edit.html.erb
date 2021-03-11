@@ -1,7 +1,7 @@
 <h1>プロフィール編集</h1>
-<div class="sub flame">
+<div class="sub1 flame">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render "users/shared/error_messages", resource: resource %>
 
     <div class="form-group">
       <%= f.label :name %>
@@ -20,12 +20,12 @@
 
     <div class="form-group">
       <%= f.label :twitter_link %>
-      <%= f.text_field :twitter_link, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"Twitterリンクを入力してください。(500字以内)" %>
+      <%= f.text_field :twitter_link, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"Twitterリンクを入力してください。" %>
     </div>
 
     <div class="form-group">
       <%= f.label :github_link %>
-      <%= f.text_field :github_link, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"GitHubリンクを入力してください。(500字以内)" %>
+      <%= f.text_field :github_link, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"GitHubリンクを入力してください。" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -35,10 +35,7 @@
     <% if current_user.provider.nil? %>
       <div class="form-group">
         <%= f.label :password %> <i>(変更したくない場合は空白にしてください。)</i>
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder:"パスワードを入力してください。" %>
-        <% if @minimum_password_length %>
-          <em><%= @minimum_password_length %> 文字以上</em>
-        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder:"パスワードを入力してください。(6文字以上)" %>
       </div>
 
       <div class="form-group">
@@ -47,10 +44,20 @@
       </div>
     <% end %>
 
-      <%= f.submit "保存する", class:"btn btn-primary btn-block" %>
+    <div class="btn-container">
+      <%= f.submit "保存する", class:"btn-base" %>
+    </div>
   <% end %>
 
-  <p><%= button_to "アカウントを削除", user_path(current_user), data: { confirm: "本当に削除しますか？" }, method: :delete %></p>
+  <div class="sub">
+    <div class="delete-user">
+      <%= link_to "アカウントを削除", user_path(current_user), data: { confirm: "本当に削除しますか？" }, method: :delete %>
+    </div>
+    <div class="back">
+      <%= link_to :back do %>
+        <i class="fas fa-undo"></i> 戻る
+      <% end %>
+    </div>
+  </div>
 
-  <%= link_to "戻る", :back %>
 </div>
