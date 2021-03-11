@@ -16,6 +16,7 @@
 .btn-container{
   text-align: center;
   .btn-base{
+    text-decoration: none;
     padding: 5px 40px;
     margin-top: 20px;
     text-align: center;
@@ -239,6 +240,15 @@ header{
   z-index: 1000;
   opacity: 0.9;
   font-size: 18px;
+  .fa-times-circle{
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .fa-times-circle:hover{
+    color: #0000ee;
+    transition: 0.5s;
+  }
   .ham-item{
     width: 100%;
     a{
@@ -259,6 +269,7 @@ header{
 .open-side{
   position: fixed;
   left: 5px;
+  cursor: pointer;
 }
 
 .side-bg{
@@ -278,27 +289,10 @@ header{
 footer{
  background-color: #5472cd;
  height: 50px;
- ul{
-   display: flex;
-   float: right;
-   margin-bottom: 0px;
-   li{
-     padding: 15px 0px;
-     color: #fff;
-   }
-   .li:hover{
-     background-color: #fff;
-     color: #5472cd;
-     transition: 0.5s;
-   }
-   a{
-     color: #fff;
-     padding: 17px 20px;
-   }
-   a:hover{
-     text-decoration: none;
-     transition: 0.5s;
-   }
+ div{
+   color: #fff;
+   line-height: 50px;
+   text-align: center;
  }
 }
 
@@ -327,11 +321,8 @@ footer{
    font-size: 35px;
    font-weight: 700;
  }
- .btn{
+ .home-btn{
    margin-top: 40px;
-   width: 200px;
-   font-size: 20px;
-   background-color: #5472cd;
  }
 }
 
@@ -439,6 +430,45 @@ footer{
 }
 
 
+// --------  利用方法  ----------------------------------------------------
+.how-to-use{
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+  .title{
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    font-size: 30px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  .title2{
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  dl{
+    width: 90%;
+    margin: 30px auto;
+    dt{
+      i{
+        margin-right: 15px;
+      }
+      font-size: 20px;
+      color: #5472cd;
+      font-weight: 700;
+    }
+    dd{
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+  }
+}
+
+
+
+
+
 // --------  ユーザー編集  ------------------------------------------------
 .delete-user{
   width: 40%;
@@ -507,6 +537,7 @@ footer{
   
   .fa-twitter-square:hover{
     color: rgb(32, 117, 170);
+    transition: 0.5s;
   }
   .fa-github-square{
     font-size: 40px;
@@ -515,6 +546,7 @@ footer{
   }
   .fa-github-square:hover{
     color: #000;
+    transition: 0.5s;
   }
   h3{
     text-align: center;
@@ -758,6 +790,7 @@ footer{
 
 .pagination>li>a:hover {        
  border-radius: 15px; 
+ transition: 0.5s;
 }
 
 

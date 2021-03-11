@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
   
+  // タグ機能のUI
   $("#tags").tagit({
     tagLimit:10,
     singleField: true,
@@ -15,9 +16,10 @@ $(document).on('turbolinks:load', function() {
   });
 
 
-  
+  // ドキュメント全体にfadeを適用
   $(".total").fadeIn(1000);
   
+
   $("ham-menu a").on("click", function() {
     console.log("header click");
     $(".total").hide();
@@ -61,6 +63,7 @@ $(document).on('turbolinks:load', function() {
     $(this).addClass("inactive");
   });
 
+
   // サイドバークローズ
   $(".close-side").on("click", function(){
     console.log("close!")
@@ -71,17 +74,27 @@ $(document).on('turbolinks:load', function() {
     $(".side-bg").fadeOut(300);
   });
 
-  $("#ham-menu a").on("click", function(){
+
+  // サイドバー表示時に他のリンクをクリックしたら、サイドバーを非表示にする
+  $("a").on("click", function(){
     $("#ham-menu").hide();
     $(".side-bg").hide();
     console.log("link click!");
   });
 
 
+  // タグバーを開閉する
   $(".header-search").on('click', function(){
     $('#tag-bar').slideToggle();
     return false;
   });
+
+
+  // タグバーを表示時に他のリンクをクリックした時、タグバーを非表示にする
+  $("a").on("click", function() {
+    $("#tag-bar").hide()
+  });
+
 
   // // タグオープン
   // $(".header-search").on("click", function(){
@@ -95,10 +108,5 @@ $(document).on('turbolinks:load', function() {
   //   console.log("tag-close")
   //   $("#tag-bar").slideUp();
   //   return false;
-  // });
-
-  // タグバーを表示時に他のリンクをクリックした時、タグバーを非表示にする
-  $("a").on("click", function() {
-    $("#tag-bar").hide()
-  });
+  // });  
 });
