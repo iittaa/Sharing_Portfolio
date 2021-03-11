@@ -1,5 +1,5 @@
 <h1>ログイン</h1>
-<div class="sub flame">
+<div class="sub1 flame">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
       <%= f.label :email, class: "sr-only" %>
@@ -16,8 +16,28 @@
       </div>
     <% end %>
 
-    <%= f.submit "ログイン", class:"btn btn-primary btn-block" %>
+    <div class="btn-container">
+      <%= f.submit "ログイン", class:"btn-base" %>
+    </div>
   <% end %>
 
-  <%= render "devise/shared/links" %>
+  <div class="sub">
+    <div class="twitter-login">
+      <%= link_to user_twitter_omniauth_authorize_path do %>
+        <i class="fab fa-twitter"></i>Twitterでログインする
+      <% end %>
+    </div>
+    <div>
+    <div class="github-login">
+      <%= link_to "#" do %>
+        <i class="fab fa-github"></i>GitHubでログインする
+      <% end %>
+    </div>
+    <div class="guest-login">
+      <%= link_to "ゲストログイン(採用担当者様用)", users_guest_sign_in_path, method: :post %>
+    </div>
+    <div style="text-align:center;">アカウントをお持ちでない方
+      <%= link_to "新規登録はこちら", new_user_registration_path, style:"font-weight: 700;" %>
+    </div>
+  </div>
 </div>

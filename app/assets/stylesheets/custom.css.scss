@@ -3,7 +3,7 @@
 @import "bootstrap";
 
 
-//ページ全体
+// --------  ページ全体  --------------------------------------------------
 *{
  margin: 0;
  padding: 0;
@@ -11,6 +11,25 @@
  list-style: none outside;
  font-family: "Hannotate SC";
 }
+
+
+.btn-container{
+  text-align: center;
+  .btn-base{
+    padding: 5px 40px;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #5472cd;
+    color: #fff;
+    border: 1px solid #5472cd;
+    font-weight: 700;
+  }
+  .btn-base:hover{
+    transition: 0.5s;
+    background-color: #0e35ac;
+  }
+}
+
 
 .total{
   display: none;
@@ -42,6 +61,12 @@ main{
  margin: 0px auto;
 }
 
+.sub1{
+  width: 50%;
+ padding: 20px;
+ margin: 0px auto;
+}
+
 .sub2{
  width: 95%;
  padding: 20px;
@@ -69,6 +94,7 @@ main{
   background-color: #f2dede;
   border-color: #ebccd1;
 }
+
 
 h1{
  text-align: center;
@@ -103,7 +129,7 @@ h4{
 
 
 
-//ヘッダー
+// --------  ヘッダー  ----------------------------------------------------
 header{
   display: flex;
   align-items: center;
@@ -160,7 +186,8 @@ header{
     content: "#";	
   }
   a:hover {
-    color: #fff;	
+    color: #fff;
+    transition: 0.5s;
   }
 }
 
@@ -180,7 +207,7 @@ header{
 .tag-search:hover{
   background-color: #000eee;
   opacity: 0.6;
-  font-weight: 700;
+  transition: 0.5;
 }
 
 .tag-close{
@@ -208,7 +235,7 @@ header{
   background-color: #5472cd;
   width: 300px;
   height: 100%;
-  padding: 10px 40px;
+  padding: 25px 40px;
   z-index: 1000;
   opacity: 0.9;
   font-size: 18px;
@@ -223,6 +250,7 @@ header{
     a:hover{
       text-decoration: none;
       color: #0000ee;
+      transition: 0.5s;
     }
   }
 }
@@ -245,7 +273,8 @@ header{
   display: none;
 }
 
-//フッター
+
+// --------  フッター  ----------------------------------------------------
 footer{
  background-color: #5472cd;
  height: 50px;
@@ -260,6 +289,7 @@ footer{
    .li:hover{
      background-color: #fff;
      color: #5472cd;
+     transition: 0.5s;
    }
    a{
      color: #fff;
@@ -267,12 +297,13 @@ footer{
    }
    a:hover{
      text-decoration: none;
+     transition: 0.5s;
    }
  }
 }
 
 
-//homeページ
+// --------  ホーム画面  --------------------------------------------------
 .home-container{
  height: 500px;
  display: flex;
@@ -304,7 +335,8 @@ footer{
  }
 }
 
-//利用規約ページ
+
+// --------  利用規約  ----------------------------------------------------
 .term-title{
  font-weight: 700;
  font-size: 25px;
@@ -321,26 +353,130 @@ footer{
 }
 
 
-//ユーザー登録ページ
-.already{
- margin-top: 10px;
+// --------  ユーザー新規登録 ログイン  -----------------------------------
+.twitter-login{
+  background-color: rgb(240, 246, 250);
+  border: 1px solid rgb(29, 161, 242);
+  opacity: 0.9;
+  margin: 10px 0;
+  a{
+    display: block;
+    padding: 10px;
+    color: rgb(29, 161, 242);
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+  }
+  a:hover{
+    color: rgb(16, 80, 121);
+    transition: 0.5s ;
+  }
+  .fa-twitter{
+    color: rgb(2, 137, 221);
+  }
 }
 
-//ログインページ
-.sns-login{
- padding-top: 10px;
- a{
-   background-color: rgba(29,161,242,1.00);
-   color: #fff;
-   padding: 7px 12px;
-   float: right;
-   border-radius: 4px;
-   text-decoration: none;
- }
+.twitter-login:hover{
+  border-color: rgb(2, 137, 221);
+  background-color: rgb(212, 235, 252);
+  transition: 0.5s ;
+}
+
+.github-login{
+  background-color: rgb(240, 239, 239);
+  border: 1px solid grey;
+  opacity: 0.9;
+  margin: 10px 0;
+  a{
+    display: block;
+    padding: 10px;
+    color: grey;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+  }
+  a:hover{
+    color: rgb(90, 90, 90);
+    transition: 0.5s ;
+  }
+  .fa-github{
+    color: grey;
+  }
+}
+
+.github-login:hover{
+  border-color: rgb(90, 90, 90);
+  background-color: rgb(230, 227, 227);
+  transition: 0.5s ;
+}
+
+.guest-login{
+  background-color: rgb(220, 240, 220);
+  border: 1px solid green;
+  opacity: 0.9;
+  margin: 10px 0;
+  a{
+    display: block;
+    padding: 10px;
+    color: green;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+  }
+  a:hover{
+    color: rgb(1, 70, 1);
+    transition: 0.5s ;
+  }
+  .fa-github{
+    color: grey;
+  }
+}
+
+.guest-login:hover{
+  border-color: rgb(1, 99, 1);
+  background-color: rgb(191, 243, 191);
+  transition: 0.5s ;
 }
 
 
-//ユーザー詳細ページ
+// --------  ユーザー編集  ------------------------------------------------
+.delete-user{
+  width: 40%;
+  margin: 5px auto;
+  border: 1px solid #ddd;
+  font-weight: 700;
+  a{
+    display: block;
+    padding:5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    color: rgb(224, 110, 110);
+  }
+  a:hover{
+    color: red;
+    transition: 0.5s;
+  }
+}
+
+.back{
+  width: 15%;
+  margin: 10px auto;
+  font-weight: 700;
+  a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: grey;
+  }
+  a:hover{
+    color: #000;
+    transition: 0.5s;
+  }
+}
+
+
+// --------  ユーザー詳細  ------------------------------------------------
 .user-show-image{
  display: flex;
  justify-content: center;
@@ -396,14 +532,15 @@ footer{
   }
 }
 
-//新規投稿ページ
+
+// --------  新規投稿  ---------------------------------------------------
 .must{
   color: red;
   font-weight: 700;
 }
 
 
-//投稿一覧ページ
+// --------  投稿一覧  ---------------------------------------------------
 .flex{
  display: flex;
  justify-content: space-evenly;
@@ -490,8 +627,7 @@ footer{
  }
 
 
-
- //投稿詳細
+ // --------  投稿詳細  ---------------------------------------------------
  .show-center {
    text-align: center;
    margin: 0 auto 20px;
@@ -523,7 +659,8 @@ footer{
    font-size: 13px;
  }
 
-//タグ
+
+// --------  タグ  --------------------------------------------------------
 .tag{
  display: block;
  float: left;
@@ -534,27 +671,9 @@ footer{
 
 
 
-//ストック
+// --------  ストック  ----------------------------------------------------
 .stock-block{
   display: flex;
-}
-
-.stock-btn1{
-  color: #fff;
-  height: 30px;
-  width: 80px;
-  font-size: 13px;
-  background-color: rgb(93, 165, 93);
-  border: none;
-}
-
-.stock-btn2{
-  color: #fff;
-  height: 30px;
-  width: 80px;
-  font-size: 13px;
-  background-color: rgb(201, 64, 64);
-  border: none;
 }
 
 .stock-count{
@@ -581,7 +700,7 @@ footer{
 
 
 
-//コメント
+// --------  コメント  ----------------------------------------------------
 .comment{
  display: flex;
  margin-top: 10px;
@@ -625,7 +744,8 @@ footer{
  }
 }
 
-//ページネーション
+
+// --------  ページネーション  --------------------------------------------
 .pagination>li>a {          
  border: none;     
  color: #5472cd;   
@@ -640,7 +760,8 @@ footer{
  border-radius: 15px; 
 }
 
-//問い合わせページ
+
+// --------  問い合わせ  --------------------------------------------------
 .info1{
   text-align: center;
   font-size: 18px;
@@ -653,7 +774,7 @@ footer{
 }
 
 
-// モーダルページ
+// --------  モーダル  ----------------------------------------------------
 
 .login-modal-wrapper, .signup-modal-wrapper {
   position: fixed;

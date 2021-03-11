@@ -1,53 +1,52 @@
 <div id="ham-menu">
-  <label for="menu-side" class="close-side">
+  <div class="close-side">
     <i class="far fa-times-circle" style="font-size:30px; color:#fff;"></i>
-  </label>
-  <% if user_signed_in? %>
-    <% if current_user.admin? %>
-      <div class="ham-item">
-        <%= link_to "ユーザー管理", admin_users_path %>
-      </div>
-      <div class="ham-item">
-        <%= link_to "作品管理", admin_posts_path %>
-      </div>
-      <div class="ham-item">
-        <%= link_to "ログアウト", session_path(current_user), method: :delete %>
-      </div>
+  </div>
+  <div class="ham-content">
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <div class="ham-item">
+          <%= link_to "ユーザー管理", admin_users_path %>
+        </div>
+        <div class="ham-item">
+          <%= link_to "作品管理", admin_posts_path %>
+        </div>
+        <div class="ham-item">
+          <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+        </div>
+      <% else %>
+        <div class="ham-item">
+          <%= link_to "ホーム", root_path %>
+        </div>
+        <div class="ham-item">
+          <%= link_to "マイページ", user_path(current_user) %>
+        </div>
+        <div class="ham-item">
+          <%= link_to "投稿する", new_post_path, class:"nav-link" %>
+        </div>
+        <div class="ham-item">
+          <%= link_to "作品一覧", posts_path %>
+        </div>
+        <div class="ham-item">
+          <%= link_to "いいねした作品", stocks_path %>
+        </div>
+        <div class="ham-item">
+          <%= link_to "プロフィール編集", edit_user_registration_path %>
+        </div>
+        <div class="ham-item">
+        <%= link_to "ログアウト", destroy_user_session_path , method: :delete %>
+        </div>
+        <div class="ham-item">
+        <%= current_user.name %>
+        </div>
+      <% end %>
     <% else %>
       <div class="ham-item">
-        <%= link_to "ホーム", root_path %>
+        <%= link_to "ログイン", new_user_session_path %>
       </div>
       <div class="ham-item">
-        <%= link_to "マイページ", user_path(current_user) %>
-      </div>
-      <div class="ham-item">
-        <%= link_to "投稿する", new_post_path, class:"nav-link" %>
-      </div>
-      <div class="ham-item">
-        <%= link_to "作品一覧", posts_path %>
-      </div>
-      <div class="ham-item">
-        <%= link_to "いいねした作品", stocks_path %>
-      </div>
-      <div class="ham-item">
-        <%= link_to "プロフィール編集", edit_user_registration_path %>
-      </div>
-      <div class="ham-item">
-      <%= link_to "ログアウト", destroy_user_session_path , method: :delete %>
-      </div>
-      <div class="ham-item">
-      <%= current_user.name %>
+        <%= link_to "新規登録", new_user_registration_path %>
       </div>
     <% end %>
-  <% else %>
-    <div class="ham-item">
-      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
-    </div>
-    <div class="ham-item">
-      <%= link_to "ログイン", new_user_session_path %>
-    </div>
-    <div class="ham-item">
-      <%= link_to "新規登録", new_user_registration_path %>
-    </div>
-  <% end %>
+  </div>
 </div>
