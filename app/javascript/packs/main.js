@@ -76,7 +76,7 @@ $(document).on('turbolinks:load', function() {
 
 
   // サイドバー表示時に他のリンクをクリックしたら、サイドバーを非表示にする
-  $("a").on("click", function(){
+  $("header a").on("click", function(){
     $("#ham-menu").hide();
     $(".side-bg").hide();
     console.log("link click!");
