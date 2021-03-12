@@ -3,7 +3,7 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
       <%= f.label :email, class: "sr-only" %>
-      <%= f.email_field :email, autofocus: true, class: "form-control",placeholder: "メールアドレス", autocomplete:"off" %>
+      <%= f.email_field :email, class: "form-control",placeholder: "メールアドレス", autocomplete:"off" %>
 
 
       <%= f.label :password, class: "sr-only" %>
