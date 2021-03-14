@@ -17,7 +17,7 @@
   <div class="comment-box2">
       <%= simple_format(comment.content) %>
     <% if current_user == comment.user %>
-      <%= link_to "削除", post_comment_path(comment.post_id,comment.id), class:"comment-edit", method: :delete, remote: true, data:{confirm:"コメントを本当に削除しますか？"} %>
+      <%= link_to "削除", post_comment_path(comment.post_id,comment.id), class:"comment-edit expect", method: :delete, remote: true, data:{confirm:"コメントを本当に削除しますか？"} %>
     <% end %>
   </div>
 <% end %>
