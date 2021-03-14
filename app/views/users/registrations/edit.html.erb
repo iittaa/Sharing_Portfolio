@@ -5,27 +5,32 @@
 
     <div class="form-group">
       <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"ユーザー名を入力してください。" %>
+      <%= f.text_field :name, autocomplete: "off", class: "form-control", placeholder:"ユーザー名を入力してください。" %>
     </div>
 
     <div class="form-group">
       <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder:"メールアドレスを入力してください。" %>
+      <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder:"メールアドレスを入力してください。" %>
     </div>
 
     <div class="form-group">
       <%= f.label :profile %>
-      <%= f.text_area :profile, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"自己紹介文を入力してください。(500字以内)" %>
+      <%= f.text_area :profile, autocomplete: "off", class: "form-control", placeholder:"自己紹介文を入力してください。(500字以内)" %>
     </div>
 
     <div class="form-group">
       <%= f.label :twitter_link %>
-      <%= f.text_field :twitter_link, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"Twitterリンクを入力してください。" %>
+      <%= f.text_field :twitter_link, autocomplete: "off", class: "form-control", placeholder:"Twitterリンクを入力してください。" %>
     </div>
 
     <div class="form-group">
       <%= f.label :github_link %>
-      <%= f.text_field :github_link, autofocus: true, autocomplete: "off", class: "form-control", placeholder:"GitHubリンクを入力してください。" %>
+      <%= f.text_field :github_link, autocomplete: "off", class: "form-control", placeholder:"GitHubリンクを入力してください。" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :プロフィール画像 %>
+      <%= f.file_field :user_image, class: "form-control", placeholder:"プロフィール画像を選択してください。" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -45,7 +50,7 @@
     <% end %>
 
     <div class="btn-container">
-      <%= f.submit "保存する", class:"btn-base" %>
+      <%= f.submit "保存する", class:"btn-base devise-btn" %>
     </div>
   <% end %>
 

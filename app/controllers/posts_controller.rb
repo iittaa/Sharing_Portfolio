@@ -34,9 +34,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.page(params[:page]).per(9)
     @tags = Post.tag_counts_on(:tags).order('count DESC') # タグ一覧を表示
-    @post = Post.tagged_with(params[:tag]) if @tag = params[:tag]
+    @tag_posts = Post.tagged_with(params[:tag]).page(params[:page]).per(9) if @tag = params[:tag]
   end
 
   def show
@@ -48,6 +48,9 @@ class PostsController < ApplicationController
     @comment = Comment.new # 投稿全体のコメント用の変数
     @comments = @post.comments
     @tags = @post.tag_counts_on(:tags) # 投稿に紐づくタグを表示
+    # 投稿をランダムに5つ取得
+    @posts = Post.all
+    @random = @posts.sample(5)
   end
 
   def destroy

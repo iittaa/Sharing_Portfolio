@@ -4,16 +4,12 @@
   <div class="home-title3">作成したポートフォリオをみんなに公開しよう!!</div>
   <% unless !current_user.nil? %>
     <div class="btn-container home-btn">
-      <%= link_to "今すぐ始める", new_user_registration_path, class:"btn-base" %>
+      <%= link_to "今すぐ始める", new_user_registration_path, class:"btn-base devise-btn" %>
     </div>
   <% end %>
 </div>
 <h2>最新作品一覧</h2>
 <hr>
 <div>
-<% if current_user.nil? %>
-  <%= render "shared/home_posts_no" %>
-<% else %>
-  <%= render "shared/home_posts" %>
-<% end %>
+  <%= render "shared/posts" %>
 </div>

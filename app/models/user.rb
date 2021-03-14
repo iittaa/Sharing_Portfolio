@@ -22,14 +22,14 @@ class User < ApplicationRecord
 
   # ----- バリデーション --------------------------------------------------
   validates :name, presence: true, length: { maximum: 50 }
+  VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
+  validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
+  validates :github_link, format: { with: VALID_URL_REGEX }, allow_blank: true
 
   # validates :email, presence: true, uniqueness: true
   # VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/
   # validates :password, presence: true, unless: :uid?, length: {minimum: 6}, format: { with: VALID_PASS_REGEX }, confirmation: true
   # validates :profile, length: {maximum: 500}
-  # VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
-  # validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
-  # validates :github_link, format: { with: VALID_URL_REGEX }, allow_blank: true
   # has_secure_password validations: false
 
   # ----- Gem関連 ---------------------------------------------------------

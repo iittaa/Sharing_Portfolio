@@ -6,6 +6,8 @@ $(document).on('turbolinks:load', function() {
     singleField: true,
   });
 
+  $(".tagit-close").addClass("expect");
+
   let tag_count = 10 - $(".tagit-choice").length
   $(".ui-widget-content.ui-autocomplete-input").attr('placeholder','あと' + tag_count + '個登録できます');
 
@@ -19,17 +21,11 @@ $(document).on('turbolinks:load', function() {
   // ドキュメント全体にfadeを適用
   $(".total").fadeIn(1000);
   
-
-  $("ham-menu a").on("click", function() {
-    console.log("header click");
+  // ドキュメント全体のfadeの修正(例外を除く)
+  $("a").not(".expect").on("click", function() {
+    console.log("link click");
     $(".total").hide();
   });
-  $("header a").on("click", function() {
-    console.log("header click");
-    $(".total").hide();
-  });
-
-  
 
   // モーダル表示
   $(".login-push").on("click", function() {

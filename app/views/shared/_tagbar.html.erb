@@ -1,7 +1,7 @@
 <div id="tag-bar" class="inactive">
   <% if @tag_all.present? %>
     <% @tag_all.limit(30).each do |tag| %>
-      <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class:"tag-search" %>
+      <%= link_to "#{tag.name} (#{tag.taggings_count})", posts_path(tag: tag.name), class:"tag-search" %>
     <% end %>
   <% else %>
     <p style="color: #fff;">登録されているタグはありません。</p>

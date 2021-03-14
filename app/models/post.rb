@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   VALID_URL_REGEX = /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
   validates :url, presence: true, format: { with: VALID_URL_REGEX }
   validates :period, presence: true
+  # validates :image, presence: true
   default_scope -> { order(created_at: :desc) }
 
   # ----- Gem関連 ---------------------------------------------------------

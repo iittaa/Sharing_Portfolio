@@ -1,5 +1,5 @@
 <div class="posts-box">
-  <% @posts.order(:created_at).each do |post| %>
+  <% @tag_posts.order(:created_at).each do |post| %>
     <div class="posts-item flame">
       <div class="item-image">
         <%= link_to post_path(post) do %>
@@ -44,3 +44,4 @@
     </div>
   <% end %>
 </div>
+
