@@ -1,83 +1,109 @@
-<h1>作品概要</h1>
-<div class="sub flame">
-  <div class="post-image show-center">
-    <% if @post.image? %>
-      <%= image_tag asset_path("default_post.jpg") %>
-    <% else %>
-      <%= image_tag asset_path("default_post.jpg") %>
-    <% end %>
-  </div>
-  <% if @post.user == current_user %>
-    <div class="show-center">
-      <%= link_to "編集", edit_post_path(@post),class:"btn btn-primary" %>
-      <%= link_to "削除", post_path(@post), method: :delete, class:"btn btn-primary", data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"} %>
-    </div>
-  <% end %>
-  <h2>詳細</h2>
-  <hr>
-  <div class="content-box">
-    <div class="show-title">サービス名</div>
-    <div class="show-content">
-      <p class><%= @post.name %></p>
-    </div>
-  </div>
-  <div class="content-box">
-    <div class="show-title">作成ユーザー</div>
-    <div class="show-content">
-      <p class><%= link_to @post.user.name, user_path(@post.user) %></p>
-    </div>
-  </div>
-  <div class="content-box">
-    <div class="show-title">サービスの概要</div>
-    <div class="show-content">
-      <p class=""><%= simple_format(@post.content) %></p>
-    </div>
-  </div>
-  <div class="content-box">
-    <div class="show-title">サービスのリンク</div>
-    <div class="show-content">
-      <p><%= link_to @post.name ,@post.url, target:"_blank" %></p>
-    </div>
-  </div>
-  <div class="content-box">
-    <div class="show-title">作成期間</div>
-    <div class="show-content">
-      <p class=""><%= @post.period %></p>
-    </div>
-  </div>
-  <div class="content-box">
-    <div class="show-title">アピールポイント</div>
-    <div class="show-content">
-      <p><%= simple_format(@post.point) %></p>
-    </div>
-  </div>
-  <div class="content-box">
-    <div class="show-title">タグ</div>
-    <div class="show-content">
-      <% if @tags.present? %>
-        <p class="post-tag">
-          <% @tags.each do |tag| %>
-            <%= link_to "#{tag.name}(#{tag.taggings_count})", posts_path(tag: tag.name), class:"label label-primary" %>
-          <% end %>
-        </p>
+<div class="sub2 post-show-total">
+  <div class="post-show-main">
+    <div class="post-show-image">
+      <% if @post.image? %>
+        <%= image_tag @post.image.url %>
       <% else %>
-        <p>登録されているタグはありません</p>
+        <%= image_tag asset_path("default_post.jpg") %>
       <% end %>
     </div>
-  </div>
-  <div id="like-<%= @post.id %>" class="stock-block">
-    <%= render "shared/stock_form" %>
-  </div>
-  <div class="sns-login">
-    <%= link_to "Twitterでシェア", "https://twitter.com/share?url=#{ request.url }&text=「#{ @post.name }」を、Twitterでみんなに広めよう！" %>
-  </div>
-
-  <div>
-  <h2>コメント欄</h2>
-    <div id="comments-area">
-      <%= render partial: "comments/index", locals: { comments: @comments } %>
+    <div class="post-show-info">
+      <div class="post-show-name"><%= @post.name %></div>
+      <% if @tags.present? %>
+        <div class="post-show-tag">
+          <% @tags.each do |tag| %>
+            <%= link_to tag.name, posts_path(tag: tag.name), class:"tag-search" %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="post-show-subinfo">
+        <div id="like-<%= @post.id %>" class="post-show-stock">
+          <%= render "shared/stock_form" %>
+        </div>
+        <div class="post-show-comment">
+          <div>
+            <i class="fas fa-comments" style="color: #000;"><%= @post.comments.count %></i>
+          </div>
+        </div>
+        <div class="post-show-share">
+          <%= link_to "https://twitter.com/share?url=#{ request.url }&text=「#{ @post.name }」を、Twitterでみんなに広めよう！", target:"_blank", class:"expect" do %>
+          <i class="fab fa-twitter" style="color: #fff; margin-right: 5px;" ></i>Twitterでシェア
+          <% end %>
+        </div>
+        <div class="post-show-time">
+          <%= @post.created_at.to_s(:datetime_jp) %>
+        </div>
+        <% if @post.user == current_user %>
+          <div class="post-show-edit">
+              <%= link_to "編集", edit_post_path(@post), class:"btn-base post-edit-btn" %>
+              <%= link_to "削除", post_path(@post), method: :delete, class:"", data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"}, class:"btn-base post-edit-btn expect" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="comment-create">
-      <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+    <div class="post-show-overview">
+      <div class="post-show-username">
+      <h5>投稿者</h5>
+        <%= link_to user_path(@post.user) do %>
+          <% if @post.user.user_image? %>
+            <div><%= image_tag @post.user.user_image.url %></div>
+          <% else %>
+            <div><%= image_tag asset_path("default_user.png") %></div>
+          <% end %>
+          <p><%= @post.user.name %></p>
+        <% end %>
+      </div>
+      <dl>
+        <dt><i class="fas fa-check" style="margin-right: 10px;"></i>サービスの概要</dt>
+        <dd><%= simple_format(@post.content) %></dd>
+        <dt><i class="fas fa-check" style="margin-right: 10px;"></i>作成期間</dt>
+        <dd><%= @post.period %></dd>
+        <dt><i class="fas fa-check" style="margin-right: 10px;"></i>アピールポイント</dt>
+        <dd><%= simple_format(@post.point) %></dd>
+      </dl>
+      <div class="post-show-link">
+        <%= link_to @post.url, target:"_blank" do %>
+          <i class="fas fa-link"></i>  ポートフォリオを閲覧する
+        <% end %>     
+      </div>
     </div>
+    <div class="post-show-comment">
+      <div id="comments-area">
+        <%= render partial: "comments/index", locals: { comments: @comments } %>
+      </div>
+      <div class="comment-create">
+        <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+      </div>
+  </div>
+  
+  <div class="post-show-side">
+    <div class="side-heading">その他のサービス</div>
+    <% @random.each do |post| %>
+      <%= link_to post_path(post) do %>
+        <div class="side-post">
+          <div class="side-post-image">
+            <% if post.image? %>
+              <%= image_tag post.image.url %>
+            <% else %>
+              <%= image_tag asset_path("default_post.jpg") %>
+            <% end %>
+          </div>
+          <div class="side-post-info">
+            <div class="side-post-name">
+              <%= post.name.truncate(20) %>
+            </div>
+            <div class="side-post-content">
+              <%= post.content.truncate(40) %>
+            </div>
+            <div class="side-post-other">
+              <div>
+                <i class="fas fa-thumbs-up" style="color: #000;"><%= post.stocks.length %></i>
+              </div>
+              <div><%= @post.created_at.to_s(:datetime_jp) %></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

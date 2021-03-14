@@ -7,7 +7,7 @@
   
   <div class="form-group">
     <%= f.label :サービス名 %><span class="must"> (必須)</span>
-    <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。(100字以内)", autocomplete:"off" %>	
+    <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。(50字以内)", autocomplete:"off" %>	
   </div>
   
   <div class="form-group">
@@ -40,7 +40,9 @@
         <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", autocomplete:"off", id:"tags" %>
   </div>
   
-  <%= f.submit "投稿する", class:"btn btn-primary btn-block" %>
+  <div class="btn-container">
+    <%= f.submit "投稿する", class:"btn-base devise-btn" %>
+  </div>
 <% end %>
 </div>
 

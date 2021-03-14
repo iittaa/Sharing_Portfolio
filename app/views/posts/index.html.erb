@@ -1,12 +1,9 @@
-<h1>作品一覧</h1>
-<h4>ユーザーが投稿したポートフォリオを一覧表示します。</h4>
-<% if @post.present? %>
-  <%= @tag %>に関する投稿
-  <% @post.each do |post| %>
-    <%= post.user.name %>
-    <%= post.name %>
-  <% end %>
+<% if @tag_posts.present? %>
+  <h1><span><%= @tag %></span> に関する投稿</h1>
+  <%= render "tag_posts" %>
+  <%= paginate @tag_posts %>
 <% else %>
+  <h1>全ての作品</h1>
   <%= render "shared/posts" %>
   <%= paginate @posts %>
 <% end %>

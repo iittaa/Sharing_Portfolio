@@ -2,7 +2,7 @@
   <p>新規コメント</p>
   <textarea class="form-control input-form" name="comment[content]" rows="5", placeholder="コメントを入力してください。(500字以内)", autocomplete:"off" ><%=@comment.content%></textarea>
   <%= f.hidden_field :post_id, value: @post.id %>
-  <div class="actions">
-    <%= f.submit "送信する", class: "btn-sm btn-primary btn-block" %>
+  <div class="actions btn-container">
+    <%= f.submit "送信する", class: "btn-base devise-btn" %>
   </div>
 <% end %>

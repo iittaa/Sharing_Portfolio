@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :check_guest, only: %i[edit update destroy]
 
   def home
-    @posts = Post.all # タグ一覧を表示する際に使用する
+    @posts = Post.all.order(:created_at).limit(3) # タグ一覧を表示する際に使用する
     # @tag_list = Tag.all
   end
 
