@@ -31,6 +31,9 @@ class Post < ApplicationRecord
     Stock.find_by(user_id: user.id).destroy
   end
 
+
+  # ------  通知メソッド  ------------------------------------------------
+
   # いいね通知作成メソッド
   def create_notification_like!(current_user)
     # 既にいいねされているかの確認
@@ -75,4 +78,5 @@ class Post < ApplicationRecord
     notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
+
 end

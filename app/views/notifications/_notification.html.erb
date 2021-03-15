@@ -1,25 +1,28 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %> 
-<div class="col-md-6.mx-auto">
-  <div class="form-inline">
-    <%= visitor.name %>さんが
-    <% case notification.action %>
-      <% when "like" then %>
-      <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %> 
-      にいいねしました
-      <% when "comment" then %>
-        <% if notification.post.user_id == visited.id %>
-          <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-          にコメントしました 
-        <% else %>
-          <%= link_to post_path(notification.post) do %>
-          <% end %>
+<div class="noti-container">
+  <div class="noti-image">
+    <% if visitor.user_image? %>
+    <%= image_tag visitor.user_image.url %>
+    <% else %>
+    <%= image_tag asset_path("default_user.png") %>
+    <% end %>
+  </div>
+  <div class="noti-contents">
+    <div class="noti-info">
+      <%= link_to visitor.name, user_path(visitor) %>さんが
+      <% case notification.action %>
+        <% when "like" then %>
+          <%= link_to notification.post.name, notification.post %> にいいねしました
+        <% when "comment" then %>
+          <% if notification.post.user_id == visited.id %>
+            <%= link_to notification.post.name, notification.post %>にコメントしました 
+            <% end %>
+        <% when "follow" then %>
+           あなたをフォローしました
         <% end %>
-      <% end %>
-
-
-    
-    <div class="small.text-muted.text-right">
+    </div>
+    <div class="noti-time">
       <%= time_ago_in_words(notification.created_at).upcase %>前
     </div>
   </div>
