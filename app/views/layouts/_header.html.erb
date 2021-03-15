@@ -23,7 +23,11 @@
       </div>
       <div class="">
         <%= link_to user_path(current_user) do %>
-          <i class="fas fa-user" style="color: #fff; font-size: 30px;"></i>
+          <% if current_user.user_image? %>
+            <%= image_tag current_user.user_image.url %>
+          <% else %>
+            <%= image_tag asset_path("default_user.png") %>
+          <% end %>
         <% end %>
       </div>
     </div>
