@@ -1,43 +1,43 @@
-<h1>ユーザー詳細</h1>
-<div class="user-show-image show-center">
-  <% if @user.user_image? %>
-    <%= image_tag @user.user_image.url %>
-  <% else %>
-    <%= image_tag asset_path("default_user.png") %>
-  <% end %>
-</div>
-<div class="user-show-profile">
-  <h2>
-    <%= @user.name %>
-    <% unless @user.uid.nil? %>
-      <i class="fab fa-twitter"></i>
+<div class="user-show-container sub">
+  <div class="user-show-image">
+    <% if @user.user_image? %>
+      <%= image_tag @user.user_image.url %>
+    <% else %>
+      <%= image_tag asset_path("default_user.png") %>
     <% end %>
-  </h2>
-  <div>
-    <%= render "stats" %>
   </div>
-  <div>
-    <%= render "follow_form" %>
-  </div>
-  <div class="sns-container">
-    <% unless @user.twitter_link.blank? %>
-      <%= link_to @user.twitter_link, target:"_blank" do %>
-        <i class="fab fa-twitter-square"></i>
+  <div class="user-show-info">
+    <div class="user-show-name">
+      <%= @user.name %>
+    </div>
+    <div class="user-show-follow">
+      <%= render "stats" %>
+      <%= render "follow_form" %>
+    </div>
+    <div class="user-show-sns">
+      <% unless @user.twitter_link.blank? %>
+        <div>
+          <%= link_to @user.twitter_link, target:"_blank", class:"twitter expect" do %>
+            <i class="fab fa-twitter-square"></i>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
-    <% unless @user.github_link.blank? %>
-      <%= link_to @user.github_link, class:"github-link", target:"_blank" do %>
-        <i class="fab fa-github-square"></i>
+      <% unless @user.github_link.blank? %>
+        <div>
+          <%= link_to @user.github_link, class:"github expect", target:"_blank" do %>
+            <i class="fab fa-github-square"></i>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
+    </div>
+    <div class="user-show-profile">
+      <p><%= simple_format(@user.profile) %></p>
+    </div>
   </div>
-  <% unless @user.profile.blank? %>
-    <h3>〜プロフィール〜</h3>
-    <p><%= simple_format(@user.profile) %></p>
-  <% end %>
 </div>
+
 <h2>投稿一覧</h2>
-<hr>
+<hr style="border: 1px solid #ddd; margin-bottom: 50px;">
 <% if @posts.any? %>
   <%= render 'shared/posts' %>
 <% end %>

@@ -513,63 +513,182 @@ footer{
 }
 
 
-// --------  ユーザー詳細  ------------------------------------------------
-.user-show-image{
- display: flex;
- justify-content: center;
- img{
-   width: 200px;
-   border-radius: 50%;
-   border: solid 1px #5472cd;
- }
-}
-
-.user-show-profile{
+// --------  ユーザー詳細  -----------------------------------------------
+.user-show-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  h2{
-    font-weight: 700;
-    font-size: 40px;
+  .user-show-image{
+   img{
+     width: 150px;
+     height: 150px;
+     border-radius: 50%;
+     object-fit: cover;
+     box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+    }
   }
-  .sns-container{
-    display: flex;
-  }
-
-  .fa-twitter-square{
-    font-size: 40px;
-    color: rgb(29, 161, 242);
-    margin: 10px;
-  }
-  
-  .fa-twitter-square:hover{
-    color: rgb(32, 117, 170);
-    transition: 0.5s;
-  }
-  .fa-github-square{
-    font-size: 40px;
-    color: #5f5d60;
-    margin: 10px;
-  }
-  .fa-github-square:hover{
-    color: #000;
-    transition: 0.5s;
-  }
-  h3{
-    text-align: center;
-    margin-top: 60px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    font-size: 25px;
-  }
-  p{
-    font-size: 30px;
-    text-align: center;
-    width: 50%;
-    font-size: 15px;
-    padding: 0px 20px;
+  .user-show-info{
+    width: 80%;
+    margin-left: 20px;
+    .user-show-name{
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .user-show-follow{
+      display: flex;
+      margin-bottom: 10px;
+      .layout{
+        margin: auto 10px;
+        a{
+          color: #000;
+        }
+        a:hover{
+          text-decoration: none;
+          color: #0000ee;
+          transition: 0.5s;
+        }
+      }
+      #follow_form{
+        margin-left: 30px;
+      }
+      .follow-btn{
+        padding: 5px;
+        border-radius: 5px;
+      }
+      .following-btn{
+        color: #5472cd;
+        border: 1px solid #5472cd;
+        background-color: #fff;
+        font-weight: 700;
+      }
+      .following-btn:hover{
+        color: #0e35ac;
+        border: 1px solid #0e35ac;
+        background-color: #d7e0f7;
+        transition: 0.5s;
+      }
+      #follow{
+        font-size: 1.2em;
+      }
+      #follower{
+        font-size: 1.2em;
+      }
+    }
+    .user-show-sns{
+      margin-bottom: 10px;
+      display: flex;
+      .twitter{
+        margin: 0 5px;
+        font-size: 2.8em;
+        color: rgb(29, 161, 242)
+      }
+      .twitter:hover{
+        color: rgb(16, 80, 121);
+        transition: 0.5s ;
+      }
+      .github{
+        margin: 0 5px;
+        font-size: 2.8em;
+        color: grey;
+      }
+      .github:hover{
+        color: rgb(90, 90, 90);
+        transition: 0.5s;
+      }
+    }
+    .user-show-profile{
+      font-size: 1.2em;
+      width: 90%;
+    }
   }
 }
+
+
+// --------  フォロー一覧  -----------------------------------------------
+.rela-container{
+  ul{
+    color: #000;
+    display: flex;
+    border-top: 1px solid #ddd;
+    .rela-image{
+      margin: auto 0;
+      img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+      }
+    } 
+    .rela-username{
+      margin: auto 0;
+      width: 100%;
+      font-size: 1.3em;
+      a{
+        text-decoration: none;
+        width: 100%;
+        padding: 30px 0;
+        padding-left: 30px;
+        display: block;
+        color: #000;
+      }
+      a:hover{
+        text-decoration: none;
+        color: #0000ee;
+        transition: 0.5s;
+      }
+    }
+  }
+}
+
+
+
+
+// .user-show-profile{
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   h2{
+//     font-weight: 700;
+//     font-size: 40px;
+//   }
+//   .sns-container{
+//     display: flex;
+//   }
+
+//   .fa-twitter-square{
+//     font-size: 40px;
+//     color: rgb(29, 161, 242);
+//     margin: 10px;
+//   }
+  
+//   .fa-twitter-square:hover{
+//     color: rgb(32, 117, 170);
+//     transition: 0.5s;
+//   }
+//   .fa-github-square{
+//     font-size: 40px;
+//     color: #5f5d60;
+//     margin: 10px;
+//   }
+//   .fa-github-square:hover{
+//     color: #000;
+//     transition: 0.5s;
+//   }
+//   h3{
+//     text-align: center;
+//     margin-top: 60px;
+//     margin-bottom: 10px;
+//     font-weight: 700;
+//     font-size: 25px;
+//   }
+//   p{
+//     font-size: 30px;
+//     text-align: center;
+//     width: 50%;
+//     font-size: 15px;
+//     padding: 0px 20px;
+//   }
+// }
 
 
 // --------  新規投稿  ---------------------------------------------------
@@ -626,8 +745,6 @@ footer{
         font-size: 1.2em;
       }
       .item-content{
-        // padding-bottom: 10px;
-        // border-bottom: 1px solid #ddd;
         color: grey;
         font-size: 0.9em;
       }
@@ -645,15 +762,26 @@ footer{
       width: 90%;
       margin: 10px auto;
       display: flex;
+      div{
+        margin: auto 0;
+      }
       img{
         width: 40px;
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
+        box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
       }
       p{
-        margin: auto 10px;
+        margin: auto 0;
         font-size: 15px;
+        width: 100%;
+        a{
+          display: block;
+          width: 100%;
+          padding: 10px 0;
+          padding-left: 10px;
+        }
       }
     }
     .item-tag{
@@ -766,7 +894,7 @@ footer{
    .post-show-image{
      width: 100%;
      img{
-       border: 1px solid #ddd;
+       box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
        width: 100%;
        height: 450px;
        object-fit: cover;
