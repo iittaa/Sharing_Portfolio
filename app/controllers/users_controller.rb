@@ -35,12 +35,14 @@ class UsersController < ApplicationController
 
   def following
     @user  = User.find_by(id: params[:id])
+    @word = "フォロー"
     @users = @user.following
     render 'show_follow'
   end
 
   def followers
     @user  = User.find_by(id: params[:id])
+    @word = "フォロワー"
     @users = @user.followers
     render 'show_follow'
   end
