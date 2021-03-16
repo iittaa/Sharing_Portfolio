@@ -36,8 +36,25 @@
   </div>
 </div>
 
-<h2>投稿一覧</h2>
-<hr style="border: 1px solid #ddd; margin-bottom: 50px;">
-<% if @posts.any? %>
-  <%= render 'shared/posts' %>
+<div class="user-nav-bar">
+  <div class="user-nav-item active">投稿した作品</div>
+  <div class="user-nav-item">いいねした作品</div>
+</div>
+<% if @posts.present? %>
+  <div class="user-nav-content content-active">
+    <div class="posts-box">
+      <% @posts.order(:created_at).each do |post| %>
+        <%= render 'shared/posts', post: post %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<% if @posts.present? %>
+<div class="user-nav-content">
+  <div class="posts-box">
+    <% @stocks.order(:created_at).each do |stock| %>
+      <%= render 'shared/posts', post: stock.post %>
+    <% end %>
+  </div>
+</div>
 <% end %>

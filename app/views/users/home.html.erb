@@ -10,6 +10,8 @@
 </div>
 <h2>最新作品一覧</h2>
 <hr style="border: 1px solid #ddd; margin-bottom: 50px;">
-<div>
-  <%= render "shared/posts" %>
+<div class="posts-box">
+  <% @posts.order(:created_at).each do |post| %>
+    <%= render 'shared/posts', post: post %>
+  <% end %>
 </div>

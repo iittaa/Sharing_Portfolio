@@ -605,6 +605,31 @@ footer{
   }
 }
 
+.user-nav-bar{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  font-size: 2em;
+  margin-bottom: 40px;
+  border-bottom:2px solid #ddd;
+  .user-nav-item{
+    cursor: pointer;
+    width: 100%;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  .active{
+    border-bottom:2px solid #5472cd;
+  }
+}
+.user-nav-content{
+  display: none;
+}
+
+.content-active{
+  display: block;
+}
+
 
 // --------  フォロー一覧  -----------------------------------------------
 .rela-container{

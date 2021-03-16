@@ -1,9 +1,17 @@
 <% if @tag_posts.present? %>
   <h1><span><%= @tag %></span> に関する投稿</h1>
-  <%= render "tag_posts" %>
+  <div class="posts-box">
+    <% @tag_posts.order(:created_at).each do |post| %>
+      <%= render 'shared/posts', post: post %>
+    <% end %>
+  </div>
   <%= paginate @tag_posts %>
 <% else %>
   <h1>全ての作品</h1>
-  <%= render "shared/posts" %>
+  <div class="posts-box">
+    <% @posts.order(:created_at).each do |post| %>
+      <%= render 'shared/posts', post: post %>
+    <% end %>
+  </div>
   <%= paginate @posts %>
 <% end %>

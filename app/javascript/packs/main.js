@@ -81,6 +81,7 @@ $(document).on('turbolinks:load', function() {
 
   // タグバーを開閉する
   $(".header-search").on('click', function(){
+    console.log("tagbar open")
     $('#tag-bar').slideToggle();
     return false;
   });
@@ -91,18 +92,17 @@ $(document).on('turbolinks:load', function() {
     $("#tag-bar").hide()
   });
 
+  // ユーザーページのタブバーの切り替え
+  $(".user-nav-item").on("click", function(){
+    $(".user-nav-item").removeClass("active");
+    $(this).addClass("active");
 
-  // // タグオープン
-  // $(".header-search").on("click", function(){
-  //   console.log("tag-open")
-  //   $("#tag-bar").slideDown();
-  //   return false;
-  // });
+    let index = $(".user-nav-item").index(this);
+    $(".user-nav-content").eq(index).addClass("content-active");
+    $(".user-nav-content").eq(index).siblings().removeClass("content-active");
+  });
 
-  // // タグクローズ
-  // $(".tag-close").on("click", function(){
-  //   console.log("tag-close")
-  //   $("#tag-bar").slideUp();
-  //   return false;
-  // });  
+
+
+
 });
