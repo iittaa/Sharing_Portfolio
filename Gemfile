@@ -21,11 +21,12 @@ gem 'kaminari'
 # エラー文を日本語化にする
 gem 'rails-i18n'
 
-# Twitter認証用
+# 環境変数認識
 gem 'dotenv-rails'
 # gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter'
+gem 'omniauth-github'
 
 # 画像投稿用
 gem 'carrierwave'

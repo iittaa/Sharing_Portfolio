@@ -5,6 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter
   end
 
+  def github
+    callback_from :github
+  end
+
   private
 
   # コールバック時に行う処理
@@ -15,7 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     # persisted?でDBに保存済みかどうか判断
     if @user.persisted?
-      # サインアップ時に行いたい処理があればここに書きます。
+      # サインアップ時の処理。
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @user, event: :authentication
     else
