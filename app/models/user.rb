@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:twitter]
+         :omniauthable, omniauth_providers: [:twitter, :github]
 
   # ----- attr_accessorメソッド -------------------------------------------
   # attr_accessor :password, :password_confirmation,:remember_token, :reset_token
@@ -53,6 +53,7 @@ class User < ApplicationRecord
     following_relationships.find_by(following_id: user.id).destroy
   end
 
+  # SNS認証での新規登録またはログイン
   def self.find_for_oauth(auth)
     user = User.find_by(uid: auth.uid, provider: auth.provider)
 
@@ -64,6 +65,7 @@ class User < ApplicationRecord
       password: Devise.friendly_token[0, 20],
       profile: auth[:info][:description],
       twitter_link: auth[:info][:urls][:Twitter],
+      github_link: auth[:info][:urls][:GitHub],
       remote_user_image_url: auth[:info][:image]
     )
   end
@@ -90,6 +92,7 @@ class User < ApplicationRecord
     result
   end
 
+  # フォローの通知生成メソッド
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
@@ -100,7 +103,6 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
 
 
   # ----- 不要コード ------------------------------------------------------
