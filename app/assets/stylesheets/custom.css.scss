@@ -612,14 +612,21 @@ footer{
   font-size: 2em;
   margin-bottom: 40px;
   border-bottom:2px solid #ddd;
-  .user-nav-item{
-    cursor: pointer;
+  .user-nav-bar-content{
     width: 100%;
-    padding-bottom: 10px;
-    text-align: center;
+    .user-nav-item{
+      cursor: pointer;
+      width: 100%;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+    .active{
+      border-bottom:2px solid #5472cd;
+    }
   }
-  .active{
-    border-bottom:2px solid #5472cd;
+  .user-nav-bar-content:hover{
+    background-color: #dee5f8;
+    transition: 0.5s;
   }
 }
 .user-nav-content{
@@ -788,10 +795,47 @@ footer{
   display: block;
   content:"";
   width:32%;
- }
+}
+
+.post-nav-bar{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  font-size: 2em;
+  margin-bottom: 40px;
+  border-bottom:2px solid #ddd;
+  .post-nav-bar-content{
+    width: 100%;
+    .post-nav-item{
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      a{
+        color: #000;
+        display: block;
+        padding-bottom: 10px;
+      }
+      a:hover{
+        text-decoration: none;
+        background-color: #dee5f8;
+        transition: 0.5s;
+      }
+    }
+    .active{
+      border-bottom:2px solid #5472cd;
+    }
+  }
+  .post-nav-bar-content:hover{
+    text-decoration: none;
+    background-color: #dee5f8;
+    transition: 0.5s;
+  }
+}
 
 
- // --------  投稿詳細  --------------------------------------------------
+
+
+// --------  投稿詳細  --------------------------------------------------
  .post-show-total{
    display: flex;
  }
