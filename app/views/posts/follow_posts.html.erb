@@ -11,19 +11,19 @@
   <div class="sub1">
     <div class="post-nav-bar">
       <div class="post-nav-bar-content">
-        <div class="post-nav-item active"><%= link_to "新着順", posts_path %></div>
+        <div class="post-nav-item"><%= link_to "新着順", posts_path %></div>
       </div>
       <div class="post-nav-bar-content">
         <div class="post-nav-item"><%= link_to "人気順",  stock_posts_posts_path %></div>
       </div>
       <div class="post-nav-bar-content">
-        <div class="post-nav-item"><%= link_to "フォロー", follow_posts_posts_path %></div>
+        <div class="post-nav-item active"><%= link_to "フォロー", follow_posts_posts_path %></div>
       </div>
     </div>
   </div>
   <div class="post-nav-content">
     <div class="posts-box">
-      <% @posts.order(:created_at).each do |post| %>
+      <% @posts.each do |post| %>
         <%= render 'shared/posts', post: post %>
       <% end %>
     </div>

@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index show edit update destroy]
   end
   resources :posts do
+    collection do
+      get :stock_posts
+      get :follow_posts
+    end
     resources :comments, only: %i[create destroy]
   end
   resources :stocks, only: [:index]

@@ -37,6 +37,18 @@ class PostsController < ApplicationController
     @posts = Post.all.page(params[:page]).per(9)
     @tags = Post.tag_counts_on(:tags).order('count DESC') # タグ一覧を表示
     @tag_posts = Post.tagged_with(params[:tag]).page(params[:page]).per(9) if @tag = params[:tag]
+    
+  end
+
+  def stock_posts
+    # いいね順に投稿を取得
+    @posts = Post.includes(:stock_users).sort {|a,b| b.stock_users.size <=> a.stock_users.size}
+    @stock_posts = Kaminari.paginate_array(@posts).page(params[:page]).per(9)
+  end
+
+  def follow_posts
+    # フォローしているユーザーと自分の投稿を取得
+    @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).page(params[:page]).per(9)
   end
 
   def show

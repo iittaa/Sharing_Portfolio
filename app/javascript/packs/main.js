@@ -2,8 +2,8 @@ $(document).on('turbolinks:load', function() {
   
   // タグ機能のUI
   $("#tags").tagit({
-    tagLimit:10,
-    singleField: true,
+    tagLimit:10, // タグの個数制限
+    singleField: true // タグの一意性を確認
   });
 
   $(".tagit-close").addClass("expect");
