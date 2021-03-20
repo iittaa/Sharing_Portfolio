@@ -3,15 +3,16 @@ version: 2
 #   ruby: circleci/ruby@0.1.2 
 
 # 実行処理の単位
-jobs:
+jobs: # 一連のステップ
   build:
-    docker:
+    docker: # Dockerでステップを実行する
     - image: circleci/ruby:2.6.6-node-browsers
-      environment:
+      environment: # 環境変数指定
         - BUNDLER_VERSION: 2.2.14
         - RAILS_ENV: 'test'
-    - images: circleci/mysql:8.0.23
-      environment:
+    - image: circleci/mysql:8.0.23 # データベースイメージ
+      command: mysqld --default-authentication-plugin=mysql_native_password
+      environment: # データベースの環境変数
         - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
         - MYSQL_ROOT_HOST: '%'
 
@@ -20,60 +21,60 @@ jobs:
     # executor: ruby/default
 
     steps:
-      - checkout
+    - checkout
 
-      - restore_cache:
+    - restore_cache:
         keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          - v1-dependencies-
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        - v1-dependencies-
 
-      - run:
-          name: install dependencies
-          command: |
-            gem install bundler -v 2.2.14
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+    - run:
+        name: install dependencies
+        command: |
+          gem install bundler -v 2.2.14
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+    - save_cache:
+        paths:
+          - ./vendor/bundle
+        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      - run: yarn install 
-      - run: mv config/database.yml.ci config/database.yml 
+    - run: yarn install 
+    - run: mv config/database.yml.ci config/database.yml 
 
 
-      # データベースを設定する
-      - run:
+    # データベースを設定する
+    - run:
         name: database setup
         command: |
-          bundle exec rake db:create
-          bundle exec rake db:schema:load
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
 
 
-      # rspecを実行する
-      - run:
-          name: run rspec
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
+    # rspecを実行する
+    - run:
+        name: run rspec
+        command: |
+          mkdir /tmp/test-results
+          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+            circleci tests split --split-by=timings)"
+          bundle exec rspec \
+            --format progress \
+            --format RspecJunitFormatter \
+            --out /tmp/test-results/rspec.xml \
+            --format progress \
+            $TEST_FILES
 
 
-      # rubocopを実行する
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
+    # rubocopを実行する
+    # - run:
+    #     name: Rubocop
+    #     command: bundle exec rubocop
 
 
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+    # collect reports
+    - store_test_results:
+        path: /tmp/test-results
+    - store_artifacts:
+        path: /tmp/test-results
+        destination: test-results
