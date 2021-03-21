@@ -65,6 +65,10 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
