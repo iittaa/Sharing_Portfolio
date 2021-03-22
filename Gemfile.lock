@@ -219,6 +219,9 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -402,8 +405,8 @@ DEPENDENCIES
   listen (~> 3.2)
   mini_magick
   mysql2
-  omniauth
   omniauth-github
+  omniauth-rails_csrf_protection
   omniauth-twitter
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)

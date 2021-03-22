@@ -25,7 +25,7 @@ gem 'rails-i18n'
 # 環境変数認識
 gem 'dotenv-rails'
 # gem 'omniauth'
-gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 
