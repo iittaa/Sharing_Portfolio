@@ -71,7 +71,6 @@ jobs: # 一連のステップ
     #     name: Rubocop
     #     command: bundle exec rubocop
 
-
     # collect reports
     - store_test_results:
         path: /tmp/test-results
