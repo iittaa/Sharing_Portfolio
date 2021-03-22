@@ -24,8 +24,11 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # rubyのバージョン
 set :rbenv_ruby, '2.6.6'
 
-#出力するログのレベル。
+# 出力するログのレベル。
 set :log_level, :debug
+
+# どの公開鍵を利用してデプロイするか
+set :ssh_options, auth_methods: ['publickey'], keys: ['~/.ssh/SharingPortfolio.pem']
 
 # deploy先のディレクトリ。 
 set :deploy_to, '/var/www/rails/Sharing_Portfolio'
