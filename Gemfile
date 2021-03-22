@@ -8,7 +8,8 @@ ruby '2.6.6'
 gem 'acts-as-taggable-on', '~> 6.0'
 
 # deviseログイン
-gem 'devise'
+# gem 'devise'
+gem "devise", git: "https://github.com/heartcombo/devise"
 
 # Bootstrap用
 gem 'bootstrap-sass', '3.4.1'

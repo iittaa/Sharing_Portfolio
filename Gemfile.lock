@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/heartcombo/devise
+  revision: 0cd72a56f984a7ff089246f87a8b259120545edd
+  specs:
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,12 +120,6 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
-    devise (4.7.3)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.4.4)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -385,7 +390,7 @@ DEPENDENCIES
   capistrano3-unicorn
   capybara (>= 2.15)
   carrierwave
-  devise
+  devise!
   dotenv-rails
   ed25519
   factory_bot_rails
