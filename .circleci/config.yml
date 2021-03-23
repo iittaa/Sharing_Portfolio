@@ -1,6 +1,4 @@
 version: 2
-# orbs:
-#   ruby: circleci/ruby@0.1.2 
 
 # 実行処理の単位
 jobs: # 一連のステップ
@@ -16,9 +14,7 @@ jobs: # 一連のステップ
         - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
         - MYSQL_ROOT_HOST: '%'
 
-
     working_directory: ~/Sharing_Portfolio
-    # executor: ruby/default
 
     steps:
     - checkout
