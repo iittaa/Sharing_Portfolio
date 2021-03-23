@@ -31,7 +31,7 @@ gem 'omniauth-github'
 
 # 画像投稿用
 gem 'carrierwave'
-gem 'fog'
+gem 'fog-aws'
 gem 'mini_magick'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
