@@ -22,7 +22,11 @@ test:
 
 production:
   <<: *default
-  database: Sharing_Portfolio_production
-  username: root
-  password: Kk-10310723
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
+  # database: Sharing_Portfolio_production
+  # username: root
+  # password: P@ssw0rd
+  # socket: /var/lib/mysql/mysql.sock
