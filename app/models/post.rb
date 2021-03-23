@@ -18,7 +18,7 @@ class Post < ApplicationRecord
   # validates :image, presence: true
   default_scope -> { order(created_at: :desc) }
 
-  # ----- Gem関連 ---------------------------------------------------------
+  # ----- 画像関連 --------------------------------------------------------
   mount_uploader :image, ImageUploader
 
   # ----- メソッド --------------------------------------------------------

@@ -2,7 +2,7 @@
   <div class="item-image">
     <%= link_to post_path(post) do %>
       <% if post.image? %>
-        <%= image_tag post.image.url %>
+        <%= image_tag post.image.to_s %>
       <% else %>
         <%= image_tag asset_path("default_post.jpg") %>
       <% end %>

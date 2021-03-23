@@ -33,7 +33,7 @@ class User < ApplicationRecord
   # validates :profile, length: {maximum: 500}
   # has_secure_password validations: false
 
-  # ----- Gem関連 ---------------------------------------------------------
+  # ----- 画像関連 --------------------------------------------------------
   mount_uploader :user_image, ImageUploader
 
   # ----- メソッド --------------------------------------------------------
