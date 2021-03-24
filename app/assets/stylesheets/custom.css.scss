@@ -58,27 +58,27 @@ main{
 }
 
 .flame{
- box-shadow: 0 2px 6px #5472cd;
- overflow: hidden;
- background-color: #fff;
+  box-shadow: 0 2px 6px #5472cd;
+  overflow: hidden;
+  background-color: #fff;
 }
 
 .sub{
- width: 70%;
- padding: 20px;
- margin: 0px auto;
+  width: 70%;
+  padding: 20px;
+  margin: 0px auto;
 }
 
 .sub1{
   width: 50%;
- padding: 20px;
- margin: 0px auto;
+  padding: 20px;
+  margin: 0px auto;
 }
 
 .sub2{
- width: 95%;
- padding: 20px;
- margin: 0px auto;
+  width: 95%;
+  padding: 20px;
+  margin: 0px auto;
 }
 
 .alert{
@@ -876,10 +876,10 @@ footer{
         display: flex;
         font-size: 18px;
         margin-top: 10px;
-        .post-show-stock{
+        .post-show-like{
           display: flex;
           margin-right: 10px;
-          .stock-count{
+          .like-count{
             margin-left: 5px;
           }
         }
@@ -910,7 +910,7 @@ footer{
           content: "投稿日:";
         }
         .post-show-edit{
-          width: 45%;
+          width: 40%;
           text-align: right;
           .post-edit-btn{
             font-size: 12px;
@@ -937,8 +937,8 @@ footer{
         }
         a:hover{
           text-decoration: none;
-          transform: scale(1.1);
-          transition: 1.5s;
+          color: #0000ee;
+          transition: 0.5s;
         }
         h5{
           border-bottom: 1px solid #000;
@@ -1010,7 +1010,12 @@ footer{
       .side-post-other{
         margin-top: 20px;
         display: flex;
-        justify-content: space-between;
+        .side-post-like{
+          margin-right: 5px;
+        }
+        .side-post-time{
+          margin-left: 20%;
+        }
       }
 
     }

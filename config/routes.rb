@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/users/guest_sign_in', to: 'users#new_guest'
   post '/posts/:post_id/stocks', to: 'stocks#create'
   delete '/posts/:post_id/stocks', to: 'stocks#destroy'
+  post '/posts/:post_id/likes', to: 'likes#create'
+  delete '/posts/:post_id/likes', to: 'likes#destroy'
   resources :users do
     member do
       get :following, :followers
@@ -24,16 +26,16 @@ Rails.application.routes.draw do
   end
   resources :posts do
     collection do
-      get :stock_posts
+      get :like_posts
       get :follow_posts
     end
     resources :comments, only: %i[create destroy]
   end
-  resources :stocks, only: [:index]
   resources :notifications, only: [:index]
   resources :contacts, only: %i[new create]
   resources :relationships, only: %i[create destroy]
-
+  
+  # resources :stocks, only: [:index]
   # resources :tags, only: %i[show index]
   # get "auth/:provider/callback", to: "users#twitter_create"
   # resources :sessions, only:[:new, :create, :destroy]

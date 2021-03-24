@@ -26,20 +26,20 @@ RSpec.describe 'Stocks', type: :request do
     end
   end
 
-  describe 'index' do
-    context 'ログインしている場合' do
-      before { sign_in user }
-      it 'リクエストが成功すること' do
-        get stocks_url
-        expect(response.status).to eq 200
-      end
-    end
+  # describe 'index' do
+  #   context 'ログインしている場合' do
+  #     before { sign_in user }
+  #     it 'リクエストが成功すること' do
+  #       get stocks_url
+  #       expect(response.status).to eq 200
+  #     end
+  #   end
 
-    context 'ログインしていない場合' do
-      it 'ログイン画面にリダイレクトされること' do
-        get stocks_url
-        expect(response).to redirect_to new_user_session_url
-      end
-    end
-  end
+  #   context 'ログインしていない場合' do
+  #     it 'ログイン画面にリダイレクトされること' do
+  #       get stocks_url
+  #       expect(response).to redirect_to new_user_session_url
+  #     end
+  #   end
+  # end
 end

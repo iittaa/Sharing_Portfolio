@@ -1,0 +1,9 @@
+<% if Like.find_by(user_id: current_user.id, post_id: @post.id) %>
+  <%= link_to "/posts/#{@post.id}/likes", method: :delete, class:"expect stock", remote: true do %>
+    <div><i class="stock-action fas fa-thumbs-up" style="color: red;"><%= @post.likes.length %></i></div>
+  <% end %>
+<% else %>
+  <%= link_to "/posts/#{@post.id}/likes", method: :post, class:"expect", remote: true do %>
+    <div><i class="fas fa-thumbs-up" style="color: #000;"><%= @post.likes.length %></i></div>
+  <% end %>
+<% end %>
