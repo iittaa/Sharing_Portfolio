@@ -9,20 +9,21 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.production?
-    # 本番時はS3にファイルを保存する
-    storage :fog
-  else
-    # 開発・テスト時はローカルにファイルを保存する
+  if Rails.env.development? # 開発環境の場合
     storage :file
+  elsif Rails.env.test? # テスト環境の場合
+    storage :file
+  else # 本番環境の場合
+    storage :fog
   end
+  
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def extension_whitelist
-    %w(png jpg)
+    %w(jpg jpeg gif png)
   end
 
   def filename
