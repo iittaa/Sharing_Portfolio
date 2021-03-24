@@ -68,4 +68,4 @@ server '13.230.133.40', user: 'kosuke', roles: %w{app db web}
 
 
 #デプロイするサーバーにsshログインする鍵の情報
-set :ssh_options, keys: '~/.ssh/SharingPortfolio_key_rsa'
+set :ssh_options, keys: '~/.ssh/Sharing_Portfolio_rsa'
