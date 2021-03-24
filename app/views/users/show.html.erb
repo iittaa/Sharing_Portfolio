@@ -36,13 +36,16 @@
   </div>
 </div>
 
-<div class="sub1">
+<div class="sub">
   <div class="user-nav-bar">
     <div class="user-nav-bar-content">
       <div class="user-nav-item active">投稿した作品</div>
     </div>
     <div class="user-nav-bar-content">
       <div class="user-nav-item">いいねした作品</div>
+    </div>
+    <div class="user-nav-bar-content">
+      <div class="user-nav-item">ストックした作品</div>
     </div>
   </div>
 </div>
@@ -54,6 +57,15 @@
       <% end %>
     </div>
   </div>
+<% end %>
+<% if @posts.present? %>
+<div class="user-nav-content">
+  <div class="posts-box">
+    <% @likes.order(:created_at).each do |like| %>
+      <%= render 'shared/posts', post: like.post %>
+    <% end %>
+  </div>
+</div>
 <% end %>
 <% if @posts.present? %>
 <div class="user-nav-content">

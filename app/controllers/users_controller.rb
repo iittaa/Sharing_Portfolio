@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @posts = @user.posts
     @stocks = Stock.where(user_id: @user.id).page(params[:page]).per(10)
+    @likes = Like.where(user_id: @user.id).page(params[:page]).per(10)
   end
 
   def destroy

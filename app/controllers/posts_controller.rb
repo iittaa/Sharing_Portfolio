@@ -40,10 +40,10 @@ class PostsController < ApplicationController
     
   end
 
-  def stock_posts
+  def like_posts
     # いいね順に投稿を取得
-    @posts = Post.includes(:stock_users).sort {|a,b| b.stock_users.size <=> a.stock_users.size}
-    @stock_posts = Kaminari.paginate_array(@posts).page(params[:page]).per(9)
+    @posts = Post.includes(:like_users).sort {|a,b| b.like_users.size <=> a.like_users.size}
+    @like_posts = Kaminari.paginate_array(@posts).page(params[:page]).per(9)
   end
 
   def follow_posts
@@ -54,6 +54,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id])
     @stock = Stock.find_by(
+      user_id: current_user.id,
+      post_id: @post.id
+    )
+    @like = Like.find_by(
       user_id: current_user.id,
       post_id: @post.id
     )
