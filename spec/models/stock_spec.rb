@@ -3,23 +3,23 @@ require 'rails_helper'
 RSpec.describe Stock, type: :model do
   let(:stock) { create(:stock) }
 
-  describe 'いいねをする' do
-    context 'いいねが保存できる場合' do
+  describe 'ストックをする' do
+    context 'ストックが保存できる場合' do
       it 'user_idとpost_idが存在する場合、保存できる' do
         stock.valid?
         expect(stock).to be_valid
       end
 
-      it 'user_id同じでもpost_idが違う場合、保存できる' do
+      it 'user_idが同じでもpost_idが違う場合、保存できる' do
         expect(create(:stock, user_id: stock.user_id)).to be_valid
       end
 
-      it 'post_id同じでもuser_idが違う場合、保存できる' do
+      it 'post_idが同じでもuser_idが違う場合、保存できる' do
         expect(create(:stock, post_id: stock.post_id)).to be_valid
       end
     end
 
-    context 'いいねが保存できない場合' do
+    context 'ストックが保存できない場合' do
       it 'user_idが空白の場合、保存できない' do
         stock.user_id = nil
         stock.valid?

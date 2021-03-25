@@ -15,11 +15,21 @@ class UserImageUploader < CarrierWave::Uploader::Base
     storage :fog
   end
 
-  
+  # テスト実行後はファイルを削除する
+  # rails_helperファイルに処理は記載
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    if Rails.env.test?
+      "test/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    else
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
   end
 
+  def cache_dir
+    "test/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  # 拡張子の指定
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
@@ -28,6 +38,7 @@ class UserImageUploader < CarrierWave::Uploader::Base
     original_filename if original_filename
   end
 
+  # デフォルト画像の設定
   def default_url(*_args)
     ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default_user.png'].compact.join('_'))
   end

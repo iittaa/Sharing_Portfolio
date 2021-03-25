@@ -10,14 +10,20 @@ RSpec.describe Post, type: :model do
         expect(post).to be_valid
       end
 
-      it 'nameが50文字以内の場合、投稿できない' do
+      it 'nameが50文字以内の場合、投稿できる' do
         post.name = 'a' * 50
         post.valid?
         expect(post).to be_valid
       end
 
-      it 'contentが500文字以内の場合、投稿できない' do
+      it 'contentが500文字以内の場合、投稿できる' do
         post.content = 'a' * 500
+        post.valid?
+        expect(post).to be_valid
+      end
+
+      it 'urlが正常なフォーマットの場合、投稿できる' do
+        post.url = 'https://www.test.com/'
         post.valid?
         expect(post).to be_valid
       end
@@ -28,13 +34,7 @@ RSpec.describe Post, type: :model do
         expect(post).to be_valid
       end
 
-      it 'pointが空白の場合でも、投稿できる' do
-        post.point = ''
-        post.valid?
-        expect(post).to be_valid
-      end
-
-      it 'pointが500文字以内の場合、投稿できない' do
+      it 'pointが500文字以内の場合、投稿できる' do
         post.point = 'a' * 500
         post.valid?
         expect(post).to be_valid
@@ -82,6 +82,12 @@ RSpec.describe Post, type: :model do
         post.period = ''
         post.valid?
         expect(post.errors[:period]).to include('を入力してください')
+      end
+
+      it 'pointが空白の場合、投稿できない' do
+        post.point = ''
+        post.valid?
+        expect(post.errors[:point]).to include('を入力してください')
       end
 
       it 'pointが500文字より多い場合、投稿できない' do

@@ -49,30 +49,30 @@
     </div>
   </div>
 </div>
-<% if @posts.present? %>
-  <div class="user-nav-content content-active">
+<div class="user-nav-content content-active">
+  <% if @posts.present? %>
     <div class="posts-box">
       <% @posts.order(:created_at).each do |post| %>
         <%= render 'shared/posts', post: post %>
       <% end %>
     </div>
-  </div>
-<% end %>
-<% if @posts.present? %>
-<div class="user-nav-content">
-  <div class="posts-box">
-    <% @likes.order(:created_at).each do |like| %>
-      <%= render 'shared/posts', post: like.post %>
-    <% end %>
-  </div>
+  <% end %>
 </div>
-<% end %>
-<% if @posts.present? %>
 <div class="user-nav-content">
-  <div class="posts-box">
-    <% @stocks.order(:created_at).each do |stock| %>
-      <%= render 'shared/posts', post: stock.post %>
-    <% end %>
-  </div>
+  <% if @likes.present? %>
+    <div class="posts-box">
+      <% @likes.order(:created_at).each do |like| %>
+        <%= render 'shared/posts', post: like.post %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-<% end %>
+<div class="user-nav-content">
+  <% if @stocks.present? %>
+    <div class="posts-box">
+      <% @stocks.order(:created_at).each do |stock| %>
+        <%= render 'shared/posts', post: stock.post %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -69,14 +69,16 @@ RSpec.describe Comment, type: :model do
       end
     end
 
-    context 'postモデルとのアソシエーション' do
+    context 'notificationモデルとのアソシエーション' do
       let(:target) { :notifications }
       it 'notificationモデルとの関係はhas_manyであること' do
         expect(association.macro).to eq :has_many
       end
 
-      # it "commentが削除されたら、notificationも削除されること" do
-      # end
+      it 'commentが削除されたら、notificationも削除されること' do
+        @notification = create(:notification, comment_id: comment.id)
+        expect { comment.destroy }.to change(Notification, :count).by(-1)
+      end
     end
   end
 end
