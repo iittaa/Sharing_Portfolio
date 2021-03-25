@@ -7,6 +7,9 @@ FactoryBot.define do
     password = Faker::Internet.password(min_length: 6)
     password                { password }
     password_confirmation   { password }
-    # user_image              {Rack::Test::UploadedFile.new(File.join(Rails.root, 'public/images/test.jpg'))}
+    profile                 { Faker::Lorem.sentence }
+    twitter_link            { Faker::Internet.url }
+    github_link            { Faker::Internet.url }
+    user_image              {Rack::Test::UploadedFile.new(File.join(Rails.root, 'public/images/test.jpg'))}
   end
 end

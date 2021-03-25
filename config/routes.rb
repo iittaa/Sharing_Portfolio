@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :contacts, only: %i[new create]
   resources :relationships, only: %i[create destroy]
+
   
-  # resources :stocks, only: [:index]
   # resources :tags, only: %i[show index]
   # get "auth/:provider/callback", to: "users#twitter_create"
   # resources :sessions, only:[:new, :create, :destroy]

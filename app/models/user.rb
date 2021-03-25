@@ -12,9 +12,12 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :stocks, dependent: :destroy
   has_many :stock_posts, through: :stocks, source: :post
+
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
+
   has_many :comments, dependent: :destroy
+
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy  # 自分からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy # 相手からの通知
 
@@ -28,11 +31,11 @@ class User < ApplicationRecord
   VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
   validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
   validates :github_link, format: { with: VALID_URL_REGEX }, allow_blank: true
+  validates :profile, length: {maximum: 500}
 
   # validates :email, presence: true, uniqueness: true
   # VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/
   # validates :password, presence: true, unless: :uid?, length: {minimum: 6}, format: { with: VALID_PASS_REGEX }, confirmation: true
-  # validates :profile, length: {maximum: 500}
   # has_secure_password validations: false
 
   # ----- 画像関連 --------------------------------------------------------

@@ -11,6 +11,7 @@ RSpec.describe 'Posts', type: :request do
       content: 'content',
       period: 'period',
       url: 'https://www.test.com/',
+      point: 'point',
       tag_ids: 'tag'
     }
   end

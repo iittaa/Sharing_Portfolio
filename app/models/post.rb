@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 500 }
-  validates :point, length: { maximum: 500 }
+  validates :point, presence: true, length: { maximum: 500 }
   VALID_URL_REGEX = /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
   validates :url, presence: true, format: { with: VALID_URL_REGEX }
   validates :period, presence: true

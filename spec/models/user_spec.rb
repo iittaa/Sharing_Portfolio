@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
         expect(user).to be_valid
       end
 
-      it 'メールアドレスが正常なフォーマットの場合、登録できる' do
+      it 'emailが正常なフォーマットの場合、登録できる' do
         addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
         addresses.each do |valid_address|
           user.email = valid_address
@@ -89,6 +89,50 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+
+  describe 'ユーザー編集' do
+    context '保存できる場合' do
+      it '自己紹介が500字以内の場合、保存できる' do
+        user.profile = 'a' * 500
+        user.valid?
+        expect(user).to be_valid
+      end
+
+      it 'Twitterリンクが正常なフォーマットである場合、保存できる' do
+        user.twitter_link = 'https://www.test.com/'
+        user.valid?
+        expect(user).to be_valid
+      end
+
+      it 'GitHubリンクが正常なフォーマットである場合、保存できる' do
+        user.github_link = 'https://www.test.com/'
+        user.valid?
+        expect(user).to be_valid
+      end
+    end
+
+    context '保存できない場合' do
+      it '自己紹介文が501字以上の場合、保存できない' do
+        user.profile = 'a' * 501
+        user.valid?
+        expect(user.errors[:profile]).to include('は500文字以内で入力してください')
+      end
+
+      it 'Twitterリンクが正常なフォーマットでない場合、保存できない' do
+        user.twitter_link = 'a'
+        user.valid?
+        expect(user.errors[:twitter_link]).to include('は不正な値です')
+      end
+
+      it 'GitHubリンクが正常なフォーマットでない場合、保存できない' do
+        user.github_link = 'a'
+        user.valid?
+        expect(user.errors[:github_link]).to include('は不正な値です')
+      end
+    end
+  end
+
 
   describe '各モデルとのアソシエーション' do
     let(:association) do
