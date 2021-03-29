@@ -24,6 +24,20 @@
       <%= f.file_field :image, class: "form-control" %>
     </div>
 
+    <div class="post-edit-image">
+      <% if @post.image? %>
+        <%= image_tag @post.image.url %>
+        <div class="form-group">
+          <%= f.check_box :remove_image %>
+          <%= f.label :現在の画像を削除する %>
+        </div>
+      <% else %>
+        <%= image_tag asset_path("default_post.jpg") %>
+      <% end %>
+    </div>
+
+    <div>
+
     <div class="form-group">
       <%= f.label :開発期間 %>
       <%= f.text_field :period, class: "form-control" %>

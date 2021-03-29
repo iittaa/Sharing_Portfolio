@@ -480,6 +480,21 @@ footer{
 
 
 // --------  ユーザー編集  -----------------------------------------------
+.user-edit-image{
+  display: flex;
+  img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+  }
+  .form-group{
+    margin: auto 10px;
+  }
+}
+
+
 .delete-user{
   width: 40%;
   margin: 5px auto;
@@ -1020,6 +1035,22 @@ footer{
 
     }
  }
+
+
+// --------  投稿編集  ---------------------------------------------------
+.post-edit-image{
+  display: flex;
+  margin-bottom: 20px;
+  img{
+    border: 1px solid #ddd;
+    width: 35%;
+    height: 150px;
+    object-fit: cover;
+  }
+  .form-group{
+    margin: auto 10px;
+  }
+}
 
 
 // --------  タグ  -------------------------------------------------------

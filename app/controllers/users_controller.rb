@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def edit
+    @user = User.find_by(id: params[:id])
+  end
+
   def show
     @user = User.find_by(id: params[:id])
     @posts = @user.posts
