@@ -28,20 +28,17 @@
       <%= f.text_field :github_link, autocomplete: "off", class: "form-control", placeholder:"GitHubリンクを入力してください。" %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :プロフィール画像 %>
-      <%= f.file_field :user_image, class: "form-control", placeholder:"プロフィール画像を選択してください。" %>
-    </div>
-    
-    <div class="user-edit-image">
+    <div class="form-group user-edit-image">
+      <%= f.label :user_image %>
+      <%= f.file_field :user_image, class:"img-field", style: "display:none;" %>  
       <% if @user.user_image? %>
-        <%= image_tag @user.user_image.url %>
+        <%= image_tag @user.user_image.url, class:"img-prev", onClick: "$('.img-field').click()" %>
         <div class="form-group">
           <%= f.check_box :remove_user_image %>
-          <%= f.label :現在の画像を削除する %>
+          <%= f.label :画像を削除する %>
         </div>
       <% else %>
-        <%= image_tag asset_path("default_user.png") %>
+        <%= image_tag asset_path("default_user.png"), class:"img-prev", onClick: "$('.img-field').click()" %>
       <% end %>
     </div>
 

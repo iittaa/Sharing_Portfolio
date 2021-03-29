@@ -103,6 +103,21 @@ $(document).on('turbolinks:load', function() {
   });
 
 
+// 画像プレビュー機能
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function (e) {
+        $('.img-prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+// フォームにてユーザー操作によって値が変更された時イベント発火
+  $('.img-field').on("change", function(){
+    readURL(this);
+  });
 
 
 });

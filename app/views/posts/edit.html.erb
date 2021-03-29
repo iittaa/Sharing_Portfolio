@@ -5,38 +5,33 @@
     <%= render "shared/error_messages", model: f.object %>
 
     <div class="form-group">
-      <%= f.label :サービス名 %>
+      <%= f.label :name %>
       <%= f.text_field :name, class: "form-control", placeholder:"サービス名を入力してください。(50字以内)", autocomplete:"off" %>
     </div>
     
     <div class="form-group">
-      <%= f.label :サービス概要 %>
+      <%= f.label :content %>
       <%= f.text_area :content, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :リンク %>
+      <%= f.label :url %>
       <%= f.text_field :url, class: "form-control" %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :サムネイル画像 %>
-      <%= f.file_field :image, class: "form-control" %>
-    </div>
-
-    <div class="post-edit-image">
+    <div class="form-group post-new-image">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: "img-field", style: "display:none;" %>
       <% if @post.image? %>
-        <%= image_tag @post.image.url %>
+        <%= image_tag @post.image.url, class:"img-prev", onClick: "$('.img-field').click()" %>
         <div class="form-group">
           <%= f.check_box :remove_image %>
-          <%= f.label :現在の画像を削除する %>
+          <%= f.label :画像を削除する %>
         </div>
       <% else %>
-        <%= image_tag asset_path("default_post.jpg") %>
+        <%= image_tag asset_path("default_post.jpg"), class:"img-prev", onClick: "$('.img-field').click()" %>
       <% end %>
     </div>
-
-    <div>
 
     <div class="form-group">
       <%= f.label :開発期間 %>
