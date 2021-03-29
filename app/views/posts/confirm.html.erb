@@ -1,0 +1,95 @@
+<div class="sub1 flame form-horizontal">
+
+  <ul class="pankuzu">
+    <li>１. 入力</li>
+    <li class="active">２. 確認</li>
+    <li>３. 完了</li>
+  </ul>
+
+  <div class="new-confirm-box">
+    <div class="new-confirm-title">サービス名</div>
+    <div class="new-confirm-content">
+      <%= @post.name %>
+    </div>
+  </div>
+
+  <div class="new-confirm-box">
+    <div class="new-confirm-title">サービス概要</div>
+    <div class="new-confirm-content">
+      <%= simple_format(@post.content) %>
+    </div>
+  </div>
+
+  <div class="new-confirm-box">
+    <div class="new-confirm-title">サムネイル画像</div>
+    <div class="new-confirm-image">
+      <% if @post.image? %>
+        <%= image_tag @post.image.url %>
+      <% else %>
+        <%= image_tag asset_path("default_post.jpg") %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="new-confirm-box">
+    <div class="new-confirm-title">サービスのリンク</div>
+    <div class="new-confirm-content">
+      <%= @post.url %>
+    </div>
+  </div>
+
+  <div class="new-confirm-box">
+    <div class="new-confirm-title">作成期間</div>
+    <div class="new-confirm-content">
+      <%= @post.period %>
+    </div>
+  </div>
+
+  <div class="new-confirm-box">
+    <div class="new-confirm-title">アピールポイント</div>
+    <div class="new-confirm-content">
+      <%= simple_format(@post.point) %>
+    </div>
+  </div>
+
+  <div class="new-confirm-box">
+    <div class="new-confirm-title">タグ</div>
+    <div class="new-confirm-content">
+      <%= @post.tag_list %>
+    </div>
+  </div>
+
+
+  <%= form_with(model: @post, local: true, url: new_post_path) do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :content %>
+    <% if @post.image? %>
+      <%= f.hidden_field :image %>
+      <%= f.hidden_field :image_cache %>
+    <% end %>
+    <%= f.hidden_field :url %>
+    <%= f.hidden_field :period %>
+    <%= f.hidden_field :point %>
+    <%= f.hidden_field :tag_list, value: @post.tag_list.join(',') %>
+
+    <div class="btn-container">
+      <%= f.submit "入力画面に戻る", class:"btn-sub devise-btn" %>
+    </div>
+  <% end %>
+
+  <%= form_with(model: @post, local: true, url: posts_path) do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :content %>
+    <% if @post.image? %>
+      <%= f.hidden_field :image %>
+    <% end %>
+    <%= f.hidden_field :url %>
+    <%= f.hidden_field :period %>
+    <%= f.hidden_field :point %>
+    <%= f.hidden_field :tag_list, value: @post.tag_list.join(',') %>
+
+    <div class="btn-container">
+      <%= f.submit "投稿する", class:"btn-base devise-btn" %>
+    </div>
+  <% end %>
+</div>

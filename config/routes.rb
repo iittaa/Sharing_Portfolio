@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     collection do
       get :like_posts
       get :follow_posts
+      post :new, path: :new, as: :new, action: :back
+      post :confirm
     end
     resources :comments, only: %i[create destroy]
   end

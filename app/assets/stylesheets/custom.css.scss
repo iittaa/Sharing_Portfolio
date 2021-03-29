@@ -38,6 +38,20 @@
   text-align: center;
 }
 
+.btn-sub{
+  color: #5472cd;
+  border: 1px solid #5472cd;
+  background-color: #fff;
+  font-weight: 700;
+}
+
+.btn-sub:hover{
+  color: #0e35ac;
+  border: 1px solid #0e35ac;
+  background-color: #d7e0f7;
+  transition: 0.5s;
+}
+
 
 .total{
   display: none;
@@ -700,6 +714,56 @@ footer{
   color: red;
   font-weight: 700;
 }
+
+.pankuzu{
+  display: flex;
+  width: 100%;
+  margin: 10px auto;
+  font-size: 1.5em;
+  li{
+    width: 33%;
+    text-align: center;
+    border-bottom: 3px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .active{
+    border-bottom: 3px solid #5472cd;
+    color: #5472cd;
+    font-weight: 700;
+  }
+}
+
+
+// --------  投稿確認  ---------------------------------------------------
+.new-confirm-box{
+  display: flex;
+  // margin: 50px 0;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  .new-confirm-title{
+    font-weight: 700;
+    margin: auto 0;
+    padding-right: 15px;
+    text-align: right;
+    width: 25%;
+    font-size: 1.1em;
+  }
+  .new-confirm-content{
+    width: 75%;
+  }
+}
+
+
+.new-confirm-image{
+  img{
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+  }
+}
+
 
 
 // --------  投稿一覧  ---------------------------------------------------
