@@ -150,6 +150,13 @@ h4{
 }
 
 
+.img-prev:hover{
+  cursor: pointer; 
+  opacity: 0.7;
+  transform: scale(1.01, 1.01);
+}
+
+
 
 // --------  ヘッダー  ---------------------------------------------------
 header{
@@ -495,8 +502,8 @@ footer{
 
 // --------  ユーザー編集  -----------------------------------------------
 .user-edit-image{
-  display: flex;
   img{
+    display: block;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -734,6 +741,16 @@ footer{
   }
 }
 
+.post-new-image{
+  img{
+    display: block;
+    border: 1px solid #ddd;
+    width: 35%;
+    height: 150px;
+    object-fit: cover;
+  }
+}
+
 
 // --------  投稿確認  ---------------------------------------------------
 .new-confirm-box{
@@ -792,6 +809,11 @@ footer{
        height: 230px;
        object-fit: cover;
        border: 1px solid #ddd;
+      }
+      img:hover{
+        cursor: pointer; 
+        opacity: 0.7;
+        transition: 0.5s;
       }
     }
     .item-time{
@@ -1099,22 +1121,6 @@ footer{
 
     }
  }
-
-
-// --------  投稿編集  ---------------------------------------------------
-.post-edit-image{
-  display: flex;
-  margin-bottom: 20px;
-  img{
-    border: 1px solid #ddd;
-    width: 35%;
-    height: 150px;
-    object-fit: cover;
-  }
-  .form-group{
-    margin: auto 10px;
-  }
-}
 
 
 // --------  タグ  -------------------------------------------------------
