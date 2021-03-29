@@ -32,6 +32,18 @@
       <%= f.label :プロフィール画像 %>
       <%= f.file_field :user_image, class: "form-control", placeholder:"プロフィール画像を選択してください。" %>
     </div>
+    
+    <div class="user-edit-image">
+      <% if @user.user_image? %>
+        <%= image_tag @user.user_image.url %>
+        <div class="form-group">
+          <%= f.check_box :remove_user_image %>
+          <%= f.label :現在の画像を削除する %>
+        </div>
+      <% else %>
+        <%= image_tag asset_path("default_user.png") %>
+      <% end %>
+    </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

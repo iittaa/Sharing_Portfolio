@@ -79,7 +79,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :content, :image, :url, :period, :point, :tag_list)
+    params.require(:post).permit(:name, :content, :image, :url, :period, :point, :tag_list, :remove_image)
   end
 
   # 正しいユーザーかどうか確認する
