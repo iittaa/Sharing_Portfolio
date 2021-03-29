@@ -8,9 +8,20 @@ class PostsController < ApplicationController
     @tags = @post.tag_counts_on(:tags)
   end
 
+  def confirm
+    @post = current_user.posts.build(post_params)
+    if @post.invalid?
+      render 'new'
+    end
+  end
+
+  def back
+    @post = current_user.posts.build(post_params)
+    render 'new'
+  end
+
   def create
     @post = current_user.posts.build(post_params)
-
     if @post.save
       flash[:success] = 'ポートフォリオを公開しました！ありがとう！'
       redirect_to posts_url
@@ -79,7 +90,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :content, :image, :url, :period, :point, :tag_list, :remove_image)
+    params.require(:post).permit(:name, :content, :image, :url, :period, :point, :tag_list, :remove_image, :image_cache)
   end
 
   # 正しいユーザーかどうか確認する
