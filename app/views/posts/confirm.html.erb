@@ -64,7 +64,6 @@
     <%= f.hidden_field :name %>
     <%= f.hidden_field :content %>
     <% if @post.image? %>
-      <%= f.hidden_field :image %>
       <%= f.hidden_field :image_cache %>
     <% end %>
     <%= f.hidden_field :url %>
@@ -81,7 +80,7 @@
     <%= f.hidden_field :name %>
     <%= f.hidden_field :content %>
     <% if @post.image? %>
-      <%= f.hidden_field :image %>
+      <%= f.hidden_field :image_cache %>
     <% end %>
     <%= f.hidden_field :url %>
     <%= f.hidden_field :period %>
