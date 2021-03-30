@@ -1,8 +1,8 @@
-# User.create!(
-#   name: 'administrator',
-#   email: 'admin@example.com',
-#   password: 'admin1234',
-#   password_confirmation: 'admin1234',
-#   password_digest: User.digest('admin1234'),
-#   admin: true
-# )
+User.create!(
+  name: 'administrator',
+  email: 'admin@example.com',
+  password: ENV['ADMIN_PASS'],
+  password_confirmation: ENV['ADMIN_PASS'],
+  user_image: File.open('./app/assets/images/admin_image.png'),
+  admin: true
+)

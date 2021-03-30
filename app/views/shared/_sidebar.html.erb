@@ -4,45 +4,35 @@
   </div>
   <div class="ham-content">
     <% if user_signed_in? %>
+      <div class="ham-item">
+        <%= link_to "ホーム", root_path %>
+      </div>
+      <div class="ham-item">
+        <%= link_to "マイページ", user_path(current_user) %>
+      </div>
+      <div class="ham-item">
+        <%= link_to "投稿する", new_post_path, class:"nav-link" %>
+      </div>
+      <div class="ham-item">
+        <%= link_to "作品一覧", posts_path %>
+      </div>
+      <div class="ham-item">
+        <%= link_to "プロフィール編集", edit_user_registration_path %>
+      </div>
+      <div class="ham-item">
+        <%= link_to "利用規約", term_users_path %>
+      </div>
+      <div class="ham-item">
+        <%= link_to "お問い合わせ", new_contact_path %>
+      </div>
       <% if current_user.admin? %>
         <div class="ham-item">
-          <%= link_to "ユーザー管理", admin_users_path %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "作品管理", admin_posts_path %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "ログアウト", session_path(current_user), method: :delete %>
-        </div>
-      <% else %>
-        <div class="ham-item">
-          <%= link_to "ホーム", root_path %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "マイページ", user_path(current_user) %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "投稿する", new_post_path, class:"nav-link" %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "作品一覧", posts_path %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "プロフィール編集", edit_user_registration_path %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "利用規約", term_users_path %>
-        </div>
-        <div class="ham-item">
-          <%= link_to "お問い合わせ", new_contact_path %>
-        </div>
-        <div class="ham-item">
-        <%= link_to "ログアウト", destroy_user_session_path , method: :delete %>
-        </div>
-        <div class="ham-item">
-        <%= current_user.name %>
+          <%= link_to "ユーザー管理", users_path %>
         </div>
       <% end %>
+      <div class="ham-item">
+        <%= link_to "ログアウト", destroy_user_session_path , method: :delete %>
+      </div>
     <% else %>
       <div class="ham-item">
         <%= link_to "ログイン", new_user_session_path %>

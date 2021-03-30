@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
   # 正しいユーザーかどうか確認する
   def correct_user
     @comment = Comment.find_by(id: params[:id])
-    unless @comment.user_id == current_user.id
+    unless @comment.user_id == current_user.id || current_user.admin?
       redirect_to root_url
       flash[:danger] = '自分のコメント以外は変更することができません'
     end
