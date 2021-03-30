@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[show index update edit destroy]
-  # before_action :correct_user, only: %i[edit update destroy]
-  before_action :admin_user, only: [:index, :edit, :destroy, :update]
+  before_action :correct_user, only: %i[destroy]
+  before_action :admin_user, only: [:index, :edit, :update]
   before_action :check_guest, only: %i[edit update destroy]
 
   def home
@@ -112,13 +112,13 @@ class UsersController < ApplicationController
   private
 
   # 正しいユーザーかどうか確認する
-  # def correct_user
-  #   @user = User.find_by(id: params[:id])
-  #   unless @user && @user == current_user || current_user.admin?
-  #     redirect_to root_url
-  #     flash[:warning] = '自分のユーザー情報以外は変更することができません'
-  #   end
-  # end
+  def correct_user
+    @user = User.find_by(id: params[:id])
+    unless @user && @user == current_user || current_user.admin?
+      redirect_to root_url
+      flash[:warning] = '自分のユーザー情報以外は変更することができません'
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :user_image, :profile, :twitter_link, :github_link, :remove_user_image)
