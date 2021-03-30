@@ -20,10 +20,10 @@ Rails.application.routes.draw do
       get :term
     end
   end
-  namespace :admin do
-    resources :users, only: %i[index show destroy]
-    resources :posts, only: %i[index show edit update destroy]
-  end
+  # namespace :admin do
+  #   resources :users, only: %i[index show destroy]
+  #   resources :posts, only: %i[index show edit update destroy]
+  # end
   resources :posts do
     collection do
       get :like_posts

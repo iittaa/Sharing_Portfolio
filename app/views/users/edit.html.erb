@@ -1,5 +1,5 @@
-<h1>プロフィール編集</h1>
-<div class="sub flame">
+<h1>プロフィール編集(管理者用)</h1>
+<div class="sub1 flame">
   <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
 
@@ -17,41 +17,44 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :password %>
-      <% if @user.uid.nil? %>
-        <span class="must"> (必須)</span>
-      <% end %>
-      <%= f.text_field :password, class: "form-control", placeholder:"パスワードを入力してください。(6字以上)", type:"password" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <% if @user.uid.nil? %>
-        <span class="must"> (必須)</span>
-      <% end %>
-      <%= f.text_field :password_confirmation, class: "form-control", placeholder:"確認用のパスワードを入力してください。", type:"password" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :Twitterリンク %>
+      <%= f.label :twitter_link %>
       <%= f.text_field :twitter_link, class: "form-control", placeholder:"TwitterアカウントのURLを入力してください。", autocomplete:"off" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :GitHubリンク %>
+      <%= f.label :github_link %>
       <%= f.text_field :github_link, class: "form-control", placeholder:"GitHubアカウントのURLを入力してください。", autocomplete:"off" %>
     </div>
 
-    <div class="form-group">
+    <div class="form-group user-edit-image">
       <%= f.label :user_image %>
-      <%= f.file_field :user_image, class: "form-control" %>
+      <%= f.file_field :user_image, class:"img-field", style: "display:none;" %>  
+      <% if @user.user_image? %>
+        <%= image_tag @user.user_image.url, class:"img-prev", onClick: "$('.img-field').click()" %>
+        <div class="form-group">
+          <%= f.check_box :remove_user_image %>
+          <%= f.label :画像を削除する %>
+        </div>
+      <% else %>
+        <%= image_tag asset_path("default_user.png"), class:"img-prev", onClick: "$('.img-field').click()" %>
+      <% end %>
     </div>
 
     <div class="form-group">
-      <%= f.label :自己紹介 %>
+      <%= f.label :profile %>
       <%= f.text_area :profile, class: "form-control", placeholder:"自己紹介文を入力してください。(500字以内)", autocomplete:"off" %>
     </div>
-    <%= f.submit "保存", class:"btn btn-primary btn-block" %>
+    <div class="btn-container">
+      <%= f.submit "保存する", class:"btn-base devise-btn" %>
+    </div>
   <% end %>
-  
-<%= link_to "アカウントを削除する", user_path(@user), method: :delete, data:{confirm:"アカウントを削除した場合、全てのデータが失われます。本当に削除しますか？"} %>
+  <div class="sub">
+    <div class="delete-user">
+      <%= link_to "アカウントを削除", user_path(@user), data: { confirm: "本当に削除しますか？" }, method: :delete, class:"expect" %>
+    </div>
+    <div class="back">
+      <%= link_to :back do %>
+        <i class="fas fa-undo"></i> 戻る
+      <% end %>
+    </div>
+  </div>

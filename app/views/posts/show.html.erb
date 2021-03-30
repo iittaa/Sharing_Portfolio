@@ -36,7 +36,7 @@
         <div class="post-show-time">
           <%= @post.created_at.to_s(:datetime_jp) %>
         </div>
-        <% if @post.user == current_user %>
+        <% if @post.user == current_user || current_user.admin? %>
           <div class="post-show-edit">
               <%= link_to "編集", edit_post_path(@post), class:"btn-base post-edit-btn" %>
               <%= link_to "削除", post_path(@post), method: :delete, data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"}, class:"btn-base post-edit-btn expect" %>

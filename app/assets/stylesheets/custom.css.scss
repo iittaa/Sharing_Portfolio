@@ -551,6 +551,14 @@ footer{
   }
 }
 
+.user-admin-edit{
+  margin: auto 0;
+  margin-left: 50px;
+  a{
+    padding: 2px;
+  }
+}
+
 
 // --------  ユーザー詳細  -----------------------------------------------
 .user-show-container{
@@ -720,6 +728,7 @@ footer{
 .must{
   color: red;
   font-weight: 700;
+  display: inline;
 }
 
 .pankuzu{
@@ -1088,16 +1097,16 @@ footer{
      height: 140px;
    }
    .side-post-image{
-     width: 45%;
+     width: 50%;
      img{
       border: 1px solid #ddd;
       width: 100%;
-      height: 140px;
+      height: 130px;
       object-fit: cover;
      }
     }
     .side-post-info{
-      width: 50%;
+      width: 45%;
       margin: 10px auto;
       .side-post-name{
         font-weight: 700;
@@ -1115,7 +1124,7 @@ footer{
           margin-right: 5px;
         }
         .side-post-time{
-          margin-left: 20%;
+          margin-left: 15%;
         }
       }
 

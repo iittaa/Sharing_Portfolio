@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[show index update edit destroy]
-  before_action :correct_user, only: %i[edit update destroy]
-  before_action :admin_user, only: [:index]
+  # before_action :correct_user, only: %i[edit update destroy]
+  before_action :admin_user, only: [:index, :edit, :destroy, :update]
   before_action :check_guest, only: %i[edit update destroy]
 
   def home
@@ -15,6 +15,16 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "ユーザー情報を編集しました!"
+      redirect_to user_url(@user)
+    else
+      render "edit"
+    end
   end
 
   def show
@@ -69,21 +79,6 @@ class UsersController < ApplicationController
   #   end
   # end
 
-  # def edit
-  #   @user = User.find_by(id: params[:id])
-  # end
-
-  # def update
-  #   @user = User.find(params[:id])
-  #     if @user.update(user_params)
-  #       hash(@user)
-  #       flash[:success] = "ユーザー情報を編集しました!"
-  #       redirect_to user_url(@user)
-  #     else
-  #       render "edit"
-  #     end
-  # end
-
   # def twitter_create
   #   auth = request.env['omniauth.auth']
   #   @user = User.find_by(
@@ -117,15 +112,15 @@ class UsersController < ApplicationController
   private
 
   # 正しいユーザーかどうか確認する
-  def correct_user
-    @user = User.find_by(id: params[:id])
-    unless @user && @user == current_user
-      redirect_to root_url
-      flash[:warning] = '自分のユーザー情報以外は変更することができません'
-    end
-  end
-
-  # def user_params
-  #   params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_image, :profile, :twitter_link, :github_link)
+  # def correct_user
+  #   @user = User.find_by(id: params[:id])
+  #   unless @user && @user == current_user || current_user.admin?
+  #     redirect_to root_url
+  #     flash[:warning] = '自分のユーザー情報以外は変更することができません'
+  #   end
   # end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :user_image, :profile, :twitter_link, :github_link, :remove_user_image)
+  end
 end
