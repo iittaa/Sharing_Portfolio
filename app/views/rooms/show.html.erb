@@ -1,0 +1,75 @@
+<div class="sub flame">
+  <% @entries.each do |e| %>
+    <% if e.user.id != current_user.id %>
+      <div class="chat-show-head">
+        <div class="chat-show-image">
+          <% if e.user.user_image? %>
+            <%= image_tag e.user.user_image.url %>
+          <% else %>
+            <%= image_tag asset_path("default_user.png") %>
+          <% end %>
+        </div>
+        <div><%= link_to e.user.name, user_path(e.user) %></div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <hr>
+
+  <div class="chat-show-container">
+    <div class="chat-show-content">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <% if current_user == m.user %>
+            <div class="chat-show-right">
+              <div class="chat-show-msg">
+                <%= m.message %>
+              </div>
+            </div>
+            <div class="chat-show-right">
+              <div class="chat-show-time">
+                <%= m.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </div>
+            </div>
+          <% else %>
+            <div class="chat-show-left">
+              <div class="chat-show-face">
+                <% if m.user.user_image? %>
+                  <%= link_to user_path(m.user) do %>
+                    <%= image_tag m.user.user_image.url %>
+                  <% end %>
+                <% else %>
+                  <%= link_to user_path(m.user) do %>
+                    <%= image_tag asset_path("default_user.png") %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="chat-show-msg">
+                <%= m.message %>
+              </div>
+            </div>
+            <div class="chat-show-left">
+              <div class="chat-show-time">
+                <%= m.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+
+    <div class="chat-form-container">
+      <div class="chat-form-box">
+        <%= form_with(model: @message, class:"form-inline")  do |f| %>
+          <%= f.text_field :message, placeholder: "メッセージを入力" , size: 70, class:"form-control input-lg", autocomplete:"off" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= button_tag type:"submit", class:"btn btn-base" do %>
+            <i class="fas fa-reply"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    
+  </div>
+</div>

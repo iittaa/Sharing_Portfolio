@@ -32,6 +32,25 @@ class UsersController < ApplicationController
     @posts = @user.posts
     @stocks = Stock.where(user_id: @user.id).page(params[:page]).per(10)
     @likes = Like.where(user_id: @user.id).page(params[:page]).per(10)
+
+    @current_user_entry = Entry.where(user_id: current_user.id)
+    @user_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @current_user_entry.each do |cu|
+        @user_entry.each do |u|
+          if cu.room_id == u.room_id then
+            @is_room = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      unless @is_room
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
+
+
   end
 
   def destroy
@@ -52,14 +71,14 @@ class UsersController < ApplicationController
   def following
     @user  = User.find_by(id: params[:id])
     @word = "フォロー"
-    @users = @user.following
+    @users = @user.following.page(params[:page]).per(15)
     render 'show_follow'
   end
 
   def followers
     @user  = User.find_by(id: params[:id])
     @word = "フォロワー"
-    @users = @user.followers
+    @users = @user.followers.page(params[:page]).per(15)
     render 'show_follow'
   end
 

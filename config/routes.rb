@@ -20,10 +20,7 @@ Rails.application.routes.draw do
       get :term
     end
   end
-  # namespace :admin do
-  #   resources :users, only: %i[index show destroy]
-  #   resources :posts, only: %i[index show edit update destroy]
-  # end
+
   resources :posts do
     collection do
       get :like_posts
@@ -36,7 +33,14 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :contacts, only: %i[new create]
   resources :relationships, only: %i[create destroy]
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show, :index]
 
+
+  # namespace :admin do
+  #   resources :users, only: %i[index show destroy]
+  #   resources :posts, only: %i[index show edit update destroy]
+  # end
   
   # resources :tags, only: %i[show index]
   # get "auth/:provider/callback", to: "users#twitter_create"

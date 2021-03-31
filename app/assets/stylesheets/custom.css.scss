@@ -177,7 +177,12 @@ header{
     text-decoration: none;
     user-select: none;
   }
+  a:hover{
+    opacity: 0.7;
+    transition: 0.5s;
+  }
 }
+
 
 .header-icon{
   display: flex;
@@ -192,6 +197,7 @@ header{
     user-select: none;
     .fa-search{
       padding-left: 5px;
+      color: #fff;
     }
   }
   div{
@@ -202,6 +208,12 @@ header{
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+    }
+    .fa-comment:hover,
+    .fa-bell:hover,
+    img:hover{
+      opacity: 0.7;
+      transition: 0.5s;
     }
   }
 }
@@ -683,44 +695,8 @@ footer{
 
 
 // --------  フォロー一覧  -----------------------------------------------
-.rela-container{
-  hr{
-    border: 1px solid #eee;
-    margin: 0;
-  }
-  ul{
-    color: #000;
-    display: flex;
-    // border-top: 1px solid #ddd;
-    .rela-image{
-      margin: auto 0;
-      img{
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
-      }
-    } 
-    .rela-username{
-      margin: auto 0;
-      width: 100%;
-      font-size: 1.3em;
-      a{
-        text-decoration: none;
-        width: 100%;
-        padding: 30px 0;
-        padding-left: 30px;
-        display: block;
-        color: #000;
-      }
-      a:hover{
-        text-decoration: none;
-        color: #0000ee;
-        transition: 0.5s;
-      }
-    }
-  }
+.rela-name{
+  line-height: 60px;
 }
 
 
@@ -1312,3 +1288,124 @@ footer{
   margin: 10px auto;
   cursor: pointer;
 }
+
+
+// --------  チャット画面  -----------------------------------------------
+.chat-show-head{
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  padding: 20px 0;
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+  a:hover{
+    color: #0000ee;
+    transition: 0.5s;
+  }
+  .chat-show-image{
+    img{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+.chat-show-content{
+  img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+  }
+
+  img:hover{
+    opacity: 0.7;
+    transition: 0.5s;
+  }
+
+  .chat-show-msg{
+    background-color: #ddd;
+    max-width: 40%;
+    display: inline-block;
+    font-size: 13px;
+    padding: 10px 10px;
+    border-radius: 30px;
+    margin-left: 15px;
+  }
+
+  .chat-show-right{
+    display: flex;
+    justify-content: flex-end;
+    .chat-show-msg{
+      margin: 0;
+    }
+  }
+
+  .chat-show-left{
+    display: flex;
+  }
+  
+  .chat-show-time{
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+}
+
+.chat-form-container{
+  width: 100%;
+  margin-top: 20px;
+  .chat-form-box{
+    text-align: center;
+  }
+}
+
+
+// --------  ルーム一覧  -------------------------------------------------
+.user-index-container{
+  a{
+    color: #000;
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  ul{
+    display: flex;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  ul:hover{
+    background-color: #ddd;
+    transition: 0.5s;
+  }
+
+  img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+  }
+
+  .user-index-content{
+    margin-left: 15px;
+    width: 70%;
+    .user-index-name{
+      font-size: 1.3em;
+    }
+    .user-index-msg{
+      margin-top: 5px;
+      color: grey;
+      font-size: 0.9em;
+    }
+  }
+
+}
+

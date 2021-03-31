@@ -29,6 +29,18 @@
           <% end %>
         </div>
       <% end %>
+      <% unless @user.id == current_user.id %>
+        <% if @is_room == true %>
+          <p class="user-show-room"><%= link_to "メッセージを送る", room_path(@roomId), class:"btn-base" %>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+          <%= f.submit "メッセージを送る", class:"btn-base user-show-chat"%>
+          <% end %>
+        <% end %>
+      <% end %>
       <% if current_user.admin? %>
         <div class="user-admin-edit ">
           <%= link_to "管理者権限で編集", edit_user_path, class:"btn-base" %>

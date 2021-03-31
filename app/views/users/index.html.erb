@@ -1,19 +1,20 @@
 <h1>ユーザー管理</h1>
-<div class="sub1 rela-container">
+<div class="sub1 user-index-container">
 <% @users.each do |user| %>
-  <ul>
-    <li class="rela-image">
-      <% if user.user_image? %>
-        <%= image_tag user.user_image.url %>
-      <% else %>
-        <%= image_tag asset_path("default_user.png") %>
-      <% end %>
-    </li>
-    <li class="rela-username">
-      <%= link_to user.name, user_path(user) %>
-    </li>
-  </ul>
-  <hr>
+  <%= link_to user_path(user) do %>
+    <ul>
+      <li class="user-index-image">
+        <% if user.user_image? %>
+          <%= image_tag user.user_image.url %>
+        <% else %>
+          <%= image_tag asset_path("default_user.png") %>
+        <% end %>
+      </li>
+      <li class="user-index-content rela-name">
+        <%= user.name %>
+      </li>
+    </ul>
+  <% end %>
 <% end %>
 </div> 
 <%= paginate @users %>
