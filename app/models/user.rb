@@ -63,9 +63,9 @@ class User < ApplicationRecord
 
   # SNS認証での新規登録またはログイン
   def self.find_for_oauth(auth)
-    user = User.find_by(uid: auth.uid, provider: auth.provider)
+    User.find_by(uid: auth.uid, provider: auth.provider)
 
-    user ||= User.create!(
+    User.create!(
       uid: auth.uid,
       provider: auth.provider,
       name: auth[:info][:name],

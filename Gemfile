@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+gem 'mysql2'
+
 # gem "bcrypt","3.1.13"
 
 gem 'acts-as-taggable-on', '~> 6.0'
@@ -60,7 +62,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   # gem 'sqlite3', '~> 1.4'
-  gem 'mysql2'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'bcrypt_pbkdf'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -95,7 +96,6 @@ group :test do
 end
 
 group :production do
-  gem 'mysql2'
 end
 
 group :production, :staging do
