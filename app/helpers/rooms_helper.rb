@@ -4,8 +4,26 @@ module RoomsHelper
     entry[0].user
   end
 
+  # 最新メッセージの内容を取得する
   def get_new_msg(room)
-    last_message = room.messages.order(created_at: :desc).limit(1)
-    last_message[0]
+    @message = room.messages.order(updated_at: :desc).limit(1)
+    @message = @message[0]
+    if @message.present?
+      tag.div "#{@message.message.truncate(30)}"
+    else
+      tag.div "まだメッセージはありません"
+    end
   end
+
+  # 最新メッセージの時間を取得する
+  def get_new_msg_time(room)
+    @message = room.messages.order(updated_at: :desc).limit(1)
+    @message = @message[0]
+    if @message.present?
+      tag.div "#{@message.created_at.strftime("%Y/%m/%d %H:%M")}"
+    else
+      tag.div ""
+    end
+  end
+  
 end

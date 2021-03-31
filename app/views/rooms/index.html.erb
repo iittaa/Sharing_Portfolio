@@ -12,18 +12,15 @@
           <% end %>
         </li>
         <li class="user-index-content">
-        <div class="user-index-name">
-          <%= user.name.truncate(30) %>
-        </div>
-        <div class="user-index-msg">
-          <% message = get_new_msg(room) %>
-          <% if message.present? %>
-            <%= message.message.truncate(30) %>
-          <% end %>
-        </div>
+          <div class="user-index-name">
+            <%= user.name.truncate(30) %>
+          </div>
+          <div class="user-index-msg">
+            <%= get_new_msg(room) %>
+          </div>
         </li>
         <li class="user-index-time">
-          <%= message.created_at.strftime("%Y/%m/%d %H:%M") %>
+          <%= get_new_msg_time(room) %>
         </li>
       </ul>
     <% end %>
