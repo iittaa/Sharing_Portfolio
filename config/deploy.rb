@@ -1,18 +1,16 @@
 # production環境、stading環境どちらにも当てはまる設定を記述
 
-
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock '~> 3.16.0'
 
 # デプロイするアプリケーション名
-set :application, "Shairng_Portfolio"
+set :application, 'Shairng_Portfolio'
 
 # cloneするgitのレポジトリ
-set :repo_url, "git@github.com:iittaa/Sharing_Portfolio.git"
+set :repo_url, 'git@github.com:iittaa/Sharing_Portfolio.git'
 
 # deployするブランチ。デフォルトはmasterなのでなくても可。
 set :branch, 'master'
-
 
 # シンボリックリンク = ファイルやディレクトリの別名
 # シンボリックリンクをはるファイル
@@ -30,12 +28,11 @@ set :log_level, :debug
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'], keys: ['~/.ssh/SharingPortfolio.pem']
 
-# deploy先のディレクトリ。 
+# deploy先のディレクトリ。
 set :deploy_to, '/var/www/rails/Sharing_Portfolio'
 
 # 保持するバージョンの個数
 set :keep_releases, 5
-
 
 # 追加のタスクを記載
 namespace :deploy do
@@ -46,7 +43,7 @@ namespace :deploy do
 
   desc 'Create database'
   task :db_create do
-    on roles(:db) do |host|
+    on roles(:db) do |_host|
       with rails_env: fetch(:rails_env) do
         within current_path do
           execute :bundle, :exec, :rake, 'db:create'
@@ -74,7 +71,6 @@ namespace :deploy do
   end
 end
 
-
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -99,8 +95,6 @@ end
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
-
-
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure

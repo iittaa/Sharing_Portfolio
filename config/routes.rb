@@ -34,14 +34,13 @@ Rails.application.routes.draw do
   resources :contacts, only: %i[new create]
   resources :relationships, only: %i[create destroy]
   resources :messages, only: [:create]
-  resources :rooms, only: [:create, :show, :index]
-
+  resources :rooms, only: %i[create show index]
 
   # namespace :admin do
   #   resources :users, only: %i[index show destroy]
   #   resources :posts, only: %i[index show edit update destroy]
   # end
-  
+
   # resources :tags, only: %i[show index]
   # get "auth/:provider/callback", to: "users#twitter_create"
   # resources :sessions, only:[:new, :create, :destroy]

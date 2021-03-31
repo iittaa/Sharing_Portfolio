@@ -31,11 +31,11 @@ class UserImageUploader < CarrierWave::Uploader::Base
 
   # 拡張子の指定
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   def filename
-    original_filename if original_filename
+    original_filename
   end
 
   # デフォルト画像の設定
@@ -54,7 +54,6 @@ class UserImageUploader < CarrierWave::Uploader::Base
   #   # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   # end
 
-  
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:

@@ -9,7 +9,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 
 # deviseログイン
 # gem 'devise'
-gem "devise", git: "https://github.com/heartcombo/devise"
+gem 'devise', git: 'https://github.com/heartcombo/devise'
 
 # Bootstrap用
 gem 'bootstrap-sass', '3.4.1'
@@ -25,9 +25,9 @@ gem 'rails-i18n'
 # 環境変数認識
 gem 'dotenv-rails'
 # gem 'omniauth'
+gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter'
-gem 'omniauth-github'
 
 # 画像投稿用
 gem 'carrierwave'
@@ -62,18 +62,18 @@ group :development, :test do
   # gem 'sqlite3', '~> 1.4'
   gem 'mysql2'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'bcrypt_pbkdf'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'rspec-rails'
-  gem 'rspec_junit_formatter'
   gem 'capistrano'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano3-unicorn'
   gem 'ed25519'
-  gem 'bcrypt_pbkdf'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec_junit_formatter'
+  gem 'rspec-rails'
 end
 
 group :development do

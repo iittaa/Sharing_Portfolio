@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[show index update edit destroy]
   before_action :correct_user, only: %i[destroy]
-  before_action :admin_user, only: [:index, :edit, :update]
+  before_action :admin_user, only: %i[index edit update]
   before_action :check_guest, only: %i[edit update destroy]
 
   def home
@@ -20,10 +20,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = "ユーザー情報を編集しました!"
+      flash[:success] = 'ユーザー情報を編集しました!'
       redirect_to user_url(@user)
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     unless @user.id == current_user.id
       @current_user_entry.each do |cu|
         @user_entry.each do |u|
-          if cu.room_id == u.room_id then
+          if cu.room_id == u.room_id
             @is_room = true
             @roomId = cu.room_id
           end
@@ -49,8 +49,6 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-
-
   end
 
   def destroy
@@ -69,15 +67,15 @@ class UsersController < ApplicationController
   end
 
   def following
-    @user  = User.find_by(id: params[:id])
-    @word = "フォロー"
+    @user = User.find_by(id: params[:id])
+    @word = 'フォロー'
     @users = @user.following.page(params[:page]).per(15)
     render 'show_follow'
   end
 
   def followers
-    @user  = User.find_by(id: params[:id])
-    @word = "フォロワー"
+    @user = User.find_by(id: params[:id])
+    @word = 'フォロワー'
     @users = @user.followers.page(params[:page]).per(15)
     render 'show_follow'
   end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Relationships', type: :request do
-
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
   # let(:rela) { create(:relationship, following_id: user.id, follower_id: other_user.id) }
@@ -16,7 +15,7 @@ RSpec.describe 'Relationships', type: :request do
   end
 
   # describe 'destroy' do
-  #     before { sign_in user }       
+  #     before { sign_in user }
   #   it '正常にフォローの解除ができること' do
   #     expect do
   #       delete relationship_path(id: rela.id), xhr: true

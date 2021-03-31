@@ -90,7 +90,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-
   describe 'ユーザー編集' do
     context '保存できる場合' do
       it '自己紹介が500字以内の場合、保存できる' do
@@ -132,7 +131,6 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
 
   describe '各モデルとのアソシエーション' do
     let(:association) do

@@ -9,7 +9,7 @@ FactoryBot.define do
     password_confirmation   { password }
     profile                 { Faker::Lorem.sentence }
     twitter_link            { Faker::Internet.url }
-    github_link            { Faker::Internet.url }
-    user_image              {Rack::Test::UploadedFile.new(File.join(Rails.root, 'public/images/test.jpg'))}
+    github_link { Faker::Internet.url }
+    user_image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public/images/test.jpg')) }
   end
 end

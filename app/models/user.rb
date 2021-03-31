@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:twitter, :github]
+         :omniauthable, omniauth_providers: %i[twitter github]
 
   # ----- attr_accessorメソッド -------------------------------------------
   # attr_accessor :password, :password_confirmation,:remember_token, :reset_token
@@ -31,10 +31,10 @@ class User < ApplicationRecord
 
   # ----- バリデーション --------------------------------------------------
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_URL_REGEX = /\A#{URI::regexp(%w(http https))}\z/
+  VALID_URL_REGEX = /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
   validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
   validates :github_link, format: { with: VALID_URL_REGEX }, allow_blank: true
-  validates :profile, length: {maximum: 500}
+  validates :profile, length: { maximum: 500 }
 
   # validates :email, presence: true, uniqueness: true
   # VALID_PASS_REGEX = /\A[a-zA-Z0-9]+\z/
@@ -102,7 +102,7 @@ class User < ApplicationRecord
 
   # フォローの通知生成メソッド
   def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and action = ? ', current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
@@ -111,7 +111,6 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
 
   # ----- 不要コード ------------------------------------------------------
 

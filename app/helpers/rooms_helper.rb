@@ -9,9 +9,9 @@ module RoomsHelper
     @message = room.messages.order(updated_at: :desc).limit(1)
     @message = @message[0]
     if @message.present?
-      tag.div "#{@message.message.truncate(30)}"
+      tag.div @message.message.truncate(30).to_s
     else
-      tag.div "まだメッセージはありません"
+      tag.div 'まだメッセージはありません'
     end
   end
 
@@ -20,10 +20,9 @@ module RoomsHelper
     @message = room.messages.order(updated_at: :desc).limit(1)
     @message = @message[0]
     if @message.present?
-      tag.div "#{@message.created_at.strftime("%Y/%m/%d %H:%M")}"
+      tag.div @message.created_at.strftime('%Y/%m/%d %H:%M').to_s
     else
-      tag.div ""
+      tag.div ''
     end
   end
-  
 end

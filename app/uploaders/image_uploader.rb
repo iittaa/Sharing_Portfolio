@@ -17,7 +17,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   else # 本番環境の場合
     storage :fog
   end
-  
 
   # テスト実行後はファイルを削除する
   # rails_helperファイルに処理は記載
@@ -35,11 +34,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 拡張子の指定
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   def filename
-    original_filename if original_filename
+    original_filename
   end
 
   # デフォルト画像の設定
@@ -58,8 +57,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   end
   #   # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   # end
-
-
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

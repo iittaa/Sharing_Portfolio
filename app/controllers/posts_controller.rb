@@ -10,9 +10,7 @@ class PostsController < ApplicationController
 
   def confirm
     @post = current_user.posts.build(post_params)
-    if @post.invalid?
-      render 'new'
-    end
+    render 'new' if @post.invalid?
   end
 
   def back
@@ -48,12 +46,11 @@ class PostsController < ApplicationController
     @posts = Post.all.page(params[:page]).per(9)
     @tags = Post.tag_counts_on(:tags).order('count DESC') # タグ一覧を表示
     @tag_posts = Post.tagged_with(params[:tag]).page(params[:page]).per(9) if @tag = params[:tag]
-    
   end
 
   def like_posts
     # いいね順に投稿を取得
-    @posts = Post.includes(:like_users).sort {|a,b| b.like_users.size <=> a.like_users.size}
+    @posts = Post.includes(:like_users).sort { |a, b| b.like_users.size <=> a.like_users.size }
     @like_posts = Kaminari.paginate_array(@posts).page(params[:page]).per(9)
   end
 

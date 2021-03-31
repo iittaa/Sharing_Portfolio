@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1'
     }
 
-    config.fog_directory  = 'sharing-portfolio-photo'
+    config.fog_directory = 'sharing-portfolio-photo'
     config.cache_storage = :fog
   else
     config.storage = :file
