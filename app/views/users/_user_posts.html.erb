@@ -1,0 +1,40 @@
+<div class="sub">
+  <div class="user-nav-bar">
+    <div class="user-nav-bar-content">
+      <div class="user-nav-item active">投稿した作品</div>
+    </div>
+    <div class="user-nav-bar-content">
+      <div class="user-nav-item">いいねした作品</div>
+    </div>
+    <div class="user-nav-bar-content">
+      <div class="user-nav-item">ストックした作品</div>
+    </div>
+  </div>
+</div>
+<div class="user-nav-content content-active">
+  <% if @posts.present? %>
+    <div class="posts-box">
+      <% @posts.order(:created_at).each do |post| %>
+        <%= render 'shared/posts', post: post %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="user-nav-content">
+  <% if @likes.present? %>
+    <div class="posts-box">
+      <% @likes.order(:created_at).each do |like| %>
+        <%= render 'shared/posts', post: like.post %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="user-nav-content">
+  <% if @stocks.present? %>
+    <div class="posts-box">
+      <% @stocks.order(:created_at).each do |stock| %>
+        <%= render 'shared/posts', post: stock.post %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

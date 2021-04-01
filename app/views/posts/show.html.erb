@@ -8,7 +8,9 @@
       <% end %>
     </div>
     <div class="post-show-info">
-      <div class="post-show-name"><%= @post.name %></div>
+      <div class="post-show-name">
+        <%= @post.name %>
+      </div>
       <% if @tags.present? %>
         <div class="post-show-tag">
           <% @tags.each do |tag| %>
@@ -25,12 +27,14 @@
         </div>
         <div class="post-show-comment">
           <div>
-            <i class="fas fa-comments" style="color: #000;"><%= @post.comments.count %></i>
+            <i class="fas fa-comments" style="color: #000;">
+              <%= @post.comments.count %>
+            </i>
           </div>
         </div>
         <div class="post-show-share">
           <%= link_to "https://twitter.com/share?url=#{ request.url }&text=「#{ @post.name }」を、Twitterでみんなに広めよう！", target:"_blank", class:"expect" do %>
-          <i class="fab fa-twitter" style="color: #fff; margin-right: 5px;" ></i>Twitterでシェア
+            <i class="fab fa-twitter" style="color: #fff; margin-right: 5px;" ></i>Twitterでシェア
           <% end %>
         </div>
         <div class="post-show-time">
@@ -38,15 +42,15 @@
         </div>
         <% if @post.user == current_user || current_user.admin? %>
           <div class="post-show-edit">
-              <%= link_to "編集", edit_post_path(@post), class:"btn-base post-edit-btn" %>
-              <%= link_to "削除", post_path(@post), method: :delete, data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"}, class:"btn-base post-edit-btn expect" %>
+            <%= link_to "編集", edit_post_path(@post), class:"btn-base post-edit-btn" %>
+            <%= link_to "削除", post_path(@post), method: :delete, data:{confirm:"ポートフォリオを参考にしていたユーザーが悲しみます。本当に削除しますか？"}, class:"btn-base post-edit-btn expect" %>
           </div>
         <% end %>
       </div>
     </div>
     <div class="post-show-overview">
       <div class="post-show-username">
-      <h5>投稿者</h5>
+        <h5>投稿者</h5>
         <%= link_to user_path(@post.user) do %>
           <% if @post.user.user_image? %>
             <div><%= image_tag @post.user.user_image.url %></div>
@@ -70,46 +74,7 @@
         <% end %>     
       </div>
     </div>
-    <div class="post-show-comment">
-      <div id="comments-area">
-        <%= render partial: "comments/index", locals: { comments: @comments } %>
-      </div>
-      <div class="comment-create">
-        <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-      </div>
+    <%= render "posts/post_comment" %>
   </div>
-  
-  <div class="post-show-side">
-    <div class="side-heading">その他のサービスを見る</div>
-    <% @random.each do |post| %>
-      <%= link_to post_path(post) do %>
-        <div class="side-post">
-          <div class="side-post-image">
-            <% if post.image? %>
-              <%= image_tag post.image.url %>
-            <% else %>
-              <%= image_tag asset_path("default_post.jpg") %>
-            <% end %>
-          </div>
-          <div class="side-post-info">
-            <div class="side-post-name">
-              <%= post.name.truncate(20) %>
-            </div>
-            <div class="side-post-content">
-              <%= post.content.truncate(40) %>
-            </div>
-            <div class="side-post-other">
-              <div class="side-post-like">
-                <i class="fas fa-thumbs-up" style="color: #000;"><%= post.stocks.length %></i>
-              </div>
-              <div>
-                <i class="fas fa-plus-circle" style="color: #000;"><%= post.stocks.length %></i>
-              </div>
-              <div class="side-post-time"><%= @post.created_at.to_s(:datetime_jp) %></div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render "side_posts" %>
 </div>

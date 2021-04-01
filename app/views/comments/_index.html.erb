@@ -1,24 +1,23 @@
 <% comments.each do |comment| %>
-<div class="comment">
-<div class="user-image">
-  <% if comment.user.user_image? %>
-    <%= image_tag comment.user.user_image.url %>
-  <% else %>
-    <%= image_tag "/assets/default_user.png" %>
-  <% end %>
-</div>
-  <div class="comment-box">
-    <%= link_to comment.user.name, user_path(comment.user), class:"comment-name" %>
-    <p class="comment-time">
-      <%= time_ago_in_words(comment.created_at) %>前
-    </p>
-  </div>
+  <div class="comment">
+    <div class="user-image">
+      <% if comment.user.user_image? %>
+        <%= image_tag comment.user.user_image.url %>
+      <% else %>
+        <%= image_tag "/assets/default_user.png" %>
+      <% end %>
+    </div>
+    <div class="comment-box">
+      <%= link_to comment.user.name, user_path(comment.user), class:"comment-name" %>
+      <p class="comment-time">
+        <%= time_ago_in_words(comment.created_at) %>前
+      </p>
+    </div>
   </div>
   <div class="comment-box2">
-      <%= simple_format(comment.content) %>
+    <%= simple_format(comment.content) %>
     <% if current_user == comment.user || current_user.admin? %>
       <%= link_to "削除", post_comment_path(comment.post_id,comment.id), class:"comment-edit expect", method: :delete, remote: true, data:{confirm:"コメントを本当に削除しますか？"} %>
     <% end %>
   </div>
 <% end %>
-</div>

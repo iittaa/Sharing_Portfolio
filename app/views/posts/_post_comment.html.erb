@@ -1,0 +1,8 @@
+<div class="post-show-comment">
+  <div id="comments-area">
+    <%= render partial: "comments/index", locals: { comments: @comments } %>
+  </div>
+  <div class="comment-create">
+    <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+  </div>
+</div>

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   def check_guest
     if current_user.email == 'guest@example.com'
       redirect_to root_url
-      flash[:danger] = 'ゲストユーザーは閲覧操作のみ可能です'
+      flash[:danger] = 'ゲストユーザーでは操作できません。'
     end
   end
 
