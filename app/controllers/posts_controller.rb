@@ -45,7 +45,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.page(params[:page]).per(9)
     @tags = Post.tag_counts_on(:tags).order('count DESC') # タグ一覧を表示
-    @tag_posts = Post.tagged_with(params[:tag]).page(params[:page]).per(9) if @tag = params[:tag]
+    @tag = params[:tag]
+    @tag_posts = Post.tagged_with(params[:tag]).page(params[:page]).per(9) if @tag
   end
 
   def like_posts

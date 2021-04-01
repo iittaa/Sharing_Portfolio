@@ -10,7 +10,6 @@ class ContactsController < ApplicationController
       ContactMailer.contact_mail(@contact).deliver_now
       flash[:success] = 'お問い合わせメールを送信しました！'
     else
-      redirect_to new_contact_path
       flash[:danger] = 'ユーザー名とお問い合わせ内容を入力してください。'
     end
   end

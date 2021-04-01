@@ -9,3 +9,58 @@ Metrics/CyclomaticComplexity:
 
 Metrics/MethodLength:
   Max: 20
+
+# 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# "Missing top-level class documentation comment."を無効
+Style/Documentation:
+  Enabled: false
+
+# Use only ascii symbols in comments.を無効
+Style/AsciiComments:
+  Enabled: false
+
+# Missing frozen string literal comment.を無効
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 行の長さの最大を190文字に設定
+Layout/LineLength:
+  Max: 190
+
+# rescueブロックをチェックを無効
+Lint/SuppressedException:
+  Enabled: false
+
+# ` $ stdout / $ stderr / $ stdin`の使用強制を無効
+Style/GlobalStdStream:
+  Enabled: false
+
+
+# ブロックの長さの制限を無効
+# rspecは短くできない
+Metrics/BlockLength:
+  Enabled: false
+
+
+# メソッドの複雑化を数値化し計算
+Metrics/PerceivedComplexity:
+  Max: 10
+
+# unicornファイルでグローバル変数を定義する為、無効にする
+Style/GlobalVars:
+  Enabled: false
+
+# bin/bundleファイルでグローバル変数を定義する為、無効にする
+Style/SpecialGlobalVars:
+  Enabled: false
+
+# ガード句を使用しない
+Style/GuardClause:
+  Enabled: false
+
+# if文一行で収まらない式あり(bin/bundle)
+Style/IfUnlessModifier:
+  Enabled: false

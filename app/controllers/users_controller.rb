@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         @user_entry.each do |u|
           if cu.room_id == u.room_id
             @is_room = true
-            @roomId = cu.room_id
+            @room_id = cu.room_id
           end
         end
       end

@@ -39,9 +39,9 @@ class UserImageUploader < CarrierWave::Uploader::Base
   end
 
   # デフォルト画像の設定
-  def default_url(*_args)
-    ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default_user.png'].compact.join('_'))
-  end
+  # def default_url(*_args)
+  #   ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default_user.png'].compact.join('_'))
+  # end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

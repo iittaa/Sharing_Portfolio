@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   # ----- バリデーション --------------------------------------------------
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_URL_REGEX = /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
+  VALID_URL_REGEX = /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/.freeze
   validates :twitter_link, format: { with: VALID_URL_REGEX }, allow_blank: true
   validates :github_link, format: { with: VALID_URL_REGEX }, allow_blank: true
   validates :profile, length: { maximum: 500 }
