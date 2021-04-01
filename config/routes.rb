@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete '/posts/:post_id/stocks', to: 'stocks#destroy'
   post '/posts/:post_id/likes', to: 'likes#create'
   delete '/posts/:post_id/likes', to: 'likes#destroy'
-  resources :users do
+  resources :users, only: [:index, :edit, :show, :update, :destroy] do
     member do
       get :following, :followers
     end
@@ -31,10 +31,12 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
   end
   resources :notifications, only: [:index]
-  resources :contacts, only: %i[new create]
+  
   resources :relationships, only: %i[create destroy]
   resources :messages, only: [:create]
   resources :rooms, only: %i[create show index]
+  resources :contacts, only: [:new]
+
 
   # namespace :admin do
   #   resources :users, only: %i[index show destroy]
