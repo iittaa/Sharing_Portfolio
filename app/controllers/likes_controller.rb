@@ -1,10 +1,11 @@
 class LikesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create index destroy]
+  before_action :authenticate_user!
   before_action :set_post
 
   def create
     @like = current_user.likes.create(post_id: @post.id)
     post = Post.find_by(id: params[:post_id])
+    # いいねの通知
     post.create_notification_like!(current_user)
   end
 
@@ -15,14 +16,6 @@ class LikesController < ApplicationController
     )
     @like.destroy
   end
-
-  # def index
-  #   @likes = Like.where(user_id: current_user.id).page(params[:page]).per(10)
-  # end
-
-  # def show
-  #   @like = Like.find_by(post_id: params[:id]).page(params[:page]).per(100)
-  # end
 
   private
 

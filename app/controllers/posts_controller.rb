@@ -1,18 +1,19 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update index show destroy]
   before_action :correct_user, only: %i[edit update destroy]
-  before_action :check_guest, only: %i[new create edit update destroy]
 
   def new
     @post = current_user.posts.build
     @tags = @post.tag_counts_on(:tags)
   end
 
+  # 投稿確認画面
   def confirm
     @post = current_user.posts.build(post_params)
     render 'new' if @post.invalid?
   end
 
+  # 投稿確認画面から入力画面に戻る
   def back
     @post = current_user.posts.build(post_params)
     render 'new'

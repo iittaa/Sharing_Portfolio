@@ -1,0 +1,35 @@
+<div class="post-show-side">
+  <div class="side-heading">その他のサービスを見る</div>
+  <% @random.each do |post| %>
+    <%= link_to post_path(post) do %>
+      <div class="side-post">
+        <div class="side-post-image">
+          <% if post.image? %>
+            <%= image_tag post.image.url %>
+          <% else %>
+            <%= image_tag asset_path("default_post.jpg") %>
+          <% end %>
+        </div>
+        <div class="side-post-info">
+          <div class="side-post-name">
+            <%= post.name.truncate(20) %>
+          </div>
+          <div class="side-post-content">
+            <%= post.content.truncate(40) %>
+          </div>
+          <div class="side-post-other">
+            <div class="side-post-like">
+              <i class="fas fa-thumbs-up" style="color: #000;"><%= post.stocks.length %></i>
+            </div>
+            <div>
+              <i class="fas fa-plus-circle" style="color: #000;"><%= post.stocks.length %></i>
+            </div>
+            <div class="side-post-time">
+              <%= @post.created_at.to_s(:datetime_jp) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
