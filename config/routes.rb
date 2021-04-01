@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     collection do
       get :home
       get :term
+      get :contact
     end
   end
 
@@ -35,9 +36,9 @@ Rails.application.routes.draw do
   resources :relationships, only: %i[create destroy]
   resources :messages, only: [:create]
   resources :rooms, only: %i[create show index]
-  resources :contacts, only: [:new]
 
-
+  
+  # resources :contacts, only: [:new]
   # namespace :admin do
   #   resources :users, only: %i[index show destroy]
   #   resources :posts, only: %i[index show edit update destroy]
