@@ -29,6 +29,10 @@ Ruby on Rails
 3. 投稿されたデータが表示される  
 4. 「作品一覧」ボタンより他のユーザーの作品も見ることが可能。  
  
+## ER図
+<img width="1245" alt="ERD" src="https://user-images.githubusercontent.com/72332802/113405673-299ed100-93e5-11eb-8a4b-645db4c09e0c.png">
+
+
 # 作成者
 板本 耕輔  
 qiita :https://qiita.com/iittaa  
