@@ -30,7 +30,7 @@ Ruby on Rails
 4. 「作品一覧」ボタンより他のユーザーの作品も見ることが可能。  
  
 ## ER図
-<img width="1245" alt="ERD" src="https://user-images.githubusercontent.com/72332802/113405673-299ed100-93e5-11eb-8a4b-645db4c09e0c.png">
+<img width="1236" alt="ER図" src="https://user-images.githubusercontent.com/72332802/113408128-c499aa00-93e9-11eb-9ace-dd9d8117a51e.png">
 
 
 # 作成者
