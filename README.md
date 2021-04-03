@@ -32,6 +32,9 @@ Ruby on Rails
 ## ER図
 <img width="1236" alt="ER図" src="https://user-images.githubusercontent.com/72332802/113408128-c499aa00-93e9-11eb-9ace-dd9d8117a51e.png">
 
+## インフラ構成
+<img width="972" alt="Infrastructure-configuration" src="https://user-images.githubusercontent.com/72332802/113469623-f6fae400-9489-11eb-8570-c3e7419040da.png">
+
 
 # 作成者
 板本 耕輔  
