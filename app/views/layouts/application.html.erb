@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/ fb# prefix属性: http://ogp.me/ns/ prefix属性#">
     <title>SharingPortfolio</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@kosukengineer" />
+    <meta property="og:url" content="https://www.sharing-portfolio.site/" />
+    <meta property="og:title" content="Sharing Portfolio" />
+    <meta property="og:description" content="作成したポートフォリオをみんなに公開しよう!!" />
+    <meta property="og:image" content="../assets/images/sp-topimage.png" />
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
@@ -22,6 +28,8 @@
     <link link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <%= favicon_link_tag('favicon.ico') %>
+
+
     
 
   </head>
