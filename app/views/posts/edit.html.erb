@@ -51,8 +51,8 @@
       <%= f.submit "更新する", class:"btn-base devise-btn" %>
     </div>
     <div class="back">
-      <%= link_to :back do %>
-        <i class="fas fa-undo"></i> 戻る
+      <%= link_to post_path(@post) do %>
+        <i class="fas fa-undo"></i> 詳細画面に戻る
       <% end %>
     </div>
   <% end %>

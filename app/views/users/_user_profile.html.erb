@@ -31,13 +31,17 @@
       <% end %>
       <% unless @user.id == current_user.id %>
         <% if @is_room == true %>
-          <p class="user-show-room"><%= link_to "メッセージを送る", room_path(@room_id), class:"btn-base" %>
+          <div class="user-show-chat">
+            <%= link_to "メッセージを送る", room_path(@room_id), class:"btn-base" %>
+          </div>
         <% else %>
           <%= form_for @room do |f| %>
             <%= fields_for @entry do |e| %>
               <%= e.hidden_field :user_id, value: @user.id %>
             <% end %>
-          <%= f.submit "メッセージを送る", class:"btn-base user-show-chat"%>
+            <div class="user-show-chat">
+              <%= f.submit "メッセージを送る", class:"btn-base" %>
+            </div>
           <% end %>
         <% end %>
       <% end %>
@@ -45,6 +49,13 @@
         <div class="user-admin-edit ">
           <%= link_to "管理者権限で編集", edit_user_path, class:"btn-base" %>
         </div>
+      <% end %>
+      <% if @user == current_user %>
+        <% unless current_user.admin? %>
+          <div class="user-admin-edit">
+            <%= link_to "編集", edit_user_registration_path, class:"btn-base" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="user-show-profile">

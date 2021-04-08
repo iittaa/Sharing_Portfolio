@@ -73,6 +73,11 @@
           <i class="fas fa-link"></i>  ポートフォリオを閲覧する
         <% end %>     
       </div>
+      <div class="back">
+        <%= link_to posts_path do %>
+          <i class="fas fa-undo"></i> 作品一覧に戻る
+        <% end %>
+      </div>
     </div>
     <%= render "posts/post_comment" %>
   </div>

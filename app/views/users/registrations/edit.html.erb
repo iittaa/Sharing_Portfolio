@@ -68,8 +68,8 @@
       <%= link_to "アカウントを削除", user_path(current_user), data: { confirm: "本当に削除しますか？" }, method: :delete, class:"expect" %>
     </div>
     <div class="back">
-      <%= link_to :back do %>
-        <i class="fas fa-undo"></i> 戻る
+      <%= link_to user_path(current_user) do %>
+        <i class="fas fa-undo"></i> マイページに戻る
       <% end %>
     </div>
   </div>

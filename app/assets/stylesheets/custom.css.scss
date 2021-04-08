@@ -548,7 +548,7 @@ footer{
 }
 
 .back{
-  width: 15%;
+  width: 50%;
   margin: 10px auto;
   font-weight: 700;
   a{
@@ -565,7 +565,7 @@ footer{
 
 .user-admin-edit{
   margin: auto 0;
-  margin-left: 50px;
+  margin-right: 15px;
   a{
     padding: 2px;
   }
@@ -636,7 +636,7 @@ footer{
       margin-bottom: 10px;
       display: flex;
       .twitter{
-        margin: 0 5px;
+        margin-right: 15px;
         font-size: 2.8em;
         color: rgb(29, 161, 242)
       }
@@ -645,13 +645,20 @@ footer{
         transition: 0.5s ;
       }
       .github{
-        margin: 0 5px;
+        margin-right: 15px;
         font-size: 2.8em;
         color: grey;
       }
       .github:hover{
         color: rgb(90, 90, 90);
         transition: 0.5s;
+      }
+      .user-show-chat{
+        margin: auto 0;
+        margin-right: 15px;
+        a{
+          padding: 2px;
+        }
       }
     }
     .user-show-profile{

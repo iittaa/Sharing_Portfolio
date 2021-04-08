@@ -56,6 +56,11 @@
     <div class="btn-container">
       <%= f.submit "確認画面へ", class:"btn-base devise-btn" %>
     </div>
+    <div class="back">
+      <%= link_to posts_path do %>
+        <i class="fas fa-undo"></i> 作品一覧に戻る
+      <% end %>
+    </div>
   <% end %>
 </div>
 
